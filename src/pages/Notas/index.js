@@ -1,8 +1,8 @@
-import Acordeao from "../../components/Acordeao" ;
+import AcordeaoFilial from "../../components/AcordeaoFilial";
 
 function Notas () {
     return (
-        <Acordeao />
+        <AcordeaoFilial />
     );
 }
 
