@@ -1,0 +1,138 @@
+[
+    {
+        "filial": "Dourados",
+        "valor_teto": "1300",
+        "notas": [
+            {
+                "numero": "1",
+                "cpf": "11122233344",
+                "titular": "Ana Souza",
+                "data": "2023-08-12",
+                "valor": "700",
+                "status": true
+            },
+            {
+                "numero": "2",
+                "cpf": "55566677788",
+                "titular": "Bruno Lima",
+                "data": "2023-08-15",
+                "valor": "500",
+                "status": false,
+                "erro": {
+                    "mensagem": "Erro de digitação",
+                    "log": "Número incorreto"
+                }
+            },
+            {
+                "numero": "3",
+                "cpf": "99988877766",
+                "titular": "Carla Mendes",
+                "data": "2023-08-18",
+                "valor": "600",
+                "status": true
+            }
+        ]
+    },
+    {
+        "filial": "Amambai",
+        "valor_teto": "1100",
+        "notas": [
+            {
+                "numero": "1",
+                "cpf": "22233344455",
+                "titular": "Diego Ferreira",
+                "data": "2023-09-05",
+                "valor": "500",
+                "status": true
+            },
+            {
+                "numero": "2",
+                "cpf": "66677788899",
+                "titular": "Eloá Martins",
+                "data": "2023-09-07",
+                "valor": "400",
+                "status": true
+            },
+            {
+                "numero": "3",
+                "cpf": "44455566677",
+                "titular": "Fernando Castro",
+                "data": "2023-09-10",
+                "valor": "300",
+                "status": false,
+                "erro": {
+                    "mensagem": "Saldo insuficiente",
+                    "log": "Teto ultrapassado"
+                }
+            }
+        ]
+    },
+    {
+        "filial": "Ponta Porã",
+        "valor_teto": "1250",
+        "notas": [
+            {
+                "numero": "1",
+                "cpf": "77788899900",
+                "titular": "Gabriel Almeida",
+                "data": "2023-10-02",
+                "valor": "600",
+                "status": true
+            },
+            {
+                "numero": "2",
+                "cpf": "88899900011",
+                "titular": "Helena Costa",
+                "data": "2023-10-05",
+                "valor": "500",
+                "status": true
+            },
+            {
+                "numero": "3",
+                "cpf": "99900011122",
+                "titular": "Igor Ribeiro",
+                "data": "2023-10-08",
+                "valor": "400",
+                "status": false,
+                "erro": {
+                    "mensagem": "Documento inválido",
+                    "log": "RG divergente"
+                }
+            }
+        ]
+    },
+    {
+        "filial": "Itaporã",
+        "valor_teto": "1200",
+        "notas": [
+            {
+                "numero": "1",
+                "cpf": "33344455566",
+                "titular": "João Pedro",
+                "data": "2023-11-01",
+                "valor": "700",
+                "status": true
+            },
+            {
+                "numero": "2",
+                "cpf": "44455566677",
+                "titular": "Larissa Rocha",
+                "data": "2023-11-03",
+                "valor": "400",
+                "status": true
+            },
+            {
+                "numero": "3",
+                "cpf": "55566677788",
+                "titular": "Marcos Vinícius",
+                "data": "2023-11-06",
+                "valor": "600",
+                "status": false,
+                "erro": {
+                    "mensagem": "Pagamento recusado",
+                    "log": "Cartão bloqueado"
+                }
+            }
+        ]
+    }
+]
