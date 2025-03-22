@@ -10,7 +10,7 @@ import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
 import filiais from "../../json/db.json" 
 
-function AcordeaoFilial({filial, valor_teto}) {
+function AcordeaoFilial({filial, valor_teto, notas}) {
     return (
         <Accordion >
           <AccordionSummary
@@ -25,15 +25,11 @@ function AcordeaoFilial({filial, valor_teto}) {
           <AccordionDetails>
             <p>ValorTeto: R${valor_teto},00</p>
             <section>
-              {
-                  filiais.map( (filial) => {
-
-                        return filial.notas.map ((nota) => {
-                        return <AcordeaoNota {...nota} key = {nota.numero} />
-                      })
-                  }
-
-              )}
+              
+              {notas.map ((nota) => {
+                return <AcordeaoNota {...nota} key = {nota.numero} />
+              })}
+              
             </section>
           </AccordionDetails>
         </Accordion>

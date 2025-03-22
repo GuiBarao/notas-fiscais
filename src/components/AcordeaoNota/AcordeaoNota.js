@@ -5,13 +5,25 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+function format_status(status_bool) {
+    let status_txt = "Válido";
 
-function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
-    let status_txt;
-    status_txt = "Válido"
-    if(!status) {
+    if(!status_bool) {
       status_txt = "Inválido";
     }
+
+    return status_txt;
+}
+
+function format_date(data) {
+    let [ano, mes, dia] = data.split("-");
+    return `${dia}/${mes}/${ano}`;
+}
+
+function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
+    let status_formatado = format_status(status);
+    let data_formatada = format_date(data);
+
     return (
         <Accordion>
         <AccordionSummary
@@ -19,14 +31,23 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <Typography component="span">Numero da nota: {numero}</Typography>
+          <Typography component="span">{numero}</Typography>
           <Typography component="span">Titular: {titular}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <p> CPF: {cpf}</p>
-            <p> Data: {data}</p>
-            <p> Valor: R${valor}</p>
-            <p> status: {status_txt}</p>
+
+          <table>
+            <tr>            
+              <td> CPF: {cpf}</td>
+              <td> Data: {data_formatada}</td>
+            </tr>
+            <tr>
+              <td> Valor: R${valor}</td>
+              <td> Status: {status_formatado}</td>
+            </tr>
+          </table>
+
+          
         </AccordionDetails>
       </Accordion>
     );
