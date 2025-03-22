@@ -1,31 +1,28 @@
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
-import AccordionActions from '@mui/material/AccordionActions';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Button from '@mui/material/Button';
 
-function AcordeaoNota() {
+
+function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
     return (
-        <Accordion defaultExpanded>
+        <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <Typography component="span">Numero da nota:</Typography>
-          <Typography component="span">Titular:</Typography>
+          <Typography component="span">Numero da nota: {numero}</Typography>
+          <Typography component="span">Titular: {titular}</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <p> CPF: {cpf}</p>
+            <p> Data: {data}</p>
+            <p> Valor: R${valor}</p>
+            <p> status: {status}</p>
         </AccordionDetails>
-        <AccordionActions>
-          <Button>Cancel</Button>
-          <Button>Agree</Button>
-        </AccordionActions>
       </Accordion>
     );
 }
