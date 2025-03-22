@@ -7,6 +7,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
+    let status_txt;
+    status_txt = "Válido"
+    if(!status) {
+      status_txt = "Inválido";
+    }
     return (
         <Accordion>
         <AccordionSummary
@@ -21,7 +26,7 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status}) {
             <p> CPF: {cpf}</p>
             <p> Data: {data}</p>
             <p> Valor: R${valor}</p>
-            <p> status: {status}</p>
+            <p> status: {status_txt}</p>
         </AccordionDetails>
       </Accordion>
     );

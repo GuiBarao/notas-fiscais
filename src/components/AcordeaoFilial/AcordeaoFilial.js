@@ -8,8 +8,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
-import styles from "./AcordeaoFilial.module.css"
-
 import filiais from "../../json/db.json" 
 
 function AcordeaoFilial({filial, valor_teto}) {
