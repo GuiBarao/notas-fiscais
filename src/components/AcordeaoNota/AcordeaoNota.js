@@ -7,15 +7,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import AcordeaoErro from '../AcordeaoErro/AcordeaoErro.js';
 
-function format_status(status_bool) {
-    let status_txt = "Válido";
-
-    if(!status_bool) {
-      status_txt = "Inválido";
-    }
-
-    return status_txt;
-}
 
 function format_date(data) {
     let [ano, mes, dia] = data.split("-");
@@ -23,7 +14,6 @@ function format_date(data) {
 }
 
 function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
-    let status_formatado = format_status(status);
     let data_formatada = format_date(data);
 
     return (
@@ -33,7 +23,7 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <Typography component="span">{numero}</Typography>
+
           <Typography component="span">{titular}</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -42,16 +32,17 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
           <table>
             <tr> <h1>{titular}</h1></tr>
             <tr>            
-              <td> CPF: {cpf}</td>
+              <td> Nº da nota: {numero}</td>
               <td> Data: {data_formatada}</td>
             </tr>
             <tr>
               <td> Valor: R${valor}</td>
+              <td> CPF: {cpf}</td>
                   
             </tr>
           </table>
 
-          <AcordeaoErro status={status_formatado} {...erro}/>
+          <AcordeaoErro status={status} {...erro}/>
 
           
         </AccordionDetails>
