@@ -46,11 +46,11 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
               <tr>
               <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero}/></td>
               <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)}/></td>
-              <CampoStatus status={status} {...erro}/>
+              <td><CampoStatus status={status} {...erro}/></td>
               </tr>
 
               <tr>
-              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor}`}/></td>
+              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor},00`}/></td>
               <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)}/></td>
               </tr>
             </table>

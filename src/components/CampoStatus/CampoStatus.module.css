@@ -4,14 +4,25 @@
     padding: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
+    align-items: center;
 }
 
 .campo_status h1{
     margin : 0px;
 }
 
-.campo_status p {
+.campo_status p{
     margin : 0px;
     margin-top: 16px;
     margin-bottom: 16px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.campo_status .p_valido {
+    background-color: green;
+}
+
+.campo_status .p_invalido {
+    background-color: red;
 }
