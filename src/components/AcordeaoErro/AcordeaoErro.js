@@ -17,7 +17,7 @@ function format_status(status_bool) {
 
 function AcordeaoErro ({status, mensagem, log}) {
     return (
-        <Accordion >
+        <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3-content"

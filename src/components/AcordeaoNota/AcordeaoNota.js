@@ -8,39 +8,47 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AcordeaoErro from '../AcordeaoErro/AcordeaoErro.js';
 
 
+import styles from "./AcordeaoNota.module.css";
+
+import InfoNota from '../InfoNota/InfoNota.js';
+
 function format_date(data) {
     let [ano, mes, dia] = data.split("-");
     return `${dia}/${mes}/${ano}`;
 }
 
 function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
-    let data_formatada = format_date(data);
 
     return (
-        <Accordion>
+        <Accordion className={styles.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
         >
 
-          <Typography component="span">{titular}</Typography>
+          <Typography component="span">
+            
+            <img src = "/images/titular_icon.svg" alt = "Icone Pessoa" />
+            {titular}
+            
+            
+            </Typography>
         </AccordionSummary>
-        <AccordionDetails>
-
+        <AccordionDetails className={styles.details}>
           
-          <table>
-            <tr> <h1>{titular}</h1></tr>
-            <tr>            
-              <td> Nº da nota: {numero}</td>
-              <td> Data: {data_formatada}</td>
-            </tr>
-            <tr>
-              <td> Valor: R${valor}</td>
-              <td> CPF: {cpf}</td>
-                  
-            </tr>
-          </table>
+            <table>
+              <tr>
+              <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} infoTexto = {numero}/></td>
+              <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} infoTexto = {format_date(data)}/></td>
+              </tr>
+
+              <tr>
+              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} infoTexto = {valor}/></td>
+              <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} infoTexto = {cpf}/></td>
+              </tr>
+            </table>
+  
 
           <AcordeaoErro status={status} {...erro}/>
 
