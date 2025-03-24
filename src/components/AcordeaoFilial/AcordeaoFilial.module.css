@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.acordeao {
+    border-radius: 14px !important;
+    background: #133630 !important;
+    width: 100%;
+}
+
+.titulo_acordeao {
+    display: flex;
+    flex-direction: row;
+}
+
+.titulo_acordeao p {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    margin : 0px;
+
+}
+
+.titulo_acordeao img {
+    width: 24px;
+    height: 24px;
+}
+
+.filial {
+    display: flex;
+    flex-direction: row;
+}
+
+.valor_teto {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+

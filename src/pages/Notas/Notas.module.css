@@ -1,6 +1,7 @@
 .notas {
     display: flex;
     flex-direction: column;
+    background-color: #112422;
 }
 
 .filtro_notas {
