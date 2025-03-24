@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.campo_filtro {
+    background-color: #133630;
+    width: 351px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.logo {
+    width: 154.34px;
+    height: 76px;
+    align-self: center;
+    padding: 48px;
+}
+
+.filtros_icon_titulo {
+    display: flex;
+    flex-direction: row;
+    margin : 0px;
+    background-color: #112422;
+    width: 165px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 8px;
+}
+
+.filtro_icon {
+    width: 21.639px;
+    height: 19.475px;
+}
+
+.titulo {
+    margin: 0px;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.filtros_opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 33px;
+    padding-top: 60px;
+}

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.campo_texto {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.img_titulo {
+    display: flex;
+    flex-direction: row;
+    font-family: "Montserrat", sans-serif;
+    color: #ffffff;
+}
+
+.img_titulo h1 {
+    margin: 0;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    align-self: left;
+}
+
+.busca {
+    border-radius: 7px;
+    border: 1px solid #A0AEAC;
+    background-color: #425E59;
+    width: 284px;
+    align-self: center;
+
+}

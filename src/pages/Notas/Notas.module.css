@@ -1,0 +1,9 @@
+.notas {
+    display: flex;
+    flex-direction: column;
+}
+
+.filtro_notas {
+    display: flex;
+    flex-direction: row;
+}

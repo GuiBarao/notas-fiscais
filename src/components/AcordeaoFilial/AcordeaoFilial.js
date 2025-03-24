@@ -8,6 +8,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
+function filtro(nota) {
+
+  if(nota.valor > 500 || nota.titular === "Diogo Ferreira")
+  {
+      return false;
+  }
+
+  return <AcordeaoNota {...nota} key = {nota.numero} /> 
+}
+
 function AcordeaoFilial({filial, valor_teto, notas}) {
     return (
         <Accordion >
@@ -21,11 +31,11 @@ function AcordeaoFilial({filial, valor_teto, notas}) {
             
           </AccordionSummary>
           <AccordionDetails>
-            <p>ValorTeto: R${valor_teto},00</p>
+            <p>Valor Teto: R${valor_teto},00</p>
             <section>
               
               {notas.map ((nota) => {
-                return <AcordeaoNota {...nota} key = {nota.numero} /> 
+                return filtro(nota);
               })}
               
             </section>
