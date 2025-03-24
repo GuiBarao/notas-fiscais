@@ -8,8 +8,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
-import filiais from "../../json/db.json" 
-
 function AcordeaoFilial({filial, valor_teto, notas}) {
     return (
         <Accordion >
@@ -27,7 +25,7 @@ function AcordeaoFilial({filial, valor_teto, notas}) {
             <section>
               
               {notas.map ((nota) => {
-                return <AcordeaoNota {...nota} key = {nota.numero} />
+                return <AcordeaoNota {...nota} key = {nota.numero} /> 
               })}
               
             </section>

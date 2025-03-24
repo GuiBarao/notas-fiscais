@@ -1,0 +1,17 @@
+.campo_status{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.campo_status h1{
+    margin : 0px;
+}
+
+.campo_status p {
+    margin : 0px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

@@ -5,8 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import AcordeaoErro from '../AcordeaoErro/AcordeaoErro.js';
-
+import CampoStatus from '../CampoStatus/CampoStatus.js';
 
 import styles from "./AcordeaoNota.module.css";
 
@@ -17,40 +16,47 @@ function format_date(data) {
     return `${dia}/${mes}/${ano}`;
 }
 
+function format_cpf(cpf)
+{
+
+    return cpf.slice(0,3) + "." + cpf.slice(3,6) + "." + cpf.slice(6,9) + "-" + cpf.slice(9,11);
+}
+
 function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
 
     return (
-        <Accordion className={styles.accordion}>
+        <Accordion className={styles.acordeao}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
         >
 
-          <Typography component="span">
+          <Typography component="span" className = {styles.nome_titular}>
             
             <img src = "/images/titular_icon.svg" alt = "Icone Pessoa" />
-            {titular}
+            <strong>{titular}</strong>
             
             
-            </Typography>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails className={styles.details}>
           
             <table>
               <tr>
-              <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} infoTexto = {numero}/></td>
-              <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} infoTexto = {format_date(data)}/></td>
+              <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero}/></td>
+              <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)}/></td>
+              <CampoStatus status={status} {...erro}/>
               </tr>
 
               <tr>
-              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} infoTexto = {valor}/></td>
-              <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} infoTexto = {cpf}/></td>
+              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor}`}/></td>
+              <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)}/></td>
               </tr>
             </table>
   
 
-          <AcordeaoErro status={status} {...erro}/>
+          
 
           
         </AccordionDetails>

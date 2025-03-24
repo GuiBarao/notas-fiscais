@@ -1,11 +1,16 @@
+import styles from "./InfoNota.module.css";
 
-function InfoNota({nomeInfo, arquivoIMG, altIMG, infoTexto }) {
+
+
+function InfoNota({nomeInfo, arquivoIMG, altIMG, info }) {
     return (
-        <div>
-            <img src = {`/images/${arquivoIMG}.svg`} alt = {altIMG} />
-            <h1>{nomeInfo}</h1>
-            <h2>{infoTexto}</h2>
-        </div>
+        <section className = {styles.infoNota}>
+            <div className = {styles.icone_titulo}>
+                <img src = {`/images/${arquivoIMG}.svg`} alt = {altIMG} />
+                <h1>{nomeInfo}</h1>
+            </div>
+            <p className={styles.info}>{info}</p>
+        </section>
 
     )
 }

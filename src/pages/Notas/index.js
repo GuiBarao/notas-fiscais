@@ -5,6 +5,7 @@ import filiais from "../../json/db.json"
 function Notas () {
     return (
         <section>
+
             {filiais.map( (filial) => {
                 return <AcordeaoFilial {...filial} />
             })}

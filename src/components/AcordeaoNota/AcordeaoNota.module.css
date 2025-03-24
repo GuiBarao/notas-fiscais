@@ -1,6 +1,12 @@
-.accordion {
-    color: #ffffff;
-    background-color: #41504E;
+.acordeao {
+    color: #ffffff !important;
+    background-color: #41504E !important;
+}
+
+.nome_titular {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 
 .details {
@@ -8,3 +14,6 @@
     background-color: #41504E;
 }
 
+td {
+    height: 0px;
+}
