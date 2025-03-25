@@ -3,7 +3,7 @@ import CampoTexto from "../CampoTexto/CampoTexto.js";
 
 
 import FiltroValor from "../FiltroValor/FiltroValor.js";
-
+import FiltroStatus from "../FiltroStatus/FiltroStatus.js"
 
 function CampoFiltro(){
     return (
@@ -16,11 +16,13 @@ function CampoFiltro(){
             </div>
             
             <div className= {styles.filtros_opcoes}>
-                <CampoTexto arquivoIMG={"titular_icon"} titulo={"Nome:"}/>
+                <CampoTexto arquivoIMG={"titular_icon"} titulo={"Nome Titular:"}/>
                 <CampoTexto arquivoIMG={"cpf_icon"} titulo={"CPF:"}/>
                 <CampoTexto arquivoIMG={"numero_icon"} titulo={"Número:"}/>
 
                 <FiltroValor/>
+
+                <FiltroStatus />
 
             </div>
 

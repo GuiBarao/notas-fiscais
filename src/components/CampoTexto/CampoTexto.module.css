@@ -12,6 +12,7 @@
     flex-direction: row;
     font-family: "Montserrat", sans-serif;
     color: #ffffff;
+    gap: 5px;
 }
 
 .img_titulo h1 {
