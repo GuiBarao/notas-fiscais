@@ -27,7 +27,7 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
     return (
         <Accordion className={styles.acordeao}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon  sx = {{color : "#ffffff", width: "24px", height: "24px"}}/>}
           aria-controls="panel3-content"
           id="panel3-header"
         >
@@ -37,21 +37,22 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
             <img src = "/images/titular_icon.svg" alt = "Icone Pessoa" />
             <strong>{titular}</strong>
             
-            
           </Typography>
+
+
         </AccordionSummary>
         <AccordionDetails className={styles.details}>
           
             <table>
               <tr>
-              <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero}/></td>
-              <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)}/></td>
+              <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero} largura = {284}/></td>
+              <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)} largura = {146}/></td>
               <td><CampoStatus status={status} {...erro}/></td>
               </tr>
 
               <tr>
-              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor},00`}/></td>
-              <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)}/></td>
+              <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor},00`} largura = {284}/></td>
+              <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)} largura = {146}/></td>
               </tr>
             </table>
   

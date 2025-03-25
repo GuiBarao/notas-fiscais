@@ -1,16 +1,22 @@
 .acordeao {
     color: #ffffff !important;
     background-color: #41504E !important;
+
+    border-radius: 14px !important;
+    padding: 0px;
+    margin-bottom: 10px;
 }
 
 .nome_titular {
     display: flex;
     flex-direction: row;
     gap: 5px;
+    
 }
 
 .details {
     color: #ffffff;
     background-color: #41504E;
 }
+
 

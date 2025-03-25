@@ -23,7 +23,7 @@ function AcordeaoFilial({filial, valor_teto, notas}) {
     return (
         <Accordion className = {styles.acordeao}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMoreIcon sx = {{color : "#ffffff"}}/>}
             aria-controls="panel3-content"
             id="panel3-header"
           >
