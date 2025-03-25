@@ -12,7 +12,7 @@ function CampoTexto ({arquivoIMG, titulo}) {
             <h1>{titulo}</h1>
             </div>
 
-            <TextField className= {styles.busca}  size="small"
+            <TextField sx={{background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} className= {styles.busca}  size="small"
             
             slotProps={{
                 input: {

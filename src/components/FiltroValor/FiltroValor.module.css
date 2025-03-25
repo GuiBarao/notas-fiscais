@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.img_titulo{
+    display: flex;
+    flex-direction: row;
+    color: #FFF;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.cifrao {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+}
+
+.componente_textField {
+    width: 125px;
+    height: 38px;
+}
+
+.intervalo_valor {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+}
+
+.intervalo_valor .traco{
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    align-self: center;
+    margin: 0px;    
+}
+
