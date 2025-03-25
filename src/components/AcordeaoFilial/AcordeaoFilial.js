@@ -16,7 +16,7 @@ function filtro(nota) {
       return false;
   }
 
-  return <AcordeaoNota {...nota} key = {nota.numero} /> 
+  return <AcordeaoNota {...nota} /> 
 }
 
 function AcordeaoFilial({filial, valor_teto, notas}) {

@@ -10,6 +10,7 @@ import CampoStatus from '../CampoStatus/CampoStatus.js';
 import styles from "./AcordeaoNota.module.css";
 
 import InfoNota from '../InfoNota/InfoNota.js';
+import InfoErro from '../InfoErro/InfoErro.js';
 
 function format_date(data) {
     let [ano, mes, dia] = data.split("-");
@@ -47,7 +48,6 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
               <tr>
               <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero} largura = {284}/></td>
               <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)} largura = {146}/></td>
-              <td><CampoStatus status={status} {...erro}/></td>
               </tr>
 
               <tr>
@@ -55,10 +55,10 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
               <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)} largura = {146}/></td>
               </tr>
             </table>
-  
 
-          
+            <CampoStatus status={status}/>
 
+            <InfoErro {...erro}/>
           
         </AccordionDetails>
       </Accordion>

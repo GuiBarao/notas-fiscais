@@ -19,7 +19,7 @@ function define_classe_css(status) {
   return styles.p_invalido
 }
 
-function CampoStatus({status, mensagem, log}) {
+function CampoStatus({status}) {
 
     return (
         <section className = {styles.campo_status}>

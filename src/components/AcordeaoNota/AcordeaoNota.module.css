@@ -17,6 +17,8 @@
 .details {
     color: #ffffff;
     background-color: #41504E;
+    display: flex;
+    flex-direction: row;
 }
 
 

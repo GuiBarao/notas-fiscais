@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 .campo_status{
     display: flex;
     flex-direction: column;
@@ -15,8 +18,14 @@
     margin : 0px;
     margin-top: 16px;
     margin-bottom: 16px;
-    padding: 30px;
+    padding: 50px;
     border-radius: 10px;
+
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .campo_status .p_valido {
