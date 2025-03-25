@@ -35,11 +35,11 @@ function AcordeaoFilial({filial, valor_teto, notas}) {
               </div>
 
               <div className = {styles.valor_teto}>
-              <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
-              <p> Valor Teto: R${valor_teto},00</p>
+                <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
+                <p> Valor Teto: R${valor_teto},00</p>
               </div>
 
-              </Typography>
+            </Typography>
             
             
           </AccordionSummary>

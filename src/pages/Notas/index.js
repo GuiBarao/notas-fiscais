@@ -10,7 +10,7 @@ function Notas () {
             <div className={styles.filtro_notas}>
                 <CampoFiltro />
 
-                <div>
+                <div className={styles.acordeoes_filiais}>
                     {filiais.map( (filial) => {
                         return <AcordeaoFilial {...filial} />
                     })}

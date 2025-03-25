@@ -4,12 +4,18 @@
 .acordeao {
     border-radius: 14px !important;
     background: #133630 !important;
-    width: 100%;
+
 }
 
 .titulo_acordeao {
     display: flex;
     flex-direction: row;
+    width: 50%;
+    justify-content:space-between;
+    align-items: center;
+    text-align: center;
+    height: 40px;
+
 }
 
 .titulo_acordeao p {
@@ -19,6 +25,7 @@
     font-style: normal;
     font-weight: 700;
     margin : 0px;
+    border-radius: 14px;
 
 }
 
@@ -30,13 +37,15 @@
 .filial {
     display: flex;
     flex-direction: row;
+    text-align: left;
+
+
 }
 
 .valor_teto {
     display: flex;
     flex-direction: row;
-    align-self: center;
-    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
