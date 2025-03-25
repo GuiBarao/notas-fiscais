@@ -23,7 +23,10 @@ function CampoStatus({status}) {
 
     return (
         <section className = {styles.campo_status}>
-            <h1>Status</h1>
+            <div className={styles.img_titulo_wrapper}>
+              <img src = "/images/status_icon.svg" alt = "icone de status"/>
+              <h1>Status</h1>
+            </div>
             <p className = {define_classe_css(status)}>{format_status(status)}</p>
         </section>
     )
