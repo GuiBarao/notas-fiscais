@@ -1,14 +1,11 @@
 .notas {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: #112422;
 }
 
-.filtro_notas {
+.header_filtros_wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
-.acordeoes_filiais {
-    width: 100%;
-}
