@@ -7,10 +7,11 @@ import FiltroStatus from "../FiltroStatus/FiltroStatus.js"
 import { useState } from "react";
 
 
-function CampoFiltro({onFiltrarNome, onFiltrarCPF}){
+function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero}){
 
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
     const [filtroCPF, setFiltroCPF] = useState("");
+    const [filtroNumero, setFiltroNumero] = useState("");
 
  
     return (
@@ -32,8 +33,12 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF}){
                 value={filtroCPF}
                 onChange={(ev) => {setFiltroCPF(ev.target.value); onFiltrarCPF(ev.target.value);}}
                 arquivoIMG={"cpf_icon"} titulo={"CPF:"}/>
+
+                <CampoTexto
+                value = {filtroNumero}
+                onChange={(ev) => {setFiltroNumero(ev.target.value); onFiltrarNumero(ev.target.value)}}
                 
-                <CampoTexto arquivoIMG={"numero_icon"} titulo={"Número:"}/>
+                arquivoIMG={"numero_icon"} titulo={"Número:"}/>
 
                 <FiltroValor/>
 

@@ -10,10 +10,15 @@ function Notas () {
 
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
     const [filtroCPF, setFiltroCPF] = useState("");
+    const [filtroNumero, setFiltroNumero] = useState("");
     return (
 
         <section className={styles.notas}>
-            <CampoFiltro onFiltrarNome={setFiltroNomeTitular} onFiltrarCPF={setFiltroCPF}/>
+            <CampoFiltro 
+                onFiltrarNome={setFiltroNomeTitular} 
+                onFiltrarCPF={setFiltroCPF}
+                onFiltrarNumero={setFiltroNumero}
+            />
             
             <div className={styles.header_filtros_wrapper}>
                 
@@ -24,6 +29,7 @@ function Notas () {
                         return <AcordeaoFilial {...filial} 
                         filtroNomeTitular = {filtroNomeTitular} 
                         filtroCPF = {filtroCPF}
+                        filtroNumero = {filtroNumero}
                         />
                     })}
                 </div>

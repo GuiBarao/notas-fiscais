@@ -9,33 +9,38 @@ import styles from "./AcordeaoFilial.module.css";
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
-function filtragem(nota, filtroNomeTitular, filtroCPF) {
+function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero) {
   console.log(filtroCPF);
 
-  if(nota.titular.toLowerCase() != filtroNomeTitular && filtroNomeTitular != "")
+  if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
   {
       return false;
   }
 
-  if(nota.cpf != filtroCPF && filtroCPF != "")
+  if(nota.cpf !== filtroCPF && filtroCPF !== "")
   {
     return false;
+  }
+
+  if(nota.numero !== filtroNumero && filtroNumero !== "")
+  {
+      return false;
   }
 
   return true;
 }
 
 
-function AcordeaoFilial({filial, valor_teto, notas, filtroNomeTitular, filtroCPF}) {
+function AcordeaoFilial({filial, valor_teto, notas, filtroNomeTitular, filtroCPF, filtroNumero}) {
 
     
 
-    /*Normalização do filtro*/
+    /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
 
     /*Filtragem das notas*/ 
-    let lista_acordeaoNotaFiltrados = notas.filter((nota) => filtragem(nota, lowerNomeTitular, filtroCPF));
+    let lista_acordeaoNotaFiltrados = notas.filter((nota) => filtragem(nota, lowerNomeTitular, filtroCPF, filtroNumero));
 
     /*Componentização das notas*/ 
     let lista_componentesNotas = lista_acordeaoNotaFiltrados.map((nota) => <AcordeaoNota {...nota}/>);
