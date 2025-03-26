@@ -19,11 +19,11 @@ function define_classe_css(status) {
     return styles.status_invalido
 }
 
-function CampoStatusFiltro({status}) {
+function CampoStatusFiltro({status, value, onChange}) {
     return (
         <section className={define_classe_css(status)}>
 
-                <Checkbox defaultChecked />
+                <Checkbox value={value} onChange = {onChange} defaultChecked />
                 <h1 className={styles.titulo}>{format_status(status)}</h1>
             
         </section>

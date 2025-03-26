@@ -1,7 +1,7 @@
 import CampoValor from "../CampoValor/CampoValor";
 import styles from "./FiltroValor.module.css";
 
-function FiltroValor() {
+function FiltroValor({onChangeMin, valueMin, onChangeMax, valueMax}) {
     return (
         
         <section className= {styles.campo_texto}>
@@ -12,9 +12,9 @@ function FiltroValor() {
         </div>
         
         <div className={styles.intervalo_valor}>
-            <CampoValor/>
+            <CampoValor onChange={onChangeMin} value={valueMin}/>
             <p className={styles.traco}>-</p>
-            <CampoValor/>
+            <CampoValor onChange={onChangeMax} value={valueMax}/>
 
         </div>
 

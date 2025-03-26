@@ -8,9 +8,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from "./AcordeaoFilial.module.css";
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
+import { type } from '@testing-library/user-event/dist/type';
 
-function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero) {
-  console.log(filtroCPF);
+function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
+  filtroValorMax, filtroStatusValido, filtroStatusInvalido) {
 
   if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
   {
@@ -19,7 +20,7 @@ function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero) {
 
   if(nota.cpf !== filtroCPF && filtroCPF !== "")
   {
-    return false;
+      return false;
   }
 
   if(nota.numero !== filtroNumero && filtroNumero !== "")
@@ -27,20 +28,50 @@ function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero) {
       return false;
   }
 
+  
+  if (nota.valor < parseInt(filtroValorMin) && filtroValorMin !== "" )
+  {
+      return false;
+  }
+  
+  if (nota.valor > parseInt(filtroValorMax))
+  {
+      return false;
+  }
+  
+  if(!filtroStatusValido && !filtroStatusInvalido)
+  {
+    return false;
+  }
+
+  if ((filtroStatusValido && !nota.status) && !filtroStatusInvalido)
+  {
+      return false;
+  }
+
+  if ((filtroStatusInvalido && nota.status) && !filtroStatusValido)
+  {
+      return false;
+  }
+
+
   return true;
 }
 
 
-function AcordeaoFilial({filial, valor_teto, notas, filtroNomeTitular, filtroCPF, filtroNumero}) {
-
-    
+function AcordeaoFilial({ filial, valor_teto, notas, filtroNomeTitular, filtroCPF, 
+                          filtroNumero, filtroValorMin, filtroValorMax,
+                          filtroStatusValido, filtroStatusInvalido}) {
 
     /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
 
     /*Filtragem das notas*/ 
-    let lista_acordeaoNotaFiltrados = notas.filter((nota) => filtragem(nota, lowerNomeTitular, filtroCPF, filtroNumero));
+    let lista_acordeaoNotaFiltrados = notas.filter((nota) => filtragem( nota, lowerNomeTitular, 
+                                                                        filtroCPF, filtroNumero, 
+                                                                        filtroValorMin, filtroValorMax,
+                                                                        filtroStatusValido, filtroStatusInvalido));
 
     /*Componentização das notas*/ 
     let lista_componentesNotas = lista_acordeaoNotaFiltrados.map((nota) => <AcordeaoNota {...nota}/>);

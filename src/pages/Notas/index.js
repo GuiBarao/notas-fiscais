@@ -11,6 +11,13 @@ function Notas () {
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
     const [filtroCPF, setFiltroCPF] = useState("");
     const [filtroNumero, setFiltroNumero] = useState("");
+
+    const [filtroValorMin, setFiltroValorMin] = useState("");
+    const [filtroValorMax, setFiltroValorMax] = useState(Number.POSITIVE_INFINITY);
+
+    const [filtroStatusValido, setFiltroStatusValido] = useState(true);
+    const [filtroStatusInvalido, setFiltroStatusInvalido] = useState(true);
+
     return (
 
         <section className={styles.notas}>
@@ -18,6 +25,10 @@ function Notas () {
                 onFiltrarNome={setFiltroNomeTitular} 
                 onFiltrarCPF={setFiltroCPF}
                 onFiltrarNumero={setFiltroNumero}
+                onFiltrarValorMin={setFiltroValorMin}
+                onFiltrarValorMax={setFiltroValorMax}
+                onFiltrarStatusValido={setFiltroStatusValido}
+                onFiltrarStatusInvalido={setFiltroStatusInvalido}
             />
             
             <div className={styles.header_filtros_wrapper}>
@@ -30,6 +41,10 @@ function Notas () {
                         filtroNomeTitular = {filtroNomeTitular} 
                         filtroCPF = {filtroCPF}
                         filtroNumero = {filtroNumero}
+                        filtroValorMin = {filtroValorMin}
+                        filtroValorMax = {filtroValorMax}
+                        filtroStatusValido = {filtroStatusValido}
+                        filtroStatusInvalido = {filtroStatusInvalido}
                         />
                     })}
                 </div>

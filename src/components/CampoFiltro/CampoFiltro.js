@@ -7,11 +7,19 @@ import FiltroStatus from "../FiltroStatus/FiltroStatus.js"
 import { useState } from "react";
 
 
-function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero}){
+function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero, 
+                        onFiltrarValorMin, onFiltrarValorMax, 
+                        onFiltrarStatusValido, onFiltrarStatusInvalido}){
 
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
     const [filtroCPF, setFiltroCPF] = useState("");
     const [filtroNumero, setFiltroNumero] = useState("");
+
+    const [filtroValorMin, setFiltroValorMin] = useState("");
+    const [filtroValorMax, setFiltroValorMax] = useState("");
+
+    const [filtroStatusValido, setFiltroStatusValido] = useState(true);
+    const [filtroStatusInvalido, setFiltroStatusInvalido] = useState(true);
 
  
     return (
@@ -40,9 +48,21 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero}){
                 
                 arquivoIMG={"numero_icon"} titulo={"Número:"}/>
 
-                <FiltroValor/>
+                <FiltroValor 
+                valueMin={filtroValorMin} 
+                onChangeMin={(ev) => {setFiltroValorMin(ev.target.value); onFiltrarValorMin(ev.target.value);}}
+                
+                valueMax={filtroValorMax} 
+                onChangeMax={(ev) => {setFiltroValorMax(ev.target.value); onFiltrarValorMax(ev.target.value);}}
+                />
 
-                <FiltroStatus />
+                <FiltroStatus 
+                valueValido={filtroStatusValido}
+                onChangeValido={(ev) => {setFiltroStatusValido(ev.target.checked); onFiltrarStatusValido(ev.target.checked);}}
+
+                valueInvalido={filtroStatusInvalido}
+                onChangeInvalido={(ev) => {setFiltroStatusInvalido(ev.target.checked); onFiltrarStatusInvalido(ev.target.checked);}}
+                />
 
             </div>
 
