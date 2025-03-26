@@ -9,11 +9,11 @@ import { useState } from "react";
 function Notas () {
 
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
-
+    const [filtroCPF, setFiltroCPF] = useState("");
     return (
 
         <section className={styles.notas}>
-            <CampoFiltro onFiltrar={setFiltroNomeTitular}/>
+            <CampoFiltro onFiltrarNome={setFiltroNomeTitular} onFiltrarCPF={setFiltroCPF}/>
             
             <div className={styles.header_filtros_wrapper}>
                 
@@ -21,7 +21,10 @@ function Notas () {
 
                 <div>
                     {filiais.map( (filial) => {
-                        return <AcordeaoFilial {...filial} filtroNomeTitular = {filtroNomeTitular} />
+                        return <AcordeaoFilial {...filial} 
+                        filtroNomeTitular = {filtroNomeTitular} 
+                        filtroCPF = {filtroCPF}
+                        />
                     })}
                 </div>
 
