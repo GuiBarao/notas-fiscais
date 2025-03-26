@@ -3,7 +3,7 @@ import styles from "./CampoTexto.module.css"
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
-function CampoTexto ({arquivoIMG, titulo}) {
+function CampoTexto ({value, onChange, arquivoIMG, titulo}) {
     return (
         <section className= {styles.campo_texto}>
 
@@ -12,7 +12,9 @@ function CampoTexto ({arquivoIMG, titulo}) {
             <h1>{titulo}</h1>
             </div>
 
-            <TextField sx={{background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} className= {styles.busca}  size="small"
+            <TextField value={value} onChange={onChange}
+            sx={{background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} 
+            className= {styles.busca}  size="small"
             
             slotProps={{
                 input: {

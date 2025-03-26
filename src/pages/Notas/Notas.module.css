@@ -3,11 +3,14 @@
     flex-direction: row;
     background-color: #112422;
     gap: 25px;
+    width: 100% !important;
 }
 
 .header_filtros_wrapper {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    width: 100% !important;
+
 }
 
