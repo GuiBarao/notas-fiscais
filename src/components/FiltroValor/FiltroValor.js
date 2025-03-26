@@ -4,7 +4,7 @@ import styles from "./FiltroValor.module.css";
 function FiltroValor({onChangeMin, valueMin, onChangeMax, valueMax}) {
     return (
         
-        <section className= {styles.campo_texto}>
+        <section className= {styles.filtro_valor}>
 
         <div className= {styles.img_titulo}>
         <img src = {`/images/valor_icon.svg`} alt = {"icone do campo texto"}/>

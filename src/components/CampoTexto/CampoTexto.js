@@ -13,10 +13,11 @@ function CampoTexto ({value, onChange, arquivoIMG, titulo}) {
             </div>
 
             <TextField value={value} onChange={onChange}
-            sx={{background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} 
-            className= {styles.busca}  size="small"
+            sx={{  "& .MuiInputBase-root": {height: "25px"}, background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} 
+            className= {styles.busca} size = {"small"}
             
-            slotProps={{
+            slotProps={       
+              {
                 input: {
                   startAdornment: (
                     <InputAdornment position="start">
@@ -24,7 +25,8 @@ function CampoTexto ({value, onChange, arquivoIMG, titulo}) {
                     </InputAdornment>
                   ),
                 },
-              }}
+              }
+            }
             
             />
         </section>

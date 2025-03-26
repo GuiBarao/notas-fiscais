@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from "./AcordeaoFilial.module.css";
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
-import { type } from '@testing-library/user-event/dist/type';
 
 function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
   filtroValorMax, filtroStatusValido, filtroStatusInvalido) {

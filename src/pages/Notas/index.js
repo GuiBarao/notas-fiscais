@@ -35,7 +35,7 @@ function Notas () {
                 
                 <Cabecalho/>
 
-                <div>
+                <div className={styles.acordeoes}>
                     {filiais.map( (filial) => {
                         return <AcordeaoFilial {...filial} 
                         filtroNomeTitular = {filtroNomeTitular} 

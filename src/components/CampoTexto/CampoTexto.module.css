@@ -10,19 +10,18 @@
 .img_titulo {
     display: flex;
     flex-direction: row;
-    font-family: "Montserrat", sans-serif;
-    color: #ffffff;
     gap: 5px;
 }
 
 .img_titulo h1 {
     margin: 0;
-    color: #FFF;
+    color: #ffffff;
     font-family: "Montserrat", sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    align-content: center;
 }
 
 .busca {
@@ -31,5 +30,8 @@
     background-color: #425E59;
     width: 284px;
     align-self: center;
-
+    height: 25px !important;
+}
+.MuiTextField-root {
+    background-color: red;
 }
