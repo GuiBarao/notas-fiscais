@@ -60,7 +60,7 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
               <CampoStatus status={status}/>
             </div>
 
-            <InfoErro {...erro}/>
+            {!status? <InfoErro {...erro}/> : null}
           
         </AccordionDetails>
       </Accordion>

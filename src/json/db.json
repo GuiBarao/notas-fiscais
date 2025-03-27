@@ -134,5 +134,39 @@
                 }
             }
         ]
+    },
+    {
+        "filial": "Anápolis",
+        "valor_teto": "1350",
+        "notas": [
+            {
+                "numero": "1",
+                "cpf": "66677788899",
+                "titular": "Rafael Duarte",
+                "data": "2023-12-01",
+                "valor": "800",
+                "status": true
+            },
+            {
+                "numero": "2",
+                "cpf": "77788899900",
+                "titular": "Beatriz Nunes",
+                "data": "2023-12-05",
+                "valor": "500",
+                "status": true
+            },
+            {
+                "numero": "3",
+                "cpf": "88899900011",
+                "titular": "Carlos Eduardo",
+                "data": "2023-12-08",
+                "valor": "900",
+                "status": false,
+                "erro": {
+                    "mensagem": "Limite excedido",
+                    "log": "Valor acima do permitido"
+                }
+            }
+        ]
     }
 ]
