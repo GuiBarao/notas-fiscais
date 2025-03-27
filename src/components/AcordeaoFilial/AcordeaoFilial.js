@@ -9,73 +9,14 @@ import styles from "./AcordeaoFilial.module.css";
 
 import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
-function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
-  filtroValorMax, filtroStatusValido, filtroStatusInvalido) {
 
-  if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
-  {
-      return false;
-  }
+function AcordeaoFilial({ filial, valor_teto, notas}) {
 
-  if(nota.cpf !== filtroCPF && filtroCPF !== "")
-  {
-      return false;
-  }
-
-  if(nota.numero !== filtroNumero && filtroNumero !== "")
-  {
-      return false;
-  }
-
-  
-  if (nota.valor < parseInt(filtroValorMin) && filtroValorMin !== "" )
-  {
-      return false;
-  }
-  
-  if (nota.valor > parseInt(filtroValorMax))
-  {
-      return false;
-  }
-  
-  if(!filtroStatusValido && !filtroStatusInvalido)
-  {
-    return false;
-  }
-
-  if ((filtroStatusValido && !nota.status) && !filtroStatusInvalido)
-  {
-      return false;
-  }
-
-  if ((filtroStatusInvalido && nota.status) && !filtroStatusValido)
-  {
-      return false;
-  }
-
-
-  return true;
-}
-
-
-function AcordeaoFilial({ filial, valor_teto, notas, filtroNomeTitular, filtroCPF, 
-                          filtroNumero, filtroValorMin, filtroValorMax,
-                          filtroStatusValido, filtroStatusInvalido}) {
-
-    /*Normalização do filtro de nome do titular*/
-    const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
-
-
-    /*Filtragem das notas*/ 
-    let lista_acordeaoNotaFiltrados = notas.filter((nota) => filtragem( nota, lowerNomeTitular, 
-                                                                        filtroCPF, filtroNumero, 
-                                                                        filtroValorMin, filtroValorMax,
-                                                                        filtroStatusValido, filtroStatusInvalido));
 
     /*Componentização das notas*/ 
-    let lista_componentesNotas = lista_acordeaoNotaFiltrados.map((nota) => <AcordeaoNota {...nota}/>);
+    let lista_componentesNotas = notas.map((nota) => <AcordeaoNota {...nota}/>);
 
-    let desabilitaAcordeao = (lista_acordeaoNotaFiltrados.length === 0);
+    let desabilitaAcordeao = (notas.length === 0);
 
     let borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33" ;
 

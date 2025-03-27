@@ -21,7 +21,17 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero,
 
     const [filtroStatusValido, setFiltroStatusValido] = useState(true);
     const [filtroStatusInvalido, setFiltroStatusInvalido] = useState(true);
-
+    
+    const aplicarFiltros = () => {
+        console.log("foi");
+        onFiltrarNome(filtroNomeTitular);
+        onFiltrarCPF(filtroCPF);
+        onFiltrarNumero(filtroNumero);
+        onFiltrarValorMin(filtroValorMin);
+        onFiltrarValorMax(filtroValorMax);
+        onFiltrarStatusValido(filtroStatusValido);
+        onFiltrarStatusInvalido(filtroStatusInvalido);
+    }
  
     return (
         <section className = {styles.campo_filtro}>
@@ -35,38 +45,38 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero,
             <div className= {styles.filtros_opcoes}>
                 <CampoTexto 
                 value= {filtroNomeTitular} 
-                onChange={(ev) => {setFiltroNomeTitular(ev.target.value); onFiltrarNome(ev.target.value);}}
+                onChange={(ev) => {setFiltroNomeTitular(ev.target.value);}}
                 arquivoIMG={"titular_icon"} titulo={"Nome Titular:"}/>
 
                 <CampoTexto
                 value={filtroCPF}
-                onChange={(ev) => {setFiltroCPF(ev.target.value); onFiltrarCPF(ev.target.value);}}
+                onChange={(ev) => {setFiltroCPF(ev.target.value);}}
                 arquivoIMG={"cpf_icon"} titulo={"CPF:"}/>
 
                 <CampoTexto
                 value = {filtroNumero}
-                onChange={(ev) => {setFiltroNumero(ev.target.value); onFiltrarNumero(ev.target.value)}}
+                onChange={(ev) => {setFiltroNumero(ev.target.value);}}
                 
                 arquivoIMG={"numero_icon"} titulo={"Número:"}/>
 
                 <FiltroValor 
                 valueMin={filtroValorMin} 
-                onChangeMin={(ev) => {setFiltroValorMin(ev.target.value); onFiltrarValorMin(ev.target.value);}}
+                onChangeMin={(ev) => {setFiltroValorMin(ev.target.value);}}
                 
                 valueMax={filtroValorMax} 
-                onChangeMax={(ev) => {setFiltroValorMax(ev.target.value); onFiltrarValorMax(ev.target.value);}}
+                onChangeMax={(ev) => {setFiltroValorMax(ev.target.value);}}
                 />
 
                 <FiltroStatus 
                 valueValido={filtroStatusValido}
-                onChangeValido={(ev) => {setFiltroStatusValido(ev.target.checked); onFiltrarStatusValido(ev.target.checked);}}
+                onChangeValido={(ev) => {setFiltroStatusValido(ev.target.checked);}}
 
                 valueInvalido={filtroStatusInvalido}
-                onChangeInvalido={(ev) => {setFiltroStatusInvalido(ev.target.checked); onFiltrarStatusInvalido(ev.target.checked);}}
+                onChangeInvalido={(ev) => {setFiltroStatusInvalido(ev.target.checked);}}
                 />
             </div>
 
-            <SubmeterFiltragem />
+            <SubmeterFiltragem onClick = {aplicarFiltros}/>
             
         </section>
     );
