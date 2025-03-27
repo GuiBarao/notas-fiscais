@@ -4,6 +4,7 @@ import CampoTexto from "../CampoTexto/CampoTexto.js";
 
 import FiltroValor from "../FiltroValor/FiltroValor.js";
 import FiltroStatus from "../FiltroStatus/FiltroStatus.js"
+import SubmeterFiltragem from "../SubmeterFiltragem/SubmeterFiltragem.js";
 import { useState } from "react";
 
 
@@ -63,10 +64,10 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero,
                 valueInvalido={filtroStatusInvalido}
                 onChangeInvalido={(ev) => {setFiltroStatusInvalido(ev.target.checked); onFiltrarStatusInvalido(ev.target.checked);}}
                 />
-
             </div>
 
-
+            <SubmeterFiltragem />
+            
         </section>
     );
 }

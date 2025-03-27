@@ -29,7 +29,7 @@ function CampoStatus({status}) {
             </div>
             <p className = {define_classe_css(status)}>{format_status(status)}</p>
         </section>
-    )
+    );
 
 }
 
