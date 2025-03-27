@@ -18,8 +18,15 @@
     color: #ffffff;
     background-color: #41504E;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border-radius: 14px !important;
+
+}
+
+.tabela_campoStatus_wrapper{
+    display: flex;
+    flex-direction: row;
+    
 }
 
 
