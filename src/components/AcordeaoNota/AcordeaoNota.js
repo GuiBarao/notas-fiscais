@@ -46,15 +46,17 @@ function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
 
             <div className={styles.tabela_campoStatus_wrapper}>
               <table>
-                <tr>
-                <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero} largura = {284}/></td>
-                <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)} largura = {146}/></td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td><InfoNota nomeInfo = {"Número"} arquivoIMG = {"numero_icon"} altIMG = {"Icone do numero"} info = {numero} largura = {284}/></td>
+                    <td><InfoNota nomeInfo = {"Data"} arquivoIMG = {"data_icon"} altIMG = {"Icone da data"} info = {format_date(data)} largura = {146}/></td>
+                  </tr>
 
-                <tr>
-                <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor},00`} largura = {284}/></td>
-                <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)} largura = {146}/></td>
-                </tr>
+                  <tr>
+                    <td><InfoNota nomeInfo = {"Valor"} arquivoIMG = {"valor_icon"} altIMG = {"Icone do valor"} info = {`R$${valor},00`} largura = {284}/></td>
+                    <td><InfoNota nomeInfo = {"CPF"} arquivoIMG = {"cpf_icon"} altIMG = {"Icone do CPF"} info = {format_cpf(cpf)} largura = {146}/></td>
+                  </tr>
+                </tbody>
               </table>
 
               <CampoStatus status={status}/>

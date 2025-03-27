@@ -94,6 +94,7 @@ function Notas () {
                                                     filtroCPF, filtroNumero, 
                                                     filtroValorMin, filtroValorMax,
                                                     filtroStatusValido, filtroStatusInvalido))}
+                                                key={unidade.filial}
                         
                         />
                     })}
