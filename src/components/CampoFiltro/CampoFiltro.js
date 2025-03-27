@@ -23,7 +23,6 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero,
     const [filtroStatusInvalido, setFiltroStatusInvalido] = useState(true);
     
     const aplicarFiltros = () => {
-        console.log("foi");
         onFiltrarNome(filtroNomeTitular);
         onFiltrarCPF(filtroCPF);
         onFiltrarNumero(filtroNumero);

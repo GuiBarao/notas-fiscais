@@ -12,7 +12,7 @@ function CampoTexto ({value, onChange, arquivoIMG, titulo}) {
             <h1>{titulo}</h1>
             </div>
 
-            <TextField value={value} onChange={onChange}
+            <TextField autoComplete='off' value={value} onChange={onChange}
             sx={{  "& .MuiInputBase-root": {height: "25px"}, background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} 
             className= {styles.busca} size = {"small"}
             
