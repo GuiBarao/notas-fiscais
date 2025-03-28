@@ -4,7 +4,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import styles from "./CampoValor.module.css"
 function CampoValor ({onChange, value}) {
     return(
-        <TextField onChange={onChange} value={value}
+        <TextField type='number' autoComplete='off' onChange={onChange} value={value}
         className={styles.componente_textField}
         
         sx={{  "& .MuiInputBase-root": {height : "25px"}, background: "#425E59", border: "1px solid #A0AEAC", 

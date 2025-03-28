@@ -50,12 +50,13 @@ function CampoFiltro({onFiltrarNome, onFiltrarCPF, onFiltrarNumero,
                 <CampoTexto
                 value={filtroCPF}
                 onChange={(ev) => {setFiltroCPF(ev.target.value);}}
+                type='number'
                 arquivoIMG={"cpf_icon"} titulo={"CPF:"}/>
 
                 <CampoTexto
                 value = {filtroNumero}
                 onChange={(ev) => {setFiltroNumero(ev.target.value);}}
-                
+                type='number'
                 arquivoIMG={"numero_icon"} titulo={"Número:"}/>
 
                 <FiltroValor 
