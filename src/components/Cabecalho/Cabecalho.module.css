@@ -5,8 +5,10 @@
     background: #133630;
     border-bottom-left-radius: 14px;
     height: 45px;
-    justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .cabecalho h1{

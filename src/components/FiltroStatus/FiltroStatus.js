@@ -20,16 +20,16 @@ function FiltroStatus({onChange, value}) {
                 MenuProps={{ PaperProps: { sx: { backgroundColor: "#425E59"}}}}
             >
 
+                <MenuItem value = {"Todos"}>
+                    <p className = {styles.opcao}>Todos</p>
+                </MenuItem>
+
                 <MenuItem value = {"Válido"}>
                     <p className = {styles.opcao}>Válidos</p>
                 </MenuItem>
 
                 <MenuItem value = {"Inválido"}>
                     <p className = {styles.opcao}>Inválidos</p>
-                </MenuItem>
-
-                <MenuItem value = {"Todos"}>
-                    <p className = {styles.opcao}>Todos</p>
                 </MenuItem>
 
             </Select>

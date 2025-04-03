@@ -13,7 +13,6 @@ import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 function AcordeaoFilial({ filial, valor_teto, notas}) {
 
 
-    /*Componentização das notas*/ 
     let lista_componentesNotas = notas.map((nota) => <AcordeaoNota {...nota} key={nota.numero}/>);
 
     let desabilitaAcordeao = (notas.length === 0);

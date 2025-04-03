@@ -5,11 +5,9 @@ import styles from "./Notas.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import { useState } from "react";
 
-function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
+function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus) {
     
-    console.log(nota.titular.toLowerCase(), "---", filtroNomeTitular)
-
     if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
     {
         return false;
@@ -49,7 +47,6 @@ function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValor
   
     return true;
 }
-  
 
 function Notas () {
 
@@ -60,11 +57,14 @@ function Notas () {
     const [filtroValorMin, setFiltroValorMin] = useState("");
     const [filtroValorMax, setFiltroValorMax] = useState(Number.POSITIVE_INFINITY);
 
-    const [filtroStatus, setFiltroStatus] = useState("Todos");
+    const [filtroStatus, setFiltroStatus] = useState("");
+
+    const [filtroFiliais, setFiltroFiliais] = useState([]);
 
     /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
+    const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial))
 
     return (
 
@@ -80,19 +80,16 @@ function Notas () {
             
             <div className={styles.header_filtros_wrapper}>
                 
-                <Cabecalho/>
+                <Cabecalho value = {filtroFiliais} onChange={setFiltroFiliais}/>
 
                 <div className={styles.acordeoes}>
-                    {unidades.map( (unidade) => {
-                        return <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
-                                                notas={unidade.notas.filter((nota) => filtragem( nota, lowerNomeTitular, 
-                                                    filtroCPF, filtroNumero, 
-                                                    filtroValorMin, filtroValorMax,
-                                                    filtroStatus))}
-                                                key={unidade.filial}
-                        
-                        />
-                    })}
+                    {unidadesFiltradas.map( (unidade) => 
+                         <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
+                         notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
+                             filtroCPF, filtroNumero, 
+                             filtroValorMin, filtroValorMax,
+                             filtroStatus))}
+                         key={unidade.filial}/>  )}
                 </div>
 
             </div>
@@ -102,3 +99,4 @@ function Notas () {
 }
 
 export default Notas;
+
