@@ -1,34 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.filtro_status{
+* {
+    margin:0
+}
+
+.filtro_status {
     display: flex;
     flex-direction: column;
     gap:8px;
-}
-
-.img_titulo_wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
 
 }
 
-.img_titulo_wrapper h1{
-    color: #ffffff;
-    font-family: "Montserrat", sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-
-    margin : 0px;
-}
-
-.img_titulo_wrapper img{
+.icon {
     width: 20px;
     height: 20px;
 }
+.titulo {
+    color: #FFF;
+    font-family: "Montserrat", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+}
 
-.opcoes_status {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
+.opcao {
+    color: #FFF;
+    font-family: "Montserrat", sans-serif;
 }

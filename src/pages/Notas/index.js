@@ -6,8 +6,10 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import { useState } from "react";
 
 function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
-    filtroValorMax, filtroStatusValido, filtroStatusInvalido) {
-  
+    filtroValorMax, filtroStatus) {
+    
+    console.log(nota.titular.toLowerCase(), "---", filtroNomeTitular)
+
     if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
     {
         return false;
@@ -33,20 +35,15 @@ function filtragem(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValor
     {
         return false;
     }
-    
-    if(!filtroStatusValido && !filtroStatusInvalido)
-    {
-      return false;
-    }
   
-    if ((filtroStatusValido && !nota.status) && !filtroStatusInvalido)
+    if(!nota.status && filtroStatus === "Válido")
     {
-        return false;
+        return false
     }
-  
-    if ((filtroStatusInvalido && nota.status) && !filtroStatusValido)
+
+    if(nota.status && filtroStatus === "Inválido")
     {
-        return false;
+        return false
     }
   
   
@@ -63,8 +60,7 @@ function Notas () {
     const [filtroValorMin, setFiltroValorMin] = useState("");
     const [filtroValorMax, setFiltroValorMax] = useState(Number.POSITIVE_INFINITY);
 
-    const [filtroStatusValido, setFiltroStatusValido] = useState(true);
-    const [filtroStatusInvalido, setFiltroStatusInvalido] = useState(true);
+    const [filtroStatus, setFiltroStatus] = useState("Todos");
 
     /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
@@ -79,8 +75,7 @@ function Notas () {
                 onFiltrarNumero={setFiltroNumero}
                 onFiltrarValorMin={setFiltroValorMin}
                 onFiltrarValorMax={setFiltroValorMax}
-                onFiltrarStatusValido={setFiltroStatusValido}
-                onFiltrarStatusInvalido={setFiltroStatusInvalido}
+                onFiltrarStatus={setFiltroStatus}
             />
             
             <div className={styles.header_filtros_wrapper}>
@@ -93,7 +88,7 @@ function Notas () {
                                                 notas={unidade.notas.filter((nota) => filtragem( nota, lowerNomeTitular, 
                                                     filtroCPF, filtroNumero, 
                                                     filtroValorMin, filtroValorMax,
-                                                    filtroStatusValido, filtroStatusInvalido))}
+                                                    filtroStatus))}
                                                 key={unidade.filial}
                         
                         />
