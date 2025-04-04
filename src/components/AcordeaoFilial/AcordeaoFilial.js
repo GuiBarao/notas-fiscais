@@ -41,7 +41,9 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
                 <p> Valor Teto: R${valor_teto},00</p>
               </div>
 
-              <p>Valor Total: R${somatorioValores},00</p>
+              {!desabilitaAcordeao && <p>Valor Total: R${somatorioValores},00</p>}
+
+              {desabilitaAcordeao && <p>* Nenhuma nota foi encontrada.</p>}
 
             </Typography>
             
