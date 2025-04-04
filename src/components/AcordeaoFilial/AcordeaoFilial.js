@@ -17,7 +17,9 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
 
     let desabilitaAcordeao = (notas.length === 0);
 
-    let borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33" ;
+    let borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
+
+    let somatorioValores = notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0)
 
     return (
         <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 
@@ -38,6 +40,8 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
                 <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
                 <p> Valor Teto: R${valor_teto},00</p>
               </div>
+
+              <p>Valor Total: R${somatorioValores},00</p>
 
             </Typography>
             

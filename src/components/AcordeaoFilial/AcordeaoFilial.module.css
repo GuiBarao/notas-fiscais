@@ -11,7 +11,7 @@
 .titulo_acordeao {
     display: flex;
     flex-direction: row;
-    width: 50%;
+    width: 80%;
     justify-content:space-between;
     align-items: center;
     text-align: center;
