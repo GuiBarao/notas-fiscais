@@ -3,10 +3,11 @@ import unidades from "../../json/db.json"
 import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
 import styles from "./Notas.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
+import dayjs from 'dayjs';
 import { useState } from "react";
 
 function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
-    filtroValorMax, filtroStatus) {
+    filtroValorMax, filtroStatus, dataInicial, dataFinal) {
     
     if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
     {
@@ -36,13 +37,19 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
   
     if(!nota.status && filtroStatus === "Válido")
     {
-        return false
+        return false;
     }
 
     if(nota.status && filtroStatus === "Inválido")
     {
-        return false
+        return false;
     }
+
+    if(dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal))
+    {
+        return false;
+    }
+
   
   
     return true;
@@ -60,6 +67,9 @@ function Notas () {
     const [filtroStatus, setFiltroStatus] = useState("");
 
     const [filtroFiliais, setFiltroFiliais] = useState([]);
+
+    const [filtroDataInicio, setFiltroDataInicio] = useState(dayjs(undefined));
+    const [filtroDataFim, setFiltroDataFim] = useState(dayjs());
 
     /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
@@ -80,7 +90,9 @@ function Notas () {
             
             <div className={styles.header_filtros_wrapper}>
                 
-                <Cabecalho value = {filtroFiliais} onChange={setFiltroFiliais}/>
+                <Cabecalho filtroFiliaisValue = {filtroFiliais} filtroFiliaisOnChange={setFiltroFiliais}
+                dataInicioValue = {filtroDataInicio} dataInicioOnChange = {setFiltroDataInicio} 
+                dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
 
                 <div className={styles.acordeoes}>
                     {unidadesFiltradas.map( (unidade) => 
@@ -88,7 +100,7 @@ function Notas () {
                          notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
                              filtroCPF, filtroNumero, 
                              filtroValorMin, filtroValorMax,
-                             filtroStatus))}
+                             filtroStatus, filtroDataInicio, filtroDataFim))}
                          key={unidade.filial}/>  )}
                 </div>
 
