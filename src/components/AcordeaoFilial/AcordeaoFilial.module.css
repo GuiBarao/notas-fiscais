@@ -11,12 +11,10 @@
 .titulo_acordeao {
     display: flex;
     flex-direction: row;
-    width: 80%;
-    justify-content:space-between;
+    width: 100%;
     align-items: center;
-    text-align: center;
+    justify-content: space-around;
     height: 40px;
-
 }
 
 .titulo_acordeao p {

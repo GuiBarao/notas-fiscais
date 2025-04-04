@@ -12,14 +12,13 @@ import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
 
 function AcordeaoFilial({ filial, valor_teto, notas}) {
 
-
     let lista_componentesNotas = notas.map((nota) => <AcordeaoNota {...nota} key={nota.numero}/>);
 
     let desabilitaAcordeao = (notas.length === 0);
 
     let borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
 
-    let somatorioValores = notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0)
+    let somatorioValores = notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0);
 
     return (
         <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 

@@ -9,6 +9,8 @@ import { useState } from "react";
 function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus, dataInicial, dataFinal) {
     
+    console.log(dataInicial);
+
     if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
     {
         return false;
@@ -45,7 +47,7 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
         return false;
     }
 
-    if(dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal))
+    if((dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal)) && dataInicial !== undefined)
     {
         return false;
     }
@@ -68,13 +70,13 @@ function Notas () {
 
     const [filtroFiliais, setFiltroFiliais] = useState([]);
 
-    const [filtroDataInicio, setFiltroDataInicio] = useState(dayjs(undefined));
+    const [filtroDataInicio, setFiltroDataInicio] = useState();
     const [filtroDataFim, setFiltroDataFim] = useState(dayjs());
 
     /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
-    const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial))
+    const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial));
 
     return (
 
