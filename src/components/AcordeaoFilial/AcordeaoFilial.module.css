@@ -13,7 +13,7 @@
     flex-direction: row;
     width: 100%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 40px;
 }
 
@@ -28,18 +28,11 @@
 
 }
 
-.titulo_acordeao img {
-    width: 24px;
-    height: 24px;
-}
-
 .filial {
     display: flex;
     flex-direction: row;
     text-align: left;
     gap:5px;
-
-
 }
 
 .valor_teto {
@@ -51,4 +44,32 @@
 }
 
 
+.infoAcordeao {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding: 0px !important;
+}
 
+.info_wrapper {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+
+.info {
+    text-align: center;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 550;
+    padding: 10px;
+}
+
+.label {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 550;
+    padding: 15px;
+}

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.nota {
+    display: flex;
+    flex-direction: row;
+    background-color: #41504E;
+    color: #ffffff;
+    height: 48px;
+    border-radius: 14px;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+}
+
+.nota strong {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 550;
+    align-content: center;
+    align-items: center;
+}

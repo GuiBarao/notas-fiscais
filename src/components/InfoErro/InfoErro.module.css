@@ -2,7 +2,7 @@
 
 
 .infoErro {
-    width: 606px;
+    width: 100%;
     min-height: 100px;
     border-radius: 7px;
     background-color: #133630;
@@ -39,6 +39,7 @@
 .wrapper_titulo_info {
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
-    width: 606px;
     padding: 20px;
+    text-align: left;
+    width: 50%;
 }

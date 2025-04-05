@@ -7,12 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import styles from "./AcordeaoFilial.module.css";
 
-import AcordeaoNota from '../AcordeaoNota/AcordeaoNota';
-
 
 function AcordeaoFilial({ filial, valor_teto, notas}) {
-
-    let lista_componentesNotas = notas.map((nota) => <AcordeaoNota {...nota} key={nota.numero}/>);
 
     let desabilitaAcordeao = (notas.length === 0);
 
@@ -48,12 +44,43 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
             
             
           </AccordionSummary>
-          <AccordionDetails>
-            <section>
+          <AccordionDetails className={styles.infoAcordeao}>
               
-              {lista_componentesNotas}
 
-            </section>
+              <table className={styles.tabela}>
+                <thead>
+                  <tr>
+                    <th className={styles.label}>Titular</th>
+                    <th className={styles.label}>Número</th>
+                    <th className={styles.label}>Data</th>
+                    <th className={styles.label}>Valor</th>
+                    <th className={styles.label}>CPF</th>
+                    <th className={styles.label}>Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                    {notas.map((nota) => 
+                      <tr className={styles.info_wrapper}>
+                          <td><p className={styles.info}>{nota.titular} </p></td>
+                          <td><p className={styles.info}>{nota.numero}</p> </td>
+                          <td><p className={styles.info}>{nota.data}</p> </td>
+                          <td><p className={styles.info}>{nota.valor}</p> </td>
+                          <td><p className={styles.info}>{nota.cpf}</p> </td>
+                          <td><p className={styles.info}>{nota.status? "Válido" : "Inválido"}</p></td>
+                      </tr>
+
+
+
+                      )}
+
+
+                </tbody>
+              </table>
+
+              
+
           </AccordionDetails>
         </Accordion>
 
