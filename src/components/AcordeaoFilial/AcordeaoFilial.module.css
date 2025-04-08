@@ -38,8 +38,8 @@
 .valor_teto {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    text-align: center;
+
+    text-align: left;
     gap:5px;
 }
 

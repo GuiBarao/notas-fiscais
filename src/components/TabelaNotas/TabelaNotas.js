@@ -1,13 +1,12 @@
+import NotaInvalida from "../NotaInvalida/NotaInvalida";
 import NotaValida from "../NotaValida/NotaValida";
 import styles from "./TabelaNotas.module.css"
-import { useState } from "react";
 
 
 
 function TabelaNotas({notas}) {
 
-    const [isOpen, setIsOpen] = useState(false);
-    console.log(isOpen)
+
     return (
     <table>
         <thead>
@@ -22,12 +21,13 @@ function TabelaNotas({notas}) {
         </thead>
           
 
-        <tbody>
+    
+            {notas.map((nota) => {return nota.status?
+               <NotaValida {...nota}/> : 
+                <NotaInvalida nota = {nota}/>})}
+           
 
-            
-            {notas.map((nota) => <NotaValida {...nota}/>)}
-
-        </tbody>
+        
       </table>
     );
 }
