@@ -13,16 +13,15 @@ function format_cpf(cpf)
 
 function NotaValida ({numero, cpf, titular, data, valor, status}) {
     return (
-        <div className={styles.nota}>
-            
-            <td><strong>{titular}</strong></td>
-            <td><strong>{numero}</strong></td>
-            <td><strong>{format_date(data)}</strong></td>
-            <td><strong>{`R$${valor},00`}</strong></td>
-            <td><strong>{format_cpf(cpf)}</strong></td>
-            <td><strong>{status ? "Válido" : "Inválido"}</strong></td>
 
-        </div>
+              <tr className={styles.info_wrapper}>
+                  <td><p className={styles.info}>{titular} </p></td>
+                  <td><p className={styles.info}>{numero}</p> </td>
+                  <td><p className={styles.info}>{format_date(data)}</p> </td>
+                  <td><p className={styles.info}>{valor}</p> </td>
+                  <td><p className={styles.info}>{format_cpf(cpf)}</p> </td>
+                  <td><p className={styles.info}>{status? "Válido" : "Inválido"}</p></td>                          
+              </tr> 
     );
 }
 

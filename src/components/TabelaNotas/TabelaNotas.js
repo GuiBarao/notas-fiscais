@@ -1,19 +1,15 @@
+import NotaValida from "../NotaValida/NotaValida";
 import styles from "./TabelaNotas.module.css"
+import { useState } from "react";
 
-function format_date(data) {
-    let [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}/${ano}`;
-  }
-  
-  function format_cpf(cpf) {
-  
-    return cpf.slice(0,3) + "." + cpf.slice(3,6) + "." + cpf.slice(6,9) + "-" + cpf.slice(9,11);
-}
 
 
 function TabelaNotas({notas}) {
+
+    const [isOpen, setIsOpen] = useState(false);
+    console.log(isOpen)
     return (
-    <table className={styles.tabela}>
+    <table>
         <thead>
           <tr>
             <th className={styles.label}>Titular</th>
@@ -29,16 +25,7 @@ function TabelaNotas({notas}) {
         <tbody>
 
             
-            {notas.map((nota) =>
-              
-              <tr className={styles.info_wrapper}>
-                  <td><p className={styles.info}>{nota.titular} </p></td>
-                  <td><p className={styles.info}>{nota.numero}</p> </td>
-                  <td><p className={styles.info}>{format_date(nota.data)}</p> </td>
-                  <td><p className={styles.info}>{nota.valor}</p> </td>
-                  <td><p className={styles.info}>{format_cpf(nota.cpf)}</p> </td>
-                  <td><p className={styles.info}>{nota.status? "Válido" : "Inválido"}</p></td>                          
-              </tr> )}
+            {notas.map((nota) => <NotaValida {...nota}/>)}
 
         </tbody>
       </table>
