@@ -8,10 +8,6 @@ import styles from "./FiltroData.module.css"
 
 function FiltroData({inicioValue, inicioOnChange, fimValue, fimOnChange}) {
 
-    /*const style_datePicker = {  borderRadius: "7px",
-                                color: "#ffffff","& input": {color:"#000000"}, "& label": {color:"#ffffff"},
-                                 size:"small", height:"35px", backgroundColor:"#425E59", 
-                                 "& .MuiInputBase-root": {height: "35px", width:"170px"}, width:"170px"}*/
 
     const props = {
     textField: {
