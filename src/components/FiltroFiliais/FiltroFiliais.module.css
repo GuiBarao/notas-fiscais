@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.n_filiais {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    margin : 0px;
+    color: #ffffff;
+}
+
+.label {
+    color:#ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+.select {
+    width: 200px; 
+    height:35px; 
+    padding :0px;    
+    background-color :#425E59;
+}
+
+.menuPaper {
+    background-color: #425E59 !important;
+}
+  
+.text_item span{
+    color : #ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+}
+
+.checkbox_item {
+    color: #ffffff !important;
+}

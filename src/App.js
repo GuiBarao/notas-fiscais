@@ -1,8 +1,8 @@
-import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial";
-import unidades from "../../json/db.json"
-import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
-import styles from "./Notas.module.css";
-import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
+import AcordeaoFilial from "./components/AcordeaoFilial/AcordeaoFilial.js";
+import unidades from "./json/db.json"
+import CampoFiltro from "./components/CampoFiltro/CampoFiltro.js"
+import styles from "./App.module.css";
+import Cabecalho from "./components/Cabecalho/Cabecalho.js";
 import dayjs from 'dayjs';
 import { useState } from "react";
 
@@ -57,7 +57,7 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
     return true;
 }
 
-function Notas () {
+function App () {
 
     const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
     const [filtroCPF, setFiltroCPF] = useState("");
@@ -73,7 +73,6 @@ function Notas () {
     const [filtroDataInicio, setFiltroDataInicio] = useState();
     const [filtroDataFim, setFiltroDataFim] = useState(dayjs());
 
-    /*Normalização do filtro de nome do titular*/
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
     const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial));
@@ -112,5 +111,5 @@ function Notas () {
     );
 }
 
-export default Notas;
+export default App;
 

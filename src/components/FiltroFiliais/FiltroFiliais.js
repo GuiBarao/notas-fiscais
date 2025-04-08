@@ -4,7 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-
+import styles from "./FiltroFiliais.module.css"
 
 function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
 
@@ -17,26 +17,27 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
       };
 
     return (
-
-            
-            <FormControl sx = {{m:1, height : "25px"}}>
-                <InputLabel shrink sx={{color: "#ffffff", fontFamily:"monospace"}}>Filiais</InputLabel>
-                <Select sx = {{width: "200px", height: "35px", padding : "0px", 
-                 backgroundColor : "#425E59" }}
+            <FormControl>
+                <InputLabel className={styles.label} shrink >Filiais</InputLabel>
+                <Select className={styles.select}
                 
                 multiple
                 value={filtragem}
                 onChange={handleChange}
-                renderValue={(selected) => `${selected.length} filiais`}
-                labelId="demo-multiple-checkbox-label"
-                id="demo-multiple-checkbox"
-                >
+                renderValue={(selected) => (
+                    <span className={styles.n_filiais}>
+                      {`${selected.length} filiais`}
+                    </span>
+                  )}
 
+                MenuProps={{classes : {paper : styles.menuPaper}}}
+
+                >
                     
                     {filiais.map((filial) => (
                     <MenuItem key={filial} value={filial}>
-                        <Checkbox  checked = {filtragem.includes(filial)}/>
-                        <ListItemText primary={filial} />
+                        <Checkbox className={styles.checkbox_item}  checked = {filtragem.includes(filial)}/>
+                        <ListItemText className={styles.text_item} primary={filial}  />
                     </MenuItem>
                     ))}
 

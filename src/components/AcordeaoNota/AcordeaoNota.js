@@ -8,16 +8,7 @@ import styles from "./AcordeaoNota.module.css";
 
 import InfoErro from '../InfoErro/InfoErro.js';
 
-function format_date(data) {
-    let [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}/${ano}`;
-}
 
-function format_cpf(cpf)
-{
-
-    return cpf.slice(0,3) + "." + cpf.slice(3,6) + "." + cpf.slice(6,9) + "-" + cpf.slice(9,11);
-}
 
 function AcordeaoNota({numero, cpf, titular, data, valor, status, erro}) {
 

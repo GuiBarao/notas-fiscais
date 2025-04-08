@@ -1,0 +1,30 @@
+.date_picker_wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.date_picker {
+    border-radius: 7px;
+    color: #ffffff;
+    height:35px; 
+    background-color:#425E59;
+    width:176px; 
+}
+
+.input_wrapper input {
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif;
+    height: 2px !important; 
+
+}
+  
+.input_wrapper label {
+    color: white !important;
+    font-family: "Montserrat", sans-serif;
+}
+  
+  .input_wrapper .MuiOutlinedInput-root {
+    height: 35px !important;
+  }
+  

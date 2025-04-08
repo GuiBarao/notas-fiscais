@@ -11,11 +11,13 @@ function Cabecalho ({filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue,
         <header className={styles.cabecalho}>
             <h1>Notas Fiscais</h1>
 
-            <FiltroFiliais filtragem={filtroFiliaisValue} onChangeFiltragem={filtroFiliaisOnChange} 
-            filiais={listaFiliais}/>
+            <div className={styles.filtros}>
+                <FiltroFiliais filtragem={filtroFiliaisValue} onChangeFiltragem={filtroFiliaisOnChange} 
+                filiais={listaFiliais}/>
 
-            <FiltroData inicioValue = {dataInicioValue} inicioOnChange = {dataInicioOnChange} 
-            fimValue = {dataFimValue} fimOnChange = {dataFimOnChange}/>
+                <FiltroData inicioValue = {dataInicioValue} inicioOnChange = {dataInicioOnChange} 
+                fimValue = {dataFimValue} fimOnChange = {dataFimOnChange}/>
+            </div>
 
         </header>
     );
