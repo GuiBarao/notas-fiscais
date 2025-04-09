@@ -1,19 +1,35 @@
 import TituloAccordionNota from "../TituloAccordionNota/TituloAccordionNota";
-import CorpoAccordionNota from "../CorpoAccordionNota/CorpoAccordionNota";
 import { useState } from "react";
 import TableBody from '@mui/material/TableBody';
-
+import Collapse from '@mui/material/Collapse';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import InfoErro from "../InfoErro/InfoErro.js";
+import styles from "./NotaInvalida.module.css";
 
 function NotaInvalida({nota}) {
 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <TableBody>
+        <TableBody className={styles.nota_invalida}>
 
             <TituloAccordionNota {...nota} setValueIsOpen={setIsOpen} valueIsOpen={isOpen}/>
 
-            {isOpen && <CorpoAccordionNota  erro = {nota.erro}/>}
+
+            <TableRow>
+
+                <TableCell sx={{padding : "0px"}} colSpan={7}>
+
+                    <Collapse in={isOpen} timeout="auto" unmountOnExit>
+
+                        <InfoErro {...nota.erro}/>
+
+                    </Collapse>
+
+                </TableCell>
+
+            </TableRow>
             
 
         </TableBody>
