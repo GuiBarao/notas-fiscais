@@ -16,9 +16,17 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
 
     let somatorioValores = notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0);
 
+    const [expanded, setExpanded] = React.useState(false);
+
     return (
         <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 
-        className = {styles.acordeao} disabled = {desabilitaAcordeao}>
+        className = {styles.acordeao} 
+        disabled = {desabilitaAcordeao}
+        expanded = {!desabilitaAcordeao && expanded}
+        onChange={() => setExpanded(!expanded)}
+        
+
+        >
           
           <AccordionSummary
             expandIcon={<ExpandMoreIcon sx = {{color : "#ffffff"}}/>}
