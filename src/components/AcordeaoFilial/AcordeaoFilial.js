@@ -8,13 +8,16 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import styles from "./AcordeaoFilial.module.css";
 import TabelaNotas from '../TabelaNotas/TabelaNotas';
 
+
 function AcordeaoFilial({ filial, valor_teto, notas}) {
 
-    let desabilitaAcordeao = (notas.length === 0);
+    const desabilitaAcordeao = (notas.length === 0);
 
-    let borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
+    const borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
 
-    let somatorioValores = notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0);
+    const somatorioValores =  React.useMemo(() => 
+      {return notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0)},
+      [notas]);
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -24,8 +27,6 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
         disabled = {desabilitaAcordeao}
         expanded = {!desabilitaAcordeao && expanded}
         onChange={() => setExpanded(!expanded)}
-        
-
         >
           
           <AccordionSummary

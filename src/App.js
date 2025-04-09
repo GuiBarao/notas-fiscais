@@ -8,8 +8,6 @@ import { useState } from "react";
 
 function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus, dataInicial, dataFinal) {
-    
-    console.log(dataInicial);
 
     if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== "")
     {
@@ -47,13 +45,12 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
         return false;
     }
 
-    if((dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal)) && dataInicial !== undefined)
+    if((dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal)) 
+        || (dataInicial === null || dataFinal === null))
     {
         return false;
     }
 
-  
-  
     return true;
 }
 
@@ -70,8 +67,8 @@ function App () {
 
     const [filtroFiliais, setFiltroFiliais] = useState([]);
 
-    const [filtroDataInicio, setFiltroDataInicio] = useState();
-    const [filtroDataFim, setFiltroDataFim] = useState(dayjs());
+    const [filtroDataInicio, setFiltroDataInicio] = useState(null);
+    const [filtroDataFim, setFiltroDataFim] = useState(null);
 
     const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
 
