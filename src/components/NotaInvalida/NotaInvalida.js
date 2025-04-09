@@ -1,7 +1,7 @@
 import TituloAccordionNota from "../TituloAccordionNota/TituloAccordionNota";
 import CorpoAccordionNota from "../CorpoAccordionNota/CorpoAccordionNota";
-import styles from "./NotaInvalida.module.css"
 import { useState } from "react";
+import TableBody from '@mui/material/TableBody';
 
 
 function NotaInvalida({nota}) {
@@ -9,14 +9,14 @@ function NotaInvalida({nota}) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <tbody>
+        <TableBody>
 
-            <TituloAccordionNota className={styles.titulo} {...nota} setValueIsOpen={setIsOpen} valueIsOpen={isOpen}/>
+            <TituloAccordionNota {...nota} setValueIsOpen={setIsOpen} valueIsOpen={isOpen}/>
 
-            {isOpen && <CorpoAccordionNota  className={styles.corpo} erro = {nota.erro}/>}
+            {isOpen && <CorpoAccordionNota  erro = {nota.erro}/>}
             
 
-        </tbody>
+        </TableBody>
         
         
         

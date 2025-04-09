@@ -1,5 +1,7 @@
 import styles from "./TituloAccordionNota.module.css"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
 function format_date(data) {
     let [ano, mes, dia] = data.split("-");
@@ -16,18 +18,19 @@ function format_cpf(cpf)
 function TituloAccordionNota({numero, cpf, titular, data, valor, status, setValueIsOpen, valueIsOpen}) {
 
     const angulo_expandIcon = valueIsOpen? 180 : 0;
+    
     return (
         
 
-        <tr onClick = {() => setValueIsOpen(!valueIsOpen)} className={styles.summary}>
-                  <td><p className={styles.typograph}>{titular} </p></td>
-                  <td><p className={styles.typograph}>{numero}</p> </td>
-                  <td><p className={styles.typograph}>{format_date(data)}</p> </td>
-                  <td><p className={styles.typograph}>{valor}</p> </td>
-                  <td><p className={styles.typograph}>{format_cpf(cpf)}</p> </td>
-                  <td><p className={styles.typograph}>{status? "Válido" : "Inválido"}</p></td>
-                  <td><ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`}} className={styles.expand_icon}/></td>                         
-        </tr> 
+        <TableRow onClick = {() => setValueIsOpen(!valueIsOpen)} className={styles.summary}>
+                  <TableCell className={styles.typograph}>{titular} </TableCell>
+                  <TableCell className={styles.typograph}>{numero} </TableCell>
+                  <TableCell className={styles.typograph}>{format_date(data)} </TableCell>
+                  <TableCell className={styles.typograph}>{valor} </TableCell>
+                  <TableCell className={styles.typograph}>{format_cpf(cpf)} </TableCell>
+                  <TableCell className={styles.typograph}>{status? "Válido" : "Inválido"}</TableCell>
+                  <TableCell className={styles.typograph}><ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`}} className={styles.expand_icon}/></TableCell>                         
+        </TableRow> 
         
       
         

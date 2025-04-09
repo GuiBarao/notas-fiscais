@@ -19,27 +19,32 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
     return (
         <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 
         className = {styles.acordeao} disabled = {desabilitaAcordeao}>
+          
           <AccordionSummary
             expandIcon={<ExpandMoreIcon sx = {{color : "#ffffff"}}/>}
             aria-controls="panel3-content"
             id="panel3-header"
+            className={styles.titulo_acordeao}
           >
-            <Typography  className={styles.titulo_acordeao} component="span">
-              
-              <div className = {styles.filial}>
+            <Typography className = {styles.info_titulo}>
                 <img src = "/images/local_icon.svg" alt = "icone de local"/>
-                <p> {filial} </p>
-              </div>
+                {filial} 
+            </Typography>
 
-              <div className = {styles.valor_teto}>
+            <Typography className = {styles.info_titulo}>
                 <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
-                <p> Valor Teto: R${valor_teto},00</p>
-              </div>
+                {`Valor Teto: R$${valor_teto},00`}
+            </Typography>
 
-              {!desabilitaAcordeao && <p>Valor Total: R${somatorioValores},00</p>}
+            <Typography className = {styles.info_titulo}>
+              {desabilitaAcordeao ? 
+                "* Nenhuma nota foi encontrada." : 
 
-              {desabilitaAcordeao && <p>* Nenhuma nota foi encontrada.</p>}
-
+                <div className={styles.info_titulo}>
+                  <img src = "/images/somatorio_icon.svg" alt = "icone de somatorio" />
+                  {`Valor Total: R$${somatorioValores},00`}
+                </div>}
+                  
             </Typography>
             
             

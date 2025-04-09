@@ -4,7 +4,6 @@
 .infoErro {
     width: 100%;
     min-height: 100px;
-    border-radius: 7px;
     background-color: #425E59;
 
     display: flex;
@@ -21,8 +20,6 @@
     align-self: stretch;
     margin-top: 25px;
     margin-bottom: 25px;
-
-
 }
 
 .titulo {

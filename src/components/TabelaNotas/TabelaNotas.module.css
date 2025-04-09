@@ -1,13 +1,16 @@
+.tabela {
+    border-style:hidden;
+    border-radius: 14px;
+
+}
+
 
 .label {
-    color: #ffffff;
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 550;
-    padding: 15px;
+    color: #ffffff!important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 20px!important;
+    font-weight: 550!important;
+    padding: 15px!important;
+    text-align: center !important;
 }
 
-.divisao{
-    height: 0.0001px;
-    background-color: #ffffff67;
-}
