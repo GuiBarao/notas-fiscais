@@ -5,15 +5,12 @@
     border-radius: 14px !important;
     background-color: #133630 !important;
     margin-bottom: 25px;
-    
 }
 
 .titulo_acordeao {
     display: flex;
     flex-direction: row;
     width: 100%;
-    
-    
     height: 40px;
     margin: 0px;
 }
@@ -21,8 +18,6 @@
 .titulo_acordeao span {
     justify-content: space-evenly !important;
 }
-
-
 
 .info_titulo {
     display: flex;
@@ -38,14 +33,6 @@
     border-radius: 14px;
 }
 
-.valor_teto {
-    display: flex;
-    flex-direction: row;
-
-    text-align: left;
-    gap:5px;
-}
-
 
 .infoAcordeao {
     display: flex;
@@ -53,27 +40,3 @@
     gap:20px;
     padding: 0px !important;
 }
-
-.info_wrapper {
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-
-.info {
-    text-align: center;
-    color: #ffffff;
-    font-family: "Montserrat", sans-serif;
-    font-size: 15px;
-    font-weight: 550;
-    padding: 10px;
-}
-
-.label {
-    color: #ffffff;
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 550;
-    padding: 15px;
-}
-

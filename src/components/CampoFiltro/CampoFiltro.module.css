@@ -10,38 +10,10 @@
     justify-content: space-evenly;
 }
 
-
 .logo {
     width: 154.34px;
     height: 76px;
     align-self: center;
-}
-
-.filtros_icon_titulo {
-    display: flex;
-    flex-direction: row;
-    margin : 0px;
-    background-color: #112422;
-    width: 165px;
-    height: 35px !important;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    gap: 8px;
-}
-
-.filtro_icon {
-    width: 21.639px;
-    height: 20px;
-}
-
-.titulo {
-    margin: 0px;
-    color: #ffffff;
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 800;
 }
 
 .filtros_opcoes {

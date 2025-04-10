@@ -4,7 +4,6 @@
 .infoErro {
     width: 100%;
     min-height: 100px;
-    background-color: #425E59;
 
     display: flex;
     flex-direction: row;

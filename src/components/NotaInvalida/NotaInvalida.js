@@ -5,14 +5,13 @@ import Collapse from '@mui/material/Collapse';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import InfoErro from "../InfoErro/InfoErro.js";
-import styles from "./NotaInvalida.module.css";
 
 function NotaInvalida({nota}) {
 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <TableBody className={styles.nota_invalida}>
+        <TableBody>
 
             <TituloAccordionNota {...nota} setValueIsOpen={setIsOpen} valueIsOpen={isOpen}/>
 

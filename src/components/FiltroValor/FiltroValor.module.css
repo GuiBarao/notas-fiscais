@@ -25,17 +25,6 @@
     height: 20px;
 }
 
-.cifrao {
-    color: #ffffff;
-    font-size: 18px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-}
-
-.componente_textField {
-    width: 125px;
-    height: 38px;
-}
 
 .intervalo_valor {
     display: flex;
@@ -43,7 +32,7 @@
     gap:10px;
 }
 
-.intervalo_valor .traco{
+.traco{
     color: #ffffff;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;

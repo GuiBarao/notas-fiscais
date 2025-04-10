@@ -92,7 +92,7 @@ function App () {
                 dataInicioValue = {filtroDataInicio} dataInicioOnChange = {setFiltroDataInicio} 
                 dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
 
-                <div className={styles.acordeoes}>
+                <div>
                     {unidadesFiltradas.map( (unidade) => 
                          <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
                          notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
