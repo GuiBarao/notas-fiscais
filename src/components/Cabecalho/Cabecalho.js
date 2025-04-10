@@ -1,7 +1,7 @@
 import styles from "./Cabecalho.module.css";
-import FiltroFiliais from "../FiltroFiliais/FiltroFiliais";
+import FiltroFiliais from "./FiltroFiliais/FiltroFiliais";
 import unidades from "../../json/db.json";
-import FiltroData from "../FiltroData/FiltroData";
+import FiltroData from "./FiltroData/FiltroData.js";
 
 function Cabecalho ({filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue, dataInicioOnChange, dataFimValue, dataFimOnChange})
 {

@@ -28,7 +28,7 @@ function Nota({numero, cpf, titular, data, valor, status, erro}) {
     return (
         <TableBody >
             <TableRow   onClick = {() => {if(!status) {setIsOpen(!isOpen)}}} 
-                        className={status ? styles.nota_valida : styles.nota_invalida}
+                        className={!status ? styles.nota_invalida : ""}
                         >
 
                     <TableCell className={styles.typograph}>{titular} </TableCell>

@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.nota_invalida:hover {
-    background-color: rgb(126, 35, 35);
+.nota_invalida{
+    cursor: pointer;
 }
 
-.nota_valida:hover {
-    background-color: #425E59;
+.nota_invalida:hover {
+    background-color: rgb(126, 35, 35);
 }
 
 

@@ -8,7 +8,7 @@ function CampoValor ({onChange, value}) {
         className={styles.componente_textField}
         
         sx={{  "& .MuiInputBase-root": {height : "25px"}, background: "#425E59", border: "1px solid #A0AEAC", 
-            borderStyle: "solid", borderRadius: "7px"}}  
+            borderStyle: "solid", borderRadius: "7px", "& input": {color:"#ffffff"}}}  
             
         size="small"
         
