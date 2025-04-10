@@ -1,4 +1,4 @@
-import Nota from "../Nota/Nota.js"
+import Nota from "./Nota/Nota.js"
 import styles from "./TabelaNotas.module.css"
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -10,7 +10,7 @@ function TabelaNotas({notas}) {
 
     return (
     <TableContainer className={styles.tabela}>
-       <Table >
+       <Table>
         <TableHead>
           <TableRow>
             <TableCell className={styles.label}>Titular</TableCell>

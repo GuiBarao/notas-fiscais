@@ -2,7 +2,7 @@ import styles from "./CampoFiltro.module.css"
 import CampoTexto from "./CampoTexto/CampoTexto.js";
 
 
-import FiltroValor from "../FiltroValor/FiltroValor.js";
+import FiltroValor from "./FiltroValor/FiltroValor.js";
 import FiltroStatus from "./FiltroStatus/FiltroStatus.js"
 import { useState } from "react";
 

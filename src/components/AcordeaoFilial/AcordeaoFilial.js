@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import styles from "./AcordeaoFilial.module.css";
-import TabelaNotas from '../TabelaNotas/TabelaNotas';
+import TabelaNotas from './TabelaNotas/TabelaNotas.js';
 
 
 function AcordeaoFilial({ filial, valor_teto, notas}) {

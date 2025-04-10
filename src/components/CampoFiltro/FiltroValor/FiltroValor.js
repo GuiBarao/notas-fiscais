@@ -1,4 +1,4 @@
-import CampoValor from "../CampoFiltro/CampoValor/CampoValor";
+import CampoValor from "./CampoValor/CampoValor.js";
 import styles from "./FiltroValor.module.css";
 
 function FiltroValor({onChangeMin, valueMin, onChangeMax, valueMax}) {

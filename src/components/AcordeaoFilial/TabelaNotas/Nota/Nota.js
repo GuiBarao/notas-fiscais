@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import {useState} from "react";
 import TableBody from '@mui/material/TableBody';
 import Collapse from '@mui/material/Collapse';
-import InfoErro from "../InfoErro/InfoErro.js";
+import InfoErro from "./InfoErro/InfoErro.js";
 
 function format_date(data) {
     let [ano, mes, dia] = data.split("-");
