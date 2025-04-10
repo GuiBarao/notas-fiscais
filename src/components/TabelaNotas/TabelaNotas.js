@@ -1,5 +1,4 @@
-import NotaInvalida from "../NotaInvalida/NotaInvalida";
-import NotaValida from "../NotaValida/NotaValida";
+import Nota from "../Nota/Nota.js"
 import styles from "./TabelaNotas.module.css"
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -24,9 +23,7 @@ function TabelaNotas({notas}) {
           </TableRow>
         </TableHead>
           
-            {notas.map((nota) => {return nota.status?
-               <NotaValida {...nota}/> : 
-                <NotaInvalida nota = {nota}/>})}
+            {notas.map((nota) => <Nota {...nota}/>)}
         
      
 

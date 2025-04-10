@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-.summary:hover {
-    background-color: #425E5997;
+.nota_invalida:hover {
+    background-color: rgb(126, 35, 35);
 }
 
+.nota_valida:hover {
+    background-color: #425E59;
+}
 
 
 .typograph {
