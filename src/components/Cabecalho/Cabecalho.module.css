@@ -2,7 +2,7 @@
 
 
 .cabecalho {
-    background: #133630;
+    background-color: var(--main_color);
     border-bottom-left-radius: 14px;
     height: 80px;
     align-items: center;
@@ -12,7 +12,7 @@
 }
 
 .cabecalho h1{
-    color: #88F75B;
+    color: var(--titulo_notas_fiscais);
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: 800;

@@ -1,9 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-
 .acordeao {
     border-radius: 14px !important;
-    background-color: #133630 !important;
+    background-color: var(--main_color) !important;
     margin-bottom: 25px;
 }
 
@@ -25,7 +22,7 @@
     text-align: left;
     gap:5px;
 
-    color: #ffffff;
+    color: var(--main_text_color);
     font-family: "Montserrat", sans-serif !important;
     font-size: 15px;
     font-weight: 700 !important;

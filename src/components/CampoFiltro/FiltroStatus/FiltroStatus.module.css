@@ -16,13 +16,13 @@
     height: 20px;
 }
 .titulo {
-    color: #FFF;
+    color: var(--main_text_color);
     font-family: "Montserrat", sans-serif;
     font-size: 17px;
     font-weight: 700;
 }
 
 .opcao {
-    color: #FFF;
+    color: var(--main_text_color);
     font-family: "Montserrat", sans-serif;
 }

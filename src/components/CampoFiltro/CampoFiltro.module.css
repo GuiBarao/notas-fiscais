@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .campo_filtro {
-    background-color: #133630;
+    background-color: var(--main_color);
     width: 351px;
     height: 100%;
     display: flex;

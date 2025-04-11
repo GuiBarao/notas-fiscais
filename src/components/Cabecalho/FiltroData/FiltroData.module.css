@@ -6,21 +6,21 @@
 
 .date_picker {
     border-radius: 7px;
-    color: #ffffff;
+    color: var(--main_text_color);
     height:35px; 
-    background-color:#425E59;
+    background-color: var(--background_input_color);
     width:180px;
 }
 
 .input_wrapper input {
-    color: #ffffff !important;
+    color: var(--main_text_color) !important;
     font-family: "Montserrat", sans-serif;
     height: 2px !important; 
 
 }
   
 .input_wrapper label {
-    color: white !important;
+    color: var(--main_text_color) !important;
     font-family: "Montserrat", sans-serif;
 }
   

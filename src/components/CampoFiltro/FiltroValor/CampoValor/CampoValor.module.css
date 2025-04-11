@@ -1,5 +1,5 @@
 .cifrao {
-    color: #ffffff;
+    color: var(--main_text_color);
     font-size: 17px;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;

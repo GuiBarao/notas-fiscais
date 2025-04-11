@@ -6,7 +6,7 @@
 
 
 .label {
-    color: #ffffff!important;
+    color: var(--main_text_color) !important;
     font-family: "Montserrat", sans-serif !important;
     font-size: 20px!important;
     font-weight: 550!important;

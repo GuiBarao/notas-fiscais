@@ -15,7 +15,7 @@
 .linha {
     width: 1px;
     min-height: 100px;
-    background-color: #ffffff67;
+    background-color: var(--linha_info_erro);
     align-self: stretch;
     margin-top: 25px;
     margin-bottom: 25px;
@@ -33,7 +33,7 @@
 }
 
 .wrapper_titulo_info {
-    color: #ffffff;
+    color: var(--main_text_color);
     font-family: "Montserrat", sans-serif;
     padding: 20px;
     text-align: center;
