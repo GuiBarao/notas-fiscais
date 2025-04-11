@@ -45,7 +45,7 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
                 {`Valor Teto: R$${valor_teto},00`}
             </Typography>
 
-            <Typography className = {styles.info_titulo}>
+            <div className = {styles.info_titulo}>
               {desabilitaAcordeao ? 
                 "* Nenhuma nota foi encontrada." : 
 
@@ -54,7 +54,7 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
                   {`Valor Total: R$${somatorioValores},00`}
                 </div>}
                   
-            </Typography>
+            </div>
             
             
           </AccordionSummary>

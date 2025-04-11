@@ -5,6 +5,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+
 function TabelaNotas({notas}) {
 
 
@@ -23,7 +24,7 @@ function TabelaNotas({notas}) {
           </TableRow>
         </TableHead>
           
-            {notas.map((nota) => <Nota {...nota}/>)}
+            {notas.map((nota, index) => <Nota key={index} {...nota}/>)}
         
      
 

@@ -10,7 +10,7 @@ function FiltrosProvider ({ children }) {
     const [filtroNumero, setFiltroNumero] = useState("");
 
     const [filtroValorMin, setFiltroValorMin] = useState("");
-    const [filtroValorMax, setFiltroValorMax] = useState(Number.POSITIVE_INFINITY);
+    const [filtroValorMax, setFiltroValorMax] = useState("");
 
     const [filtroStatus, setFiltroStatus] = useState("");
 
