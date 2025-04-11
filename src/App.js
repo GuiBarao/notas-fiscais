@@ -4,7 +4,9 @@ import CampoFiltro from "./components/CampoFiltro/CampoFiltro.js"
 import styles from "./App.module.css";
 import Cabecalho from "./components/Cabecalho/Cabecalho.js";
 import dayjs from 'dayjs';
-import { useState } from "react";
+
+import { useFiltros } from "./contexts/FiltrosContext.js";
+
 
 function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus, dataInicial, dataFinal) {
@@ -56,35 +58,21 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
 
 function App () {
 
-    const [filtroNomeTitular, setFiltroNomeTitular] = useState("");
-    const [filtroCPF, setFiltroCPF] = useState("");
-    const [filtroNumero, setFiltroNumero] = useState("");
 
-    const [filtroValorMin, setFiltroValorMin] = useState("");
-    const [filtroValorMax, setFiltroValorMax] = useState(Number.POSITIVE_INFINITY);
+    const { filtroTitular, filtroCpf, filtroNumero,
+            filtroValorMin, filtroValorMax, filtroStatus,
+            filtroFiliais, filtroDataInicio, filtroDataFim,
+            setFiltroFiliais, setFiltroDataInicio, setFiltroDataFim
+        } = useFiltros();
 
-    const [filtroStatus, setFiltroStatus] = useState("");
-
-    const [filtroFiliais, setFiltroFiliais] = useState([]);
-
-    const [filtroDataInicio, setFiltroDataInicio] = useState(null);
-    const [filtroDataFim, setFiltroDataFim] = useState(null);
-
-    const lowerNomeTitular = filtroNomeTitular.toLowerCase(); 
+    const lowerNomeTitular = filtroTitular.toLowerCase(); 
 
     const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial));
 
     return (
-
         <section className={styles.notas}>
-            <CampoFiltro 
-                onFiltrarNome={setFiltroNomeTitular} 
-                onFiltrarCPF={setFiltroCPF}
-                onFiltrarNumero={setFiltroNumero}
-                onFiltrarValorMin={setFiltroValorMin}
-                onFiltrarValorMax={setFiltroValorMax}
-                onFiltrarStatus={setFiltroStatus}
-            />
+
+            <CampoFiltro />
             
             <div className={styles.header_filtros_wrapper}>
                 
@@ -94,12 +82,12 @@ function App () {
 
                 <div>
                     {unidadesFiltradas.map( (unidade) => 
-                         <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
-                         notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
-                             filtroCPF, filtroNumero, 
-                             filtroValorMin, filtroValorMax,
-                             filtroStatus, filtroDataInicio, filtroDataFim))}
-                         key={unidade.filial}/>  )}
+                        <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
+                        notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
+                            filtroCpf, filtroNumero, 
+                            filtroValorMin, filtroValorMax,
+                            filtroStatus, filtroDataInicio, filtroDataFim))}
+                        key={unidade.filial}/>  )}
                 </div>
 
             </div>
