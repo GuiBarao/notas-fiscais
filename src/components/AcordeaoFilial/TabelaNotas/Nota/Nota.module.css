@@ -5,7 +5,7 @@
 }
 
 .nota_invalida:hover {
-    background-color: var(--hover_nota_invalida);
+    background-color: var(--destaque_nota_invalida);
 }
 
 

@@ -8,7 +8,7 @@
     border-radius: 7px;
     color: var(--main_text_color);
     height:35px; 
-    background-color: var(--background_input_color);
+    background-color: var(--background_filtros_obrigatorios);
     width:180px;
 }
 

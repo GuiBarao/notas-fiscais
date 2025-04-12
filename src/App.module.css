@@ -15,3 +15,9 @@
     margin-left: 380px;
     height: 100%;
 }
+
+.accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

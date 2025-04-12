@@ -23,8 +23,7 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
 
     return (
         <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 
-        className = {styles.acordeao} 
-        disabled = {desabilitaAcordeao}
+        className = {`${styles.acordeao} ${desabilitaAcordeao? styles.desabilitado : ""} `}
         expanded = {!desabilitaAcordeao && expanded}
         onChange={() => setExpanded(!expanded)}
         >
@@ -35,6 +34,8 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
             id="panel3-header"
             className={styles.titulo_acordeao}
           >
+
+
             <Typography className = {styles.info_titulo}>
                 <img src = "/images/local_icon.svg" alt = "icone de local"/>
                 {filial} 
@@ -47,7 +48,7 @@ function AcordeaoFilial({ filial, valor_teto, notas}) {
 
             <div className = {styles.info_titulo}>
               {desabilitaAcordeao ? 
-                "* Nenhuma nota foi encontrada." : 
+                <span className={styles.aviso_sem_notas}>* Nenhuma nota foi encontrada.</span> : 
 
                 <div className={styles.info_titulo}>
                   <img src = "/images/somatorio_icon.svg" alt = "icone de somatorio" />

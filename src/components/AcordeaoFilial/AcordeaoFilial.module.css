@@ -1,7 +1,6 @@
 .acordeao {
     border-radius: 14px !important;
     background-color: var(--main_color) !important;
-    margin-bottom: 25px;
 }
 
 .titulo_acordeao {
@@ -12,28 +11,33 @@
     margin: 0px;
 }
 
-.titulo_acordeao span {
-    justify-content: space-evenly !important;
-}
 
 .info_titulo {
     display: flex;
-    flex-direction: row;
-    text-align: left;
-    gap:5px;
-
-    color: var(--main_text_color);
+    flex: 1;
     font-family: "Montserrat", sans-serif !important;
     font-size: 15px;
     font-weight: 700 !important;
-    margin : 0px;
-    border-radius: 14px;
+    color: var(--main_text_color);
+    justify-content: center;
+    
 }
+
 
 
 .infoAcordeao {
     display: flex;
     flex-direction: column;
-    gap:20px;
     padding: 0px !important;
+}
+
+.acordeao.desabilitado {
+    background-color: #e0e0e0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.aviso_sem_notas {
+    color : red;
+    opacity: 1 !important;
 }
