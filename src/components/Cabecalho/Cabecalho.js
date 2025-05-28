@@ -1,11 +1,26 @@
 import styles from "./Cabecalho.module.css";
 import FiltroFiliais from "./FiltroFiliais/FiltroFiliais";
-import unidades from "../../json/db.json";
+//import unidades from "../../json/db.json";
 import FiltroData from "./FiltroData/FiltroData.js";
+import { useEffect, useState } from "react";
+
+import buscaFiliais from "../../services/get/filiais-disponiveis.js";
 
 function Cabecalho ({filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue, dataInicioOnChange, dataFimValue, dataFimOnChange})
 {
-    const listaFiliais = unidades.map((unidade) => unidade.filial);    
+    const [filiais, setFiliais] = useState([])
+
+    const buscarFiliais = async () => {
+        try {
+            const response = await buscaFiliais();
+            setFiliais(response);
+        }
+        catch(error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {buscarFiliais()}, []);   
 
     return (
         <header className={styles.cabecalho}>
@@ -13,7 +28,7 @@ function Cabecalho ({filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue,
 
             <div className={styles.filtros}>
                 <FiltroFiliais filtragem={filtroFiliaisValue} onChangeFiltragem={filtroFiliaisOnChange} 
-                filiais={listaFiliais}/>
+                filiais={filiais}/>
 
                 <FiltroData inicioValue = {dataInicioValue} inicioOnChange = {dataInicioOnChange} 
                 fimValue = {dataFimValue} fimOnChange = {dataFimOnChange}/>
