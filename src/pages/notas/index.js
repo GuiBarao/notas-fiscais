@@ -1,11 +1,11 @@
 import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
-import unidades from "../../json/db.json"
 import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
 import styles from "./styles.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import dayjs from 'dayjs';
 import { useFiltros } from "../../contexts/FiltrosContext.js";
-
+import { useState, useEffect } from "react";
+import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 
 
 function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
@@ -56,28 +56,40 @@ function NFSE() {
 
     const lowerNomeTitular = filtroTitular.toLowerCase(); 
 
-    const unidadesFiltradas = unidades.filter((unidade) => filtroFiliais.includes(unidade.filial));
+    const [filiais, setFiliais] = useState([]);
+
+    const filiais_disponiveis = async () => {
+        try {
+            const response = await buscaFiliais();
+            setFiliais(response);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {filiais_disponiveis()}, []);   
+
     
+    const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
 
     return (
+        
         <section className={styles.notas}>
-
+            
             <CampoFiltro />
             
             <div className={styles.header_filtros_wrapper}>
                 
-                <Cabecalho filtroFiliaisValue = {filtroFiliais} filtroFiliaisOnChange={setFiltroFiliais}
+                <Cabecalho filiais = {filiais} filtroFiliaisValue = {filtroFiliais} filtroFiliaisOnChange={setFiltroFiliais}
                 dataInicioValue = {filtroDataInicio} dataInicioOnChange = {setFiltroDataInicio} 
                 dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
 
                 <div className={styles.accordions}>
-                    {unidadesFiltradas.map( (unidade) => 
-                        <AcordeaoFilial filial={unidade.filial} valor_teto={unidade.valor_teto}
-                        notas={unidade.notas.filter((nota) => filtragemNotas( nota, lowerNomeTitular, 
-                            filtroCpf, filtroNumero, 
-                            filtroValorMin, filtroValorMax,
-                            filtroStatus, filtroDataInicio, filtroDataFim))}
-                        key={unidade.filial}/>  )}
+                    {filiaisFiltradas.map( (filial) => {
+
+                        return <AcordeaoFilial filial={filial.nomeFilial} valor_teto={filial.valorTeto} key={filial.nomeFilial}/>
+                    })}
                 </div>
 
             </div>

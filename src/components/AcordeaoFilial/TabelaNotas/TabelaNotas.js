@@ -23,8 +23,14 @@ function TabelaNotas({notas}) {
             <TableCell className={styles.label}></TableCell>
           </TableRow>
         </TableHead>
-          
-            {notas.map((nota, index) => <Nota key={index} {...nota}/>)}
+
+            {notas.map((nota, index) => <Nota key={index} 
+                                              numero={nota.id}
+                                              data={nota.data_cadastro}
+                                              valor={nota.valor}
+                                              status={nota.status}
+                                              erro={nota.erro}
+                                              cliente={nota.cliente}/> )}
         
      
 

@@ -19,7 +19,8 @@ function format_cpf(cpf)
 }
 
 
-function Nota({numero, cpf, titular, data, valor, status, erro}) {
+
+function Nota({numero, data, valor, status, erro, cliente}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const angulo_expandIcon = isOpen? 180 : 0;
@@ -28,14 +29,13 @@ function Nota({numero, cpf, titular, data, valor, status, erro}) {
     return (
         <TableBody >
             <TableRow   onClick = {() => {if(!status) {setIsOpen(!isOpen)}}} 
-                        className={!status ? styles.nota_invalida : ""}
-                        >
-
-                    <TableCell className={styles.typograph}>{titular} </TableCell>
+                        className={!status ? styles.nota_invalida : ""}>
+                    {console.log(erro)}
+                    <TableCell className={styles.typograph}>{cliente.nome} </TableCell>
                     <TableCell className={styles.typograph}>{numero} </TableCell>
                     <TableCell className={styles.typograph}>{format_date(data)} </TableCell>
                     <TableCell className={styles.typograph}>{valor} </TableCell>
-                    <TableCell className={styles.typograph}>{format_cpf(cpf)} </TableCell>
+                    <TableCell className={styles.typograph}>{cliente.cpf_cnpj} </TableCell>
                     <TableCell className={styles.typograph}>{status? "Válido" : "Inválido"}</TableCell>
 
                     {!status ? 

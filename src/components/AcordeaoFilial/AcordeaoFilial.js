@@ -4,12 +4,31 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import buscarNotas from "../../services/get/notas-filial.js";
 
 import styles from "./AcordeaoFilial.module.css";
 import TabelaNotas from './TabelaNotas/TabelaNotas.js';
+import { useState, useEffect } from 'react';
 
 
-function AcordeaoFilial({ filial, valor_teto, notas}) {
+function AcordeaoFilial({filial, valor_teto}) {
+
+
+    const [notas, setNotas] = useState([]);
+
+    const notas_filial = async (filial) => {
+        try {
+            const response = await buscarNotas(filial);
+            setNotas(response);
+            
+        }   
+        catch(error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {notas_filial(filial)}, [])
+
 
     const desabilitaAcordeao = (notas.length === 0);
 

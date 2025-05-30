@@ -8,15 +8,15 @@ import styles from "./FiltroFiliais.module.css"
 
 function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
 
+      const handleChange = (event) => {
+      const {
+        target: { value },
+      } = event;
+      onChangeFiltragem(typeof value === 'string' ? value.split(',') : value);
+    };
     
-    const handleChange = (event) => {
-        const {
-          target: { value },
-        } = event;
-        onChangeFiltragem(typeof value === 'string' ? value.split(',') : value);
-      };
-
     return (
+
             <FormControl>
                 <InputLabel className={styles.label} shrink >Filiais</InputLabel>
                 <Select className={styles.select}
@@ -35,9 +35,9 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
                 >
                     
                     {filiais.map((filial) => (
-                    <MenuItem key={filial} value={filial}>
-                        <Checkbox className={styles.checkbox_item}  checked = {filtragem.includes(filial)}/>
-                        <ListItemText className={styles.text_item} primary={filial}  />
+                    <MenuItem key={filial.nomeFilial} value={filial.nomeFilial}>
+                        <Checkbox className={styles.checkbox_item}  checked = {filtragem.includes(filial.nomeFilial)}/>
+                        <ListItemText className={styles.text_item} primary={filial.nomeFilial}  />
                     </MenuItem>
                     ))}
 
