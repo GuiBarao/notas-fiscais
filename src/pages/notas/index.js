@@ -1,6 +1,6 @@
 import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
 import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import dayjs from 'dayjs';
 import { useFiltros } from "../../contexts/FiltrosContext.js";

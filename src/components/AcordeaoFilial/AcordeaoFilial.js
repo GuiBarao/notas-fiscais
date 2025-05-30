@@ -35,7 +35,7 @@ function AcordeaoFilial({filial, valor_teto}) {
     const borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
 
     const somatorioValores =  React.useMemo(() => 
-      {return notas.reduce((soma, nota) => soma += parseFloat(nota.valor), 0)},
+      {return notas.reduce((soma, nota) => soma += nota.valor, 0)},
       [notas]);
 
     const [expanded, setExpanded] = React.useState(false);
@@ -62,7 +62,7 @@ function AcordeaoFilial({filial, valor_teto}) {
 
             <Typography className = {styles.info_titulo}>
                 <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
-                {`Valor Teto: R$${valor_teto},00`}
+                {`Valor Teto: R$${valor_teto.toFixed(2)}`}
             </Typography>
 
             <div className = {styles.info_titulo}>
@@ -71,7 +71,7 @@ function AcordeaoFilial({filial, valor_teto}) {
 
                 <div className={styles.info_titulo}>
                   <img src = "/images/somatorio_icon.svg" alt = "icone de somatorio" />
-                  {`Valor Total: R$${somatorioValores},00`}
+                  {`Valor Total: R$${somatorioValores.toFixed(2)}`}
                 </div>}
                   
             </div>
