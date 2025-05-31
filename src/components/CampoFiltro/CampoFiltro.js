@@ -7,14 +7,10 @@ import FiltroStatus from "./FiltroStatus/FiltroStatus.js"
 import {useFiltros} from "../../contexts/FiltrosContext.js"
 
 
-function CampoFiltro(){
-
-    const { filtroTitular, filtroCpf, filtroNumero,
+function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
         filtroValorMin, filtroValorMax, filtroStatus,
         setFiltroTitular, setFiltroCpf, setFiltroNumero,
-        setFiltroValorMin, setFiltroValorMax, setFiltroStatus
-    } = useFiltros();
-
+        setFiltroValorMin, setFiltroValorMax, setFiltroStatus}){
 
     return (
         <section className = {styles.campo_filtro}>

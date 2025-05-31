@@ -1,11 +1,12 @@
 import dayjs from "dayjs";
 
-function filtragemNotas(nota, /*filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
+function filtragemNotas(nota, filtroNomeTitular, /*filtroCPF, filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus,*/ dataInicial, dataFinal) {
-    /*if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== ""){
+    if( !nota.cliente.nome.toLowerCase().includes(filtroNomeTitular.toLowerCase()) && filtroNomeTitular !== ""){
+        
         return false;
     }
-  
+  /*
     if(nota.cpf !== filtroCPF && filtroCPF !== ""){
         return false;
     }

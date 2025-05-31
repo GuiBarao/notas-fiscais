@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 import filtragemNotas from "../../utils/filtragemNotas.js"
 
 
-function AcordeaoFilial({filial, valor_teto, filtroDataInicio, filtroDataFim}) {
+function AcordeaoFilial({filial, valor_teto, filtroDataInicio, filtroDataFim, filtroTitular}) {
 
 
     const [notas, setNotas] = useState([]);
@@ -31,8 +31,8 @@ function AcordeaoFilial({filial, valor_teto, filtroDataInicio, filtroDataFim}) {
     useEffect(() => {notas_filial(filial)}, [])
 
     const notas_filtradas = React.useMemo( () => {return notas.filter(
-                                                  (nota) => {return filtragemNotas(nota, filtroDataInicio, filtroDataFim)})},
-                                                  [filtroDataInicio, filtroDataFim])
+                                                  (nota) => {return filtragemNotas(nota, filtroTitular, filtroDataInicio, filtroDataFim)})},
+                                                  [notas, filtroDataInicio, filtroDataFim, filtroTitular])
     
     const desabilitaAcordeao = (notas_filtradas.length === 0);
 

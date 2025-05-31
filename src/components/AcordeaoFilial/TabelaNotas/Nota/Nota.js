@@ -30,7 +30,6 @@ function Nota({numero, data, valor, status, erro, cliente}) {
         <TableBody >
             <TableRow   onClick = {() => {if(!status) {setIsOpen(!isOpen)}}} 
                         className={!status ? styles.nota_invalida : ""}>
-                    {console.log(erro)}
                     <TableCell className={styles.typograph}>{cliente.nome} </TableCell>
                     <TableCell className={styles.typograph}>{numero} </TableCell>
                     <TableCell className={styles.typograph}>{format_date(data)} </TableCell>

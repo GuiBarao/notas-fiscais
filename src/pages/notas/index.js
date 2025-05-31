@@ -23,9 +23,6 @@ function NFSE() {
     const [filtroFiliais, setFiltroFiliais] = useState([]);
     const [filtroDataInicio, setFiltroDataInicio] = useState(null);
     const [filtroDataFim, setFiltroDataFim] = useState(null);
-    
-
-    const lowerNomeTitular = filtroTitular.toLowerCase(); 
 
     const [filiais, setFiliais] = useState([]);
 
@@ -44,11 +41,19 @@ function NFSE() {
     
     const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
 
+    useEffect(() => {console.log(filtroTitular)}, [filtroTitular])
+
+
     return (
         
         <section className={styles.notas}>
             
-            <CampoFiltro />
+            <CampoFiltro    filtroTitular = {filtroTitular} filtroCpf= {filtroCpf} 
+                            filtroNumero= {filtroNumero} filtroValorMin= {filtroValorMin} 
+                            filtroValorMax= {filtroValorMax}  filtroStatus= {filtroStatus}
+                            setFiltroTitular= {setFiltroTitular}  setFiltroCpf= {setFiltroCpf} 
+                            setFiltroNumero= {setFiltroNumero} setFiltroValorMin= {setFiltroValorMin} 
+                            setFiltroValorMax= {setFiltroValorMax}  setFiltroStatus = {setFiltroStatus}/>
             
             <div className={styles.header_filtros_wrapper}>
                 
@@ -58,12 +63,12 @@ function NFSE() {
 
                 <div className={styles.accordions}>
                     {filiaisFiltradas.map( (filial) => {
-
                         return <AcordeaoFilial  filial={filial.nomeFilial} 
                                                 valor_teto={filial.valorTeto} 
                                                 key={filial.nomeFilial}
                                                 filtroDataInicio={filtroDataInicio}
-                                                filtroDataFim={filtroDataFim}/>
+                                                filtroDataFim={filtroDataFim}
+                                                filtroTitular={filtroTitular}/>
                     })}
                 </div>
 
