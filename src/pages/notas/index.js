@@ -68,7 +68,9 @@ function NFSE() {
                                                 key={filial.nomeFilial}
                                                 filtroDataInicio={filtroDataInicio}
                                                 filtroDataFim={filtroDataFim}
-                                                filtroTitular={filtroTitular}/>
+                                                filtroTitular={filtroTitular}
+                                                filtroCPF={filtroCpf}
+                                                />
                     })}
                 </div>
 

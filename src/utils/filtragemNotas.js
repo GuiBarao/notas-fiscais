@@ -1,16 +1,17 @@
 import dayjs from "dayjs";
 
-function filtragemNotas(nota, filtroNomeTitular, /*filtroCPF, filtroNumero, filtroValorMin, 
+function filtragemNotas(nota, filtroNomeTitular, filtroCPF, /*filtroNumero, filtroValorMin, 
     filtroValorMax, filtroStatus,*/ dataInicial, dataFinal) {
     if( !nota.cliente.nome.toLowerCase().includes(filtroNomeTitular.toLowerCase()) && filtroNomeTitular !== ""){
         
         return false;
     }
-  /*
-    if(nota.cpf !== filtroCPF && filtroCPF !== ""){
+    
+    console.log(filtroCPF)
+    if(nota.cliente.cpf_cnpj !== filtroCPF && filtroCPF !== ""){
         return false;
     }
-  
+  /*
     if(nota.numero !== filtroNumero && filtroNumero !== ""){
         return false;
     }

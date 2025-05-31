@@ -25,7 +25,6 @@ function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
                 <CampoTexto
                 value={filtroCpf}
                 onChange={(ev) => {setFiltroCpf(ev.target.value);}}
-                type='number'
                 arquivoIMG={"cpf_icon"} titulo={"CPF:"}/>
 
                 <FiltroStatus 
