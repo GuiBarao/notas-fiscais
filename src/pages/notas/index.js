@@ -70,6 +70,10 @@ function NFSE() {
                                                 filtroDataFim={filtroDataFim}
                                                 filtroTitular={filtroTitular}
                                                 filtroCPF={filtroCpf}
+                                                filtroStatus={filtroStatus}
+                                                filtroNumero={filtroNumero}
+                                                filtroValorMin= {filtroValorMin}
+                                                filtroValorMax= {filtroValorMax}
                                                 />
                     })}
                 </div>

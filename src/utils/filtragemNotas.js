@@ -1,18 +1,17 @@
 import dayjs from "dayjs";
 
-function filtragemNotas(nota, filtroNomeTitular, filtroCPF, /*filtroNumero, filtroValorMin, 
-    filtroValorMax, filtroStatus,*/ dataInicial, dataFinal) {
+function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
+    filtroValorMax, filtroStatus, dataInicial, dataFinal) {
     if( !nota.cliente.nome.toLowerCase().includes(filtroNomeTitular.toLowerCase()) && filtroNomeTitular !== ""){
         
         return false;
     }
     
-    console.log(filtroCPF)
     if(nota.cliente.cpf_cnpj !== filtroCPF && filtroCPF !== ""){
         return false;
     }
-  /*
-    if(nota.numero !== filtroNumero && filtroNumero !== ""){
+
+    if(String(nota.id) !== filtroNumero && filtroNumero !== ""){
         return false;
     }
   
@@ -27,7 +26,7 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, /*filtroNumero, filt
 
     if(nota.status && filtroStatus === "Inválido"){
         return false;
-    }*/
+    }
 
     if((dayjs(nota.data_cadastro).isBefore(dataInicial) || dayjs(nota.data_cadastro).isAfter(dataFinal)) 
         || (dataInicial === null || dataFinal === null)){
