@@ -2,57 +2,28 @@ import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
 import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
 import styles from "./styles.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
-import dayjs from 'dayjs';
-import { useFiltros } from "../../contexts/FiltrosContext.js";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 
 
-function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtroValorMin, 
-    filtroValorMax, filtroStatus, dataInicial, dataFinal) {
-
-    if( !nota.titular.toLowerCase().includes(filtroNomeTitular) && filtroNomeTitular !== ""){
-        return false;
-    }
-  
-    if(nota.cpf !== filtroCPF && filtroCPF !== ""){
-        return false;
-    }
-  
-    if(nota.numero !== filtroNumero && filtroNumero !== ""){
-        return false;
-    }
-  
-
-    if(nota.valor < parseInt(filtroValorMin) || nota.valor > parseInt(filtroValorMax)){
-        return false;
-    }
-
-    if(!nota.status && filtroStatus === "Válido"){
-        return false;
-    }
-
-    if(nota.status && filtroStatus === "Inválido"){
-        return false;
-    }
-
-    if((dayjs(nota.data).isBefore(dataInicial) || dayjs(nota.data).isAfter(dataFinal)) 
-        || (dataInicial === null || dataFinal === null)){
-        return false;
-    }
-
-    return true;
-}
-
 function NFSE() {
 
+    //Opcionais
+    const [filtroTitular, setFiltroTitular] = useState("");
+    const [filtroCpf, setFiltroCpf] = useState("");
 
+    const [filtroNumero, setFiltroNumero] = useState("");
 
-    const { filtroTitular, filtroCpf, filtroNumero,
-            filtroValorMin, filtroValorMax, filtroStatus,
-            filtroFiliais, filtroDataInicio, filtroDataFim,
-            setFiltroFiliais, setFiltroDataInicio, setFiltroDataFim
-        } = useFiltros();
+    const [filtroValorMin, setFiltroValorMin] = useState("");
+    const [filtroValorMax, setFiltroValorMax] = useState("");
+
+    const [filtroStatus, setFiltroStatus] = useState("");
+
+    //Obrigatórios
+    const [filtroFiliais, setFiltroFiliais] = useState([]);
+    const [filtroDataInicio, setFiltroDataInicio] = useState(null);
+    const [filtroDataFim, setFiltroDataFim] = useState(null);
+    
 
     const lowerNomeTitular = filtroTitular.toLowerCase(); 
 
@@ -88,7 +59,11 @@ function NFSE() {
                 <div className={styles.accordions}>
                     {filiaisFiltradas.map( (filial) => {
 
-                        return <AcordeaoFilial filial={filial.nomeFilial} valor_teto={filial.valorTeto} key={filial.nomeFilial}/>
+                        return <AcordeaoFilial  filial={filial.nomeFilial} 
+                                                valor_teto={filial.valorTeto} 
+                                                key={filial.nomeFilial}
+                                                filtroDataInicio={filtroDataInicio}
+                                                filtroDataFim={filtroDataFim}/>
                     })}
                 </div>
 

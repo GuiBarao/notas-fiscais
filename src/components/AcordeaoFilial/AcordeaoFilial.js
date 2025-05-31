@@ -9,9 +9,10 @@ import buscarNotas from "../../services/get/notas-filial.js";
 import styles from "./AcordeaoFilial.module.css";
 import TabelaNotas from './TabelaNotas/TabelaNotas.js';
 import { useState, useEffect } from 'react';
+import filtragemNotas from "../../utils/filtragemNotas.js"
 
 
-function AcordeaoFilial({filial, valor_teto}) {
+function AcordeaoFilial({filial, valor_teto, filtroDataInicio, filtroDataFim}) {
 
 
     const [notas, setNotas] = useState([]);
@@ -29,14 +30,17 @@ function AcordeaoFilial({filial, valor_teto}) {
 
     useEffect(() => {notas_filial(filial)}, [])
 
-
-    const desabilitaAcordeao = (notas.length === 0);
+    const notas_filtradas = React.useMemo( () => {return notas.filter(
+                                                  (nota) => {return filtragemNotas(nota, filtroDataInicio, filtroDataFim)})},
+                                                  [filtroDataInicio, filtroDataFim])
+    
+    const desabilitaAcordeao = (notas_filtradas.length === 0);
 
     const borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
 
     const somatorioValores =  React.useMemo(() => 
-      {return notas.reduce((soma, nota) => soma += nota.valor, 0)},
-      [notas]);
+      {return notas_filtradas.reduce((soma, nota) => soma += nota.valor, 0)},
+      [notas_filtradas]);
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -80,7 +84,7 @@ function AcordeaoFilial({filial, valor_teto}) {
           </AccordionSummary>
           <AccordionDetails className={styles.infoAcordeao}>
               
-            <TabelaNotas notas = {notas}/>
+            <TabelaNotas notas = {notas_filtradas}/>
 
           </AccordionDetails>
         </Accordion>
