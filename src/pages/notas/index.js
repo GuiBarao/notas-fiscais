@@ -1,9 +1,10 @@
 import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
-import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js"
+import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js";
 import styles from "./styles.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
+import EdicaoValorTeto from "../../components/Edicao/EdicaoValorTeto/index.js";
 
 
 function NFSE() {
@@ -24,6 +25,8 @@ function NFSE() {
     const [filtroDataInicio, setFiltroDataInicio] = useState(null);
     const [filtroDataFim, setFiltroDataFim] = useState(null);
 
+    const [edicaoValorTeto, setEdicaoValorTeto] = useState(false)
+
     const [filiais, setFiliais] = useState([]);
 
     const filiais_disponiveis = async () => {
@@ -41,8 +44,8 @@ function NFSE() {
     
     const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
 
-    useEffect(() => {console.log(filtroTitular)}, [filtroTitular])
 
+    
 
     return (
         
@@ -62,6 +65,10 @@ function NFSE() {
                 dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
 
                 <div className={styles.accordions}>
+
+                    {edicaoValorTeto && <EdicaoValorTeto setEdicaoValorTeto={setEdicaoValorTeto} nomeFilial={"Itaporã"}/>}
+
+
                     {filiaisFiltradas.map( (filial) => {
                         return <AcordeaoFilial  filial={filial.nomeFilial} 
                                                 valor_teto={filial.valorTeto} 
@@ -74,6 +81,7 @@ function NFSE() {
                                                 filtroNumero={filtroNumero}
                                                 filtroValorMin= {filtroValorMin}
                                                 filtroValorMax= {filtroValorMax}
+                                                setEdicaoValorTeto={setEdicaoValorTeto}
                                                 />
                     })}
                 </div>

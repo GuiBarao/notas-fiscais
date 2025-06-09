@@ -10,12 +10,10 @@ import styles from "./AcordeaoFilial.module.css";
 import TabelaNotas from './TabelaNotas/TabelaNotas.js';
 import { useState, useEffect } from 'react';
 import filtragemNotas from "../../utils/filtragemNotas.js"
-import FiltroValor from '../CampoFiltro/FiltroValor/FiltroValor.js';
-
 
 function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim, 
                           filtroTitular, filtroCPF, filtroStatus, filtroNumero,
-                          filtroValorMin, filtroValorMax}) {
+                          filtroValorMin, filtroValorMax, setEdicaoValorTeto}) {
 
 
     const [notas, setNotas] = useState([]);
@@ -32,7 +30,6 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
     }
 
     useEffect(() => {notas_filial(filial)}, [])
-    console.log(filtroCPF)
     const notas_filtradas = React.useMemo( () => {return notas.filter(
                                                   (nota) => {return filtragemNotas(nota, filtroTitular, filtroCPF, filtroNumero, filtroValorMin, filtroValorMax, filtroStatus, filtroDataInicio, filtroDataFim)})},
                                                   [notas, filtroDataInicio, filtroDataFim, filtroTitular, filtroCPF, filtroStatus, filtroNumero, filtroValorMin, filtroValorMax])
@@ -82,6 +79,16 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
                 </div>}
                   
             </div>
+            
+            
+            
+            <img className={styles.edicao} src = "/images/edition.svg" alt = "icone de edicao" 
+            onClick={(e) => {
+                e.stopPropagation();
+                setEdicaoValorTeto(true);
+              }}/>
+            
+            
             
             
           </AccordionSummary>
