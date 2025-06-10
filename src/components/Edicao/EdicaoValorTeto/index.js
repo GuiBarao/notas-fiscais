@@ -2,14 +2,14 @@ import CampoValor from "../../CampoFiltro/FiltroValor/CampoValor/CampoValor.js";
 import styles from "./styles.module.css";
 import mudar_valorTeto from "../../../services/put/valor-teto.js";
 import { useState } from "react";
-const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial}) => {
+const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilial}) => {
 
     const [novoValor, setNovoValor] = useState("");
 
     const edita_valorTeto = async (nome_filial) => {
        
         try {
-            const response = mudar_valorTeto(nome_filial, novoValor)
+            const response = await mudar_valorTeto(nome_filial, novoValor)
             return response;
         }
         catch(error) {
@@ -23,8 +23,9 @@ const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial}) => {
             <div className={styles.botoes}>
 
                 <button className={styles.salvar} 
-                    onClick={() => {edita_valorTeto(nome_filial); 
-                                setEdicaoValorTeto({ativado : false, filial: ""});}
+                    onClick={async () => {await edita_valorTeto(nome_filial); 
+                                setEdicaoValorTeto({ativado : false, filial: ""});
+                                atualizaAcordeaoFilial(nome_filial, novoValor);}
                             }>
                     Salvar
                 </button>

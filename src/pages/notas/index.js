@@ -30,7 +30,7 @@ function NFSE() {
 
     const [filiais, setFiliais] = useState([]);
 
-    const filiais_disponiveis = async () => {
+    const carregar_filiais = async () => {
         try {
             const response = await buscaFiliais();
             setFiliais(response);
@@ -40,7 +40,15 @@ function NFSE() {
         }
     }
 
-    useEffect(() => {filiais_disponiveis()}, []);
+    useEffect(() => {carregar_filiais()}, []);
+
+    const recarregarFilial = (nomeFilial, novoValor) => {
+        setFiliais((prev) => prev.map((filial) => 
+            filial.nomeFilial === nomeFilial 
+                ? {...filial, valorTeto: parseFloat(novoValor)}
+                : filial
+        ))
+    }
 
     
     const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
@@ -68,7 +76,8 @@ function NFSE() {
                 <div className={styles.accordions}>
 
                     {edicaoValorTeto.ativado && <EdicaoValorTeto    setEdicaoValorTeto={setEdicaoValorTeto} 
-                                                                    nome_filial={edicaoValorTeto.nome_filial}/>}
+                                                                    nome_filial={edicaoValorTeto.nome_filial}
+                                                                    atualizaAcordeaoFilial={recarregarFilial}/>}
 
 
                     {filiaisFiltradas.map( (filial) => {
