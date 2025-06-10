@@ -25,7 +25,8 @@ function NFSE() {
     const [filtroDataInicio, setFiltroDataInicio] = useState(null);
     const [filtroDataFim, setFiltroDataFim] = useState(null);
 
-    const [edicaoValorTeto, setEdicaoValorTeto] = useState(false)
+    const [edicaoValorTeto, setEdicaoValorTeto] = useState({ativado: false, nome_filial: ""})
+
 
     const [filiais, setFiliais] = useState([]);
 
@@ -39,7 +40,7 @@ function NFSE() {
         }
     }
 
-    useEffect(() => {filiais_disponiveis()}, []);   
+    useEffect(() => {filiais_disponiveis()}, []);
 
     
     const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
@@ -66,7 +67,8 @@ function NFSE() {
 
                 <div className={styles.accordions}>
 
-                    {edicaoValorTeto && <EdicaoValorTeto setEdicaoValorTeto={setEdicaoValorTeto} nomeFilial={"Itaporã"}/>}
+                    {edicaoValorTeto.ativado && <EdicaoValorTeto    setEdicaoValorTeto={setEdicaoValorTeto} 
+                                                                    nome_filial={edicaoValorTeto.nome_filial}/>}
 
 
                     {filiaisFiltradas.map( (filial) => {

@@ -85,7 +85,8 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             <img className={styles.edicao} src = "/images/edition.svg" alt = "icone de edicao" 
             onClick={(e) => {
                 e.stopPropagation();
-                setEdicaoValorTeto(true);
+                
+                setEdicaoValorTeto({ativado : true, nome_filial: filial});
               }}/>
             
             

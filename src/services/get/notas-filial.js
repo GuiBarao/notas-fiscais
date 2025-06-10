@@ -10,7 +10,7 @@ const buscarNotas = async (filial_nome) => {
         return response.data;
     }
     catch(error) {
-        throw Error("Erro no carregamento das notas: ", error);
+        throw new Error("Erro no carregamento das notas: " + error);
     }
 
     

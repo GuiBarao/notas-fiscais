@@ -10,7 +10,7 @@ const buscaFiliais = async () => {
         return response.data;
     }
     catch(error) {
-        throw Error("Erro no carregamento das filiais: ", error);
+        throw new Error("Erro no carregamento das filiais: " + error);
     }
 
     
