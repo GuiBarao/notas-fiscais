@@ -4,8 +4,6 @@ import CampoTexto from "./CampoTexto/CampoTexto.js";
 import FiltroValor from "./FiltroValor/FiltroValor.js";
 import FiltroStatus from "./FiltroStatus/FiltroStatus.js"
 
-import {useFiltros} from "../../contexts/FiltrosContext.js"
-
 
 function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
         filtroValorMin, filtroValorMax, filtroStatus,
