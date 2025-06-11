@@ -14,18 +14,28 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
       } = event;
       onChangeFiltragem(typeof value === 'string' ? value.split(',') : value);
     };
+
+      const sx_select = {
+        width:"200px", 
+        height:"35px", 
+        padding:"0px",
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: "black",
+          borderWidth: "1px"
+        }
+
+      }
     
     return (
 
-            <FormControl>
-                <InputLabel className={styles.label} shrink >Filiais</InputLabel>
-                <Select className={styles.select}
-                
+            <FormControl sx={{borderStyle:"solid", borderWidth:"1px", borderColor:"black", borderRadius:"8px"}}>
+                <InputLabel id="label" sx={{color:"black !important", backgroundColor:"var(--main_color)", fontSize:"16px", fontWeight:"500"}} shrink >Filiais</InputLabel>
+                <Select  labelId='label' sx={sx_select}
                 multiple
                 value={filtragem}
                 onChange={handleChange}
                 renderValue={(selected) => (
-                    <span className={styles.n_filiais}>
+                    <span className="font-[15px] m-0 text-black">
                       {`${selected.length} filiais`}
                     </span>
                   )}
@@ -36,8 +46,8 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
                     
                     {filiais.map((filial) => (
                     <MenuItem key={filial.nomeFilial} value={filial.nomeFilial}>
-                        <Checkbox className={styles.checkbox_item}  checked = {filtragem.includes(filial.nomeFilial)}/>
-                        <ListItemText className={styles.text_item} primary={filial.nomeFilial}  />
+                        <Checkbox checked = {filtragem.includes(filial.nomeFilial)}/>
+                        <ListItemText sx={{color:"var(--main_text_color )", fontSize:"16px"}} primary={filial.nomeFilial}  />
                     </MenuItem>
                     ))}
 

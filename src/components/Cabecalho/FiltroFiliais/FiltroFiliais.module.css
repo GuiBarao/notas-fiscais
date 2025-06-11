@@ -1,38 +1,5 @@
 
-.n_filiais {
-    font-family: "Montserrat", sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    margin : 0px;
-    color: var(--main_text_color);
-}
-
-.label {
-    color: var(--main_text_color) !important;
-    background-color: var(--main_color);
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 500 !important;
-}
-
-.select {
-    width: 200px; 
-    height:35px; 
-    padding :0px;    
-    background-color : var(--background_filtros_obrigatorios);
-}
-
 .menuPaper {
     background-color: var(--background_input_color) !important;
 }
   
-.text_item span{
-    color : var(--main_text_color) !important;
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 16px !important;
-    font-weight: 300 !important;
-}
-
-.checkbox_item {
-    color: var(--main_text_color) !important;
-}

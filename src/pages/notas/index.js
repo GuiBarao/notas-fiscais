@@ -1,6 +1,5 @@
 import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
 import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js";
-import styles from "./styles.module.css";
 import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
@@ -58,22 +57,26 @@ function NFSE() {
 
     return (
         
-        <section className={styles.notas}>
+        <section className= "flex flex-row w-full h-full">
             
-            <CampoFiltro    filtroTitular = {filtroTitular} filtroCpf= {filtroCpf} 
+            <CampoFiltro     
+                            filtroTitular = {filtroTitular} filtroCpf= {filtroCpf} 
                             filtroNumero= {filtroNumero} filtroValorMin= {filtroValorMin} 
                             filtroValorMax= {filtroValorMax}  filtroStatus= {filtroStatus}
                             setFiltroTitular= {setFiltroTitular}  setFiltroCpf= {setFiltroCpf} 
                             setFiltroNumero= {setFiltroNumero} setFiltroValorMin= {setFiltroValorMin} 
                             setFiltroValorMax= {setFiltroValorMax}  setFiltroStatus = {setFiltroStatus}/>
             
-            <div className={styles.header_filtros_wrapper}>
+            <div className= "flex flex-col w-full h-full gap-8 ml-96">
                 
                 <Cabecalho filiais = {filiais} filtroFiliaisValue = {filtroFiliais} filtroFiliaisOnChange={setFiltroFiliais}
                 dataInicioValue = {filtroDataInicio} dataInicioOnChange = {setFiltroDataInicio} 
                 dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
 
-                <div className={styles.accordions}>
+                
+
+            
+                <div className="flex flex-col gap-8">
 
                     {edicaoValorTeto.ativado && <EdicaoValorTeto    setEdicaoValorTeto={setEdicaoValorTeto} 
                                                                     nome_filial={edicaoValorTeto.nome_filial}
@@ -96,9 +99,7 @@ function NFSE() {
                                                 />
                     })}
                 </div>
-
             </div>
-
         </section>
     );
 }

@@ -1,5 +1,3 @@
-import styles from "./CampoFiltro.module.css"
-
 import CampoTexto from "./CampoTexto/CampoTexto.js";
 import FiltroValor from "./FiltroValor/FiltroValor.js";
 import FiltroStatus from "./FiltroStatus/FiltroStatus.js"
@@ -11,10 +9,10 @@ function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
         setFiltroValorMin, setFiltroValorMax, setFiltroStatus}){
 
     return (
-        <section className = {styles.campo_filtro}>
-            <img className = {styles.logo} src = "/images/logo_pax.svg" alt = "logo"/>
+        <section className = "flex flex-col bg-main_color w-80 h-full  justify-evenly fixed">
+            <img className = "w-40 h-20 self-center" src = "/images/logo_pax.svg" alt = "logo"/>
             
-            <div className= {styles.filtros_opcoes}>
+            <div className= "flex flex-col gap-4 items-center">
                 <CampoTexto 
                 value= {filtroTitular} 
                 onChange={(ev) => {setFiltroTitular(ev.target.value);}}

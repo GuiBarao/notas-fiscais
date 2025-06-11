@@ -1,35 +1,34 @@
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import styles from "./FiltroStatus.module.css"
 
 function FiltroStatus({onChange, value}) {
+
     return (
-        <section className={styles.filtro_status}>
+        <section className="flex flex-col gap-2">
             
             <InputLabel sx = {{display:"flex", flexDirection : "row", gap:"5px", color:"#ffffff"}}>
-                <img className={styles.icon}  src= "/images/status_icon.svg" alt="Icone de status"/>
-                <h1 className={styles.titulo}>Status:</h1>
+                <img className="w-5 h-5" src= "/images/status_icon.svg" alt="Icone de status"/>
+                <h1 className="text-main_text_color text-base">Status:</h1>
             </InputLabel>
 
             <Select onChange={onChange} value = {value} 
-                sx = {{width: "284px", height: "25px", border : "1px solid #A0AEAC", 
-                backgroundColor: "#425E59", "css-1toxriw-MuiList-root-MuiMenu-list" : {backgroundColor : "#A0AEAC !important"}}}
+                sx = {{ width: "284px", height: "25px", borderWidth : "1px", 
+                        borderStyle:"solid", borderColor: "border.main", backgroundColor: "background.input"}}
                 
-                MenuProps={{ PaperProps: { sx: { backgroundColor: "#425E59"}}}}
+                MenuProps={{ PaperProps: { sx: { backgroundColor: "background.input"}}}}
             >
 
                 <MenuItem value = {"Todos"}>
-                    <p className = {styles.opcao}>Todos</p>
+                    <p className='text-main_text_color'>Todos</p>
                 </MenuItem>
 
                 <MenuItem value = {"Válido"}>
-                    <p className = {styles.opcao}>Válidos</p>
+                    <p className='text-main_text_color'>Válidos</p>
                 </MenuItem>
 
                 <MenuItem value = {"Inválido"}>
-                    <p className = {styles.opcao}>Inválidos</p>
+                    <p className='text-main_text_color'>Inválidos</p>
                 </MenuItem>
 
             </Select>

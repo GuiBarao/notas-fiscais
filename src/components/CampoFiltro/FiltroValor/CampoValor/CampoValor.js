@@ -1,14 +1,13 @@
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import styles from "./CampoValor.module.css"
 function CampoValor ({onChange, value}) {
     return(
         <TextField type='number' autoComplete='off' onChange={onChange} value={value}
-        className={styles.componente_textField}
         
-        sx={{  "& .MuiInputBase-root": {height : "25px"}, background: "#425E59", border: "1px solid #A0AEAC", 
-            borderStyle: "solid", borderRadius: "7px", "& input": {color:"#ffffff"}}}  
+        sx={{ width:"125px", height:"25px", "& .MuiInputBase-root": {height : "25px"}, 
+              background: "#425E59", border: "1px solid #A0AEAC", 
+              borderStyle: "solid", borderRadius: "7px", "& input": {color:"#ffffff"}}}  
             
         size="small"
         
@@ -16,7 +15,7 @@ function CampoValor ({onChange, value}) {
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <p className= {styles.cifrao}>R$</p>
+                  <p className= "text-main_text_color text-base ">R$</p>
                 </InputAdornment>
               ),
             },

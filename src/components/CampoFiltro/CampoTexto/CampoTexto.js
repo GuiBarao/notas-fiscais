@@ -1,20 +1,19 @@
 import TextField from '@mui/material/TextField';
-import styles from "./CampoTexto.module.css"
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
 function CampoTexto ({value, onChange, type, arquivoIMG, titulo}) {
     return (
-        <section className= {styles.campo_texto}>
+        <section className= "flex flex-col gap-2">
 
-            <div className= {styles.img_titulo}>
+            <div className= "flex flex-row gap-1 m-0 text-main_text_color text-base">
             <img src = {`/images/${arquivoIMG}.svg`} alt = {"icone do campo texto"}/>
             <h1>{titulo}</h1>
             </div>
 
             <TextField type = {type} autoComplete='off' value={value} onChange={onChange}
             sx={{ "& input": {color:"#ffffff"}, "& .MuiInputBase-root": {height: "25px"}, background: "#425E59", border: "1px solid #A0AEAC", borderStyle: "solid", borderRadius: "7px"}} 
-            className= {styles.busca} size = {"small"}
+            className= "rounded-lg border-solid border border-border_input_color w-72 self-center h-6" size = {"small"}
             
             slotProps={       
               {

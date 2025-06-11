@@ -2,11 +2,10 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import buscarNotas from "../../services/get/notas-filial.js";
-
-import styles from "./AcordeaoFilial.module.css";
 import TabelaNotas from './TabelaNotas/TabelaNotas.js';
 import { useState, useEffect } from 'react';
 import filtragemNotas from "../../utils/filtragemNotas.js"
@@ -36,7 +35,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
     
     const desabilitaAcordeao = (notas_filtradas.length === 0);
 
-    const borderColor_acordeao = desabilitaAcordeao? "#000000" : "#006B33";
+    
 
     const somatorioValores =  React.useMemo(() => 
       {return notas_filtradas.reduce((soma, nota) => soma += nota.valor, 0)},
@@ -44,9 +43,37 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
 
     const [expanded, setExpanded] = React.useState(false);
 
+    const sx_accordion = {
+        bgcolor: "primary.main",
+        marginLeft:"20px",
+        marginRight:"20px"
+        
+    }
+
+    if (desabilitaAcordeao) { 
+      sx_accordion.borderColor = "destaqueNotaInvalida.main";
+      sx_accordion.opacity = "0.6";
+
+    }
+
+    const sx_summary = {
+        display : "flex",
+        flexDirection: "row",
+        width: "100%",
+        height: "40px",
+        margin: "0px"
+    }
+
+    const sx_typography = {
+      display : "flex",
+      flex: "1",
+      fontWeight: "700",
+      color: "primary.text",
+      justifyContent: "center"
+    }
+
     return (
-        <Accordion sx = {{borderColor : borderColor_acordeao, borderStyle: "solid"}} 
-        className = {`${styles.acordeao} ${desabilitaAcordeao? styles.desabilitado : ""} `}
+        <Accordion sx = {sx_accordion} 
         expanded = {!desabilitaAcordeao && expanded}
         onChange={() => setExpanded(!expanded)}
         >
@@ -55,34 +82,34 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             expandIcon={<ExpandMoreIcon sx = {{color : "#ffffff"}}/>}
             aria-controls="panel3-content"
             id="panel3-header"
-            className={styles.titulo_acordeao}
+            sx={sx_summary}
           >
 
 
-            <Typography className = {styles.info_titulo}>
+            <Typography sx = {sx_typography}>
                 <img src = "/images/local_icon.svg" alt = "icone de local"/>
                 {filial} 
             </Typography>
 
-            <Typography className = {styles.info_titulo}>
+            <Typography  sx = {sx_typography}>
                 <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
                 {`Valor Teto: R$${valor_teto.toFixed(2)}`}
             </Typography>
 
-            <div className = {styles.info_titulo}>
+            <Typography  sx = {sx_typography}>
               {desabilitaAcordeao ? 
-                <span className={styles.aviso_sem_notas}>* Nenhuma nota foi encontrada.</span> : 
+                <span className="text-red-800 opacity-100">* Nenhuma nota foi encontrada.</span> :
 
-                <div className={styles.info_titulo}>
+                <Box sx={sx_typography}>
                   <img src = "/images/somatorio_icon.svg" alt = "icone de somatorio" />
                   {`Valor Total: R$${somatorioValores.toFixed(2)}`}
-                </div>}
+                </Box>}
                   
-            </div>
+            </Typography>
             
             
             
-            <img className={styles.edicao} src = "/images/edition.svg" alt = "icone de edicao" 
+            <img className="cursor-pointer rounded-xl" src = "/images/edition.svg" alt = "icone de edicao" 
             onClick={(e) => {
                 e.stopPropagation();
                 
@@ -93,7 +120,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             
             
           </AccordionSummary>
-          <AccordionDetails className={styles.infoAcordeao}>
+          <AccordionDetails className="flex flex-col ">
               
             <TabelaNotas notas = {notas_filtradas}/>
 

@@ -1,4 +1,3 @@
-import styles from "./Nota.module.css";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
@@ -6,18 +5,7 @@ import {useState} from "react";
 import TableBody from '@mui/material/TableBody';
 import Collapse from '@mui/material/Collapse';
 import InfoErro from "./InfoErro/InfoErro.js";
-
-function format_date(data) {
-    let [ano, mes, dia] = data.split("-");
-    return `${dia}/${mes}/${ano}`;
-}
-
-function format_cpf(cpf)
-{
-
-    return cpf.slice(0,3) + "." + cpf.slice(3,6) + "." + cpf.slice(6,9) + "-" + cpf.slice(9,11);
-}
-
+import format_date from "../../../../utils/format.js"
 
 
 function Nota({numero, data, valor, status, erro, cliente}) {
@@ -25,23 +13,37 @@ function Nota({numero, data, valor, status, erro, cliente}) {
     const [isOpen, setIsOpen] = useState(false);
     const angulo_expandIcon = isOpen? 180 : 0;
     
+    const sx_notaInvalida = {
+        cursor:"pointer",
+        "&:hover" : {
+            backgroundColor: "background.notaInvalida"
+        }
+    }
+
+    const sx_typograph = {
+        textAlign:"center",
+        color:"primary.text",
+        fontSize:"15px",
+        fontWeight:"550",
+        borderBottom: "none",
+        padding: "8px"
+    }
     
     return (
         <TableBody >
             <TableRow   onClick = {() => {if(!status) {setIsOpen(!isOpen)}}} 
-                        className={!status ? styles.nota_invalida : ""}>
-                    <TableCell className={styles.typograph}>{cliente.nome} </TableCell>
-                    <TableCell className={styles.typograph}>{numero} </TableCell>
-                    <TableCell className={styles.typograph}>{format_date(data)} </TableCell>
-                    <TableCell className={styles.typograph}>{valor} </TableCell>
-                    <TableCell className={styles.typograph}>{cliente.cpf_cnpj} </TableCell>
-                    <TableCell className={styles.typograph}>{status? "Válido" : "Inválido"}</TableCell>
+                        sx={!status && sx_notaInvalida}>
+                    <TableCell sx={sx_typograph}>{cliente.nome} </TableCell>
+                    <TableCell sx={sx_typograph}>{numero} </TableCell>
+                    <TableCell sx={sx_typograph}>{format_date(data)} </TableCell>
+                    <TableCell sx={sx_typograph}>{valor} </TableCell>
+                    <TableCell sx={sx_typograph}>{cliente.cpf_cnpj} </TableCell>
+                    <TableCell sx={sx_typograph}>{status? "Válido" : "Inválido"}</TableCell>
 
                     {!status ? 
-                        <TableCell className={styles.typograph}>
-                            <ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`}} 
-                                className={styles.expand_icon}/>
-                        </TableCell> : <TableCell className={styles.typograph}></TableCell> }                       
+                        <TableCell sx={sx_typograph}>
+                            <ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`,  color: "primary.text"}}/>
+                        </TableCell> : <TableCell sx={sx_typograph}></TableCell> }                       
             </TableRow> 
 
             <TableRow>

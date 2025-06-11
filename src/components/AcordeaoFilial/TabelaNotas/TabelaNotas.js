@@ -1,5 +1,4 @@
 import Nota from "./Nota/Nota.js"
-import styles from "./TabelaNotas.module.css"
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -7,20 +6,26 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
 function TabelaNotas({notas}) {
-
+    const sx_tableCell = {
+      color:"primary.text",
+      fontWeight: "500",
+      padding:"15px",
+      textAlign:"center",
+      fontSize:"20px"
+    }
 
     return (
-    <TableContainer className={styles.tabela}>
+    <TableContainer sx={{borderStyle:"hidden", borderRadius:"14px"}}>
        <Table>
         <TableHead>
           <TableRow>
-            <TableCell className={styles.label}>Titular</TableCell>
-            <TableCell className={styles.label}>Número</TableCell>
-            <TableCell className={styles.label}>Data</TableCell>
-            <TableCell className={styles.label}>Valor</TableCell>
-            <TableCell className={styles.label}>CPF</TableCell>
-            <TableCell className={styles.label}>Status</TableCell>
-            <TableCell className={styles.label}></TableCell>
+            <TableCell sx={sx_tableCell}>Titular</TableCell>
+            <TableCell sx={sx_tableCell}>Número</TableCell>
+            <TableCell sx={sx_tableCell}>Data</TableCell>
+            <TableCell sx={sx_tableCell}>Valor</TableCell>
+            <TableCell sx={sx_tableCell}>CPF</TableCell>
+            <TableCell sx={sx_tableCell}>Status</TableCell>
+            <TableCell sx={sx_tableCell}></TableCell>
           </TableRow>
         </TableHead>
 

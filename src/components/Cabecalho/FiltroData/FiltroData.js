@@ -1,47 +1,25 @@
-import * as React from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { ptBR } from '@mui/x-date-pickers/locales';
-import dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
-
-import styles from "./FiltroData.module.css"
 
 function FiltroData({inicioValue, inicioOnChange, fimValue, fimOnChange}) {
-
-
-    React.useEffect(() => {
-        dayjs.locale('pt-br');
-    }, []);
     
-
-    const props = {
-    textField: {
-        className: styles.input_wrapper,
-        InputLabelProps: { shrink: true },
-    },
-    };
-
+    const style_date = " mt-2 bg-main_color rounded-lg p-1 text-black border-solid border border-black"
+    const style_label = "text-black ml-2 text-[11px] absolute bg-main_color h-auto"
 
     return (
-            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br"
-            localeText={ptBR.components.MuiLocalizationProvider.defaultProps.localeText}>
                 
-                <div className={styles.date_picker_wrapper}>
-                    
-                    <DatePicker className={styles.date_picker}  format="DD/MM/YYYY" 
-                    label={"Data Inicial"}
-                    slotProps={props}
-                    value={inicioValue} onChange={(newValue) => inicioOnChange(newValue)}/>
-
-                    <DatePicker className={styles.date_picker}  format="DD/MM/YYYY" label = "Data Final"
-                    slotProps={props}
-                    value={fimValue} onChange={(newValue) => fimOnChange(newValue)}/>
+            <div className={"flex flex-row gap-2 "}>
+                
+                <div className="flex flex-col">
+                    <label className = {style_label}>Data Inicial</label>
+                    <input value={inicioValue} onChange={(e) => {inicioOnChange(e.target.value)}} type='date' className= {style_date} />
                 </div>
 
+                <div className="flex flex-col">
 
-            </LocalizationProvider>
+                    <label className = {style_label}>Data Final</label>
+                    <input value={fimValue} onChange={(e) => {fimOnChange(e.target.value)}} type='date' className={style_date} />
+                </div>
+                
+            </div>
 
     );
 }
