@@ -1,6 +1,6 @@
-import CampoTexto from "./CampoTexto/CampoTexto.js";
-import FiltroValor from "./FiltroValor/FiltroValor.js";
-import FiltroStatus from "./FiltroStatus/FiltroStatus.js"
+import CampoTexto from "../../../components/CampoTexto/index.js";
+import FiltroValor from "./FiltroValor/index.js";
+import FiltroStatus from "./FiltroStatus/index.js"
 
 
 function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,

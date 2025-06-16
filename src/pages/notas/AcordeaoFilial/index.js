@@ -5,10 +5,10 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import buscarNotas from "../../services/get/notas-filial.js";
-import TabelaNotas from './TabelaNotas/TabelaNotas.js';
+import buscarNotas from "../../../services/get/notas-filial.js";
+import TabelaNotas from './TabelaNotas/index.js';
 import { useState, useEffect } from 'react';
-import filtragemNotas from "../../utils/filtragemNotas.js"
+import filtragemNotas from "../../../utils/filtragemNotas.js"
 
 function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim, 
                           filtroTitular, filtroCPF, filtroStatus, filtroNumero,

@@ -1,9 +1,9 @@
-import AcordeaoFilial from "../../components/AcordeaoFilial/AcordeaoFilial.js";
-import CampoFiltro from "../../components/CampoFiltro/CampoFiltro.js";
-import Cabecalho from "../../components/Cabecalho/Cabecalho.js";
+import AcordeaoFilial from "./AcordeaoFilial/index.js";
+import CampoFiltro from "./CampoFiltro/index.js";
+import Cabecalho from "./Cabecalho/index.js";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
-import EdicaoValorTeto from "../../components/Edicao/EdicaoValorTeto/index.js";
+import EdicaoValorTeto from "./EdicaoValorTeto/index.js";
 
 
 function NFSE() {

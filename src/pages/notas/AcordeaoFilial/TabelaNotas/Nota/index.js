@@ -4,8 +4,8 @@ import TableCell from '@mui/material/TableCell';
 import {useState} from "react";
 import TableBody from '@mui/material/TableBody';
 import Collapse from '@mui/material/Collapse';
-import InfoErro from "./InfoErro/InfoErro.js";
-import format_date from "../../../../utils/format.js"
+import InfoErro from "./InfoErro/index.js";
+import format_date from "../../../../../utils/format.js"
 
 
 function Nota({numero, data, valor, status, erro, cliente}) {

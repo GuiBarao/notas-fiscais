@@ -1,4 +1,4 @@
-import CampoValor from "../../CampoFiltro/FiltroValor/CampoValor/CampoValor.js";
+import CampoValor from "../../../components/CampoValor/index.js";
 import mudar_valorTeto from "../../../services/put/valor-teto.js";
 import { useState } from "react";
 const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilial}) => {

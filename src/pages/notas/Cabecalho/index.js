@@ -1,5 +1,5 @@
-import FiltroFiliais from "./FiltroFiliais/FiltroFiliais";
-import FiltroData from "./FiltroData/FiltroData.js";
+import FiltroFiliais from "./FiltroFiliais/index.js";
+import FiltroData from "./FiltroData/index.js";
 
 function Cabecalho ({filiais, filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue, dataInicioOnChange, dataFimValue, dataFimOnChange})
 {

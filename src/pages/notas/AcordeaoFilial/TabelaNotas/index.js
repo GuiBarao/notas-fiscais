@@ -1,4 +1,4 @@
-import Nota from "./Nota/Nota.js"
+import Nota from "./Nota/index.js"
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
