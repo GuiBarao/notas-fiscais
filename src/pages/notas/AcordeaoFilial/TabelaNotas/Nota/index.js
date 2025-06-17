@@ -8,6 +8,7 @@ import InfoErro from "./InfoErro/index.js";
 import format_date from "../../../../../utils/format.js"
 
 
+
 function Nota({numero, data, valor, status, erro, cliente}) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +17,15 @@ function Nota({numero, data, valor, status, erro, cliente}) {
     const sx_notaInvalida = {
         cursor:"pointer",
         "&:hover" : {
-            backgroundColor: "background.notaInvalida"
+            backgroundColor: "background.notaInvalida",
         }
     }
 
+
     const sx_typograph = {
         textAlign:"center",
-        color:"primary.text",
         fontSize:"15px",
+        color: "text.secondary",
         fontWeight:"550",
         borderBottom: "none",
         padding: "8px"
@@ -42,7 +44,7 @@ function Nota({numero, data, valor, status, erro, cliente}) {
 
                     {!status ? 
                         <TableCell sx={sx_typograph}>
-                            <ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`,  color: "primary.text"}}/>
+                            <ExpandMoreIcon sx={{transform : `rotate(${angulo_expandIcon}deg)`,  color:"icon.secondary" }}/>
                         </TableCell> : <TableCell sx={sx_typograph}></TableCell> }                       
             </TableRow> 
 

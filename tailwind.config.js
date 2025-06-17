@@ -4,17 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-          main_color: '#133630',
-          body_background: '#112422',
-          main_text_color: '#ffffff',
-          background_input_color: '#425E59',
-          border_input_color: '#A0AEAC',
-          destaque_nota_invalida: '#7e2323',
-          linha_info_erro: '#ffffff67',
-          titulo_notas_fiscais: '#88F75B',
-          disabled: '#e0e0e0'
-
-      },
+          text_primary: '#ffffff',
+          text_secondary: "#1e1e1f",
+          text_title:"#025B2D",
+          background_primary: "#FFFFFF",
+          background_notaInvalida: "#9a0000",
+          icon_primary: "#ffffff",
+          icon_secondary: "#000000",
+          border_primary: "#ffffff",
+          border_secondary: "#343b3d44"
+      }
     },
   },
   plugins: [],

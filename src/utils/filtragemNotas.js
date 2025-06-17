@@ -28,10 +28,10 @@ function filtragemNotas(nota, filtroNomeTitular, filtroCPF, filtroNumero, filtro
         return false;
     }
 
-    if((dayjs(nota.data_cadastro).isBefore(dataInicial) || dayjs(nota.data_cadastro).isAfter(dataFinal)) 
+    /*if((dayjs(nota.data_cadastro).isBefore(dataInicial) || dayjs(nota.data_cadastro).isAfter(dataFinal)) 
         || (dataInicial === null || dataFinal === null)){
         return false;
-    }
+    }*/
 
     return true;
 }

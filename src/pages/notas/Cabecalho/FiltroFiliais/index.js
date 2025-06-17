@@ -20,16 +20,15 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
         height:"35px", 
         padding:"0px",
         "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          borderColor: "black",
-          borderWidth: "1px"
+          borderColor: "border.secondary"
         }
 
       }
     
     return (
 
-            <FormControl sx={{borderStyle:"solid", borderWidth:"1px", borderColor:"black", borderRadius:"8px"}}>
-                <InputLabel id="label" sx={{color:"black !important", backgroundColor:"var(--main_color)", fontSize:"16px", fontWeight:"500"}} shrink >Filiais</InputLabel>
+            <FormControl sx={{borderStyle:"solid", borderColor:"border.secondary", borderRadius:"8px"}}>
+                <InputLabel id="label" sx={{color:"text.secondary", backgroundColor:"background.primary", fontSize:"16px", fontWeight:"500"}} shrink >Filiais</InputLabel>
                 <Select  labelId='label' sx={sx_select}
                 multiple
                 value={filtragem}

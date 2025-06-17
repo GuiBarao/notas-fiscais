@@ -1,5 +1,7 @@
 
 .menuPaper {
-    background-color: var(--background_input_color) !important;
+    background-color: var(--background_select_color) !important;
+    opacity: 1 !important;
+    color: var(--text_select_color) !important;
 }
   

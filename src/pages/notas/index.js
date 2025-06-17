@@ -52,7 +52,7 @@ function NFSE() {
     
     const filiaisFiltradas = filiais.filter((filial) => filtroFiliais.includes(filial.nomeFilial));
 
-
+    const style_overlay = "fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-[1000]"
     
 
     return (
@@ -100,6 +100,9 @@ function NFSE() {
                     })}
                 </div>
             </div>
+
+            {edicaoValorTeto.ativado && <div className={style_overlay}></div>}
+
         </section>
     );
 }

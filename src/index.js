@@ -6,37 +6,25 @@ import NFSE from './pages/notas/index.js';
 import AppProvider from './contexts/index.js';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-/*main_color: '#133630',
-          body_background: '#112422',
-          main_text_color: '#ffffff',
-          background_input_color: '#425E59',
-          border_input_color: '#A0AEAC',
-          destaque_nota_invalida: '#7e2323',
-          linha_info_erro: '#ffffff67',
-          titulo_notas_fiscais: '#88F75B',
-          disabled: '#e0e0e0'*/ 
-
-
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#133630',
-      text: "#ffffff"
+    text: {
+      primary: "#ffffff",
+      secondary: "#1e1e1f",
+      title:"#025B2D"
     },
     background: {
-      default: "#112422",
-      input: "#425E59",
-      notaInvalida: "#7e2323"
+      primary: "#FFFFFF",
+      notaInvalida: "#9a0000",
+    },
+    icon: {
+      primary: "#ffffff",
+      secondary: "#000000"
     },
     border: {
-      main:"#A0AEAC"
+      primary: "#ffffff",
+      secondary: "#343b3d44"
     },
-    linhaInfoErro: {
-      main: "#ffffff67"
-    },
-    tituloNotasFiscais: {
-      main: '#88F75B'
-    }
   },
   typography: {
     fontFamily: '"Montserrat", sans-serif'

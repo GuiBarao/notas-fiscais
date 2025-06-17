@@ -9,6 +9,10 @@ import buscarNotas from "../../../services/get/notas-filial.js";
 import TabelaNotas from './TabelaNotas/index.js';
 import { useState, useEffect } from 'react';
 import filtragemNotas from "../../../utils/filtragemNotas.js"
+import PlaceIcon from '@mui/icons-material/Place';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import FunctionsIcon from '@mui/icons-material/Functions';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim, 
                           filtroTitular, filtroCPF, filtroStatus, filtroNumero,
@@ -44,16 +48,14 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
     const [expanded, setExpanded] = React.useState(false);
 
     const sx_accordion = {
-        bgcolor: "primary.main",
+        bgcolor: "background.primary",
         marginLeft:"20px",
         marginRight:"20px"
         
     }
 
     if (desabilitaAcordeao) { 
-      sx_accordion.borderColor = "destaqueNotaInvalida.main";
       sx_accordion.opacity = "0.6";
-
     }
 
     const sx_summary = {
@@ -61,15 +63,16 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
         flexDirection: "row",
         width: "100%",
         height: "40px",
-        margin: "0px"
+        margin: "0px",
     }
 
     const sx_typography = {
       display : "flex",
       flex: "1",
       fontWeight: "700",
-      color: "primary.text",
-      justifyContent: "center"
+      color: "text.secondary",
+      gap: "5px",
+      whiteSpace:"nowrap",
     }
 
     return (
@@ -79,7 +82,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
         >
           
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon sx = {{color : "#ffffff"}}/>}
+            expandIcon={<ExpandMoreIcon sx={{color: "icon.secondary"}} />}
             aria-controls="panel3-content"
             id="panel3-header"
             sx={sx_summary}
@@ -87,12 +90,12 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
 
 
             <Typography sx = {sx_typography}>
-                <img src = "/images/local_icon.svg" alt = "icone de local"/>
+                <PlaceIcon />
                 {filial} 
             </Typography>
 
             <Typography  sx = {sx_typography}>
-                <img src = "/images/dolar_icon.svg" alt = "icone de dolar"/>
+                <CurrencyExchangeIcon />
                 {`Valor Teto: R$${valor_teto.toFixed(2)}`}
             </Typography>
 
@@ -101,22 +104,21 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
                 <span className="text-red-800 opacity-100">* Nenhuma nota foi encontrada.</span> :
 
                 <Box sx={sx_typography}>
-                  <img src = "/images/somatorio_icon.svg" alt = "icone de somatorio" />
+                  <FunctionsIcon />
                   {`Valor Total: R$${somatorioValores.toFixed(2)}`}
                 </Box>}
                   
             </Typography>
             
             
-            
-            <img className="cursor-pointer rounded-xl" src = "/images/edition.svg" alt = "icone de edicao" 
-            onClick={(e) => {
-                e.stopPropagation();
-                
-                setEdicaoValorTeto({ativado : true, nome_filial: filial});
-              }}/>
-            
-            
+           
+            <EditNoteIcon sx={{color: "icon.secondary"}} 
+              onClick={(e) => {
+                  e.stopPropagation();
+                  
+                  setEdicaoValorTeto({ativado : true, nome_filial: filial});
+                }}/>
+
             
             
           </AccordionSummary>

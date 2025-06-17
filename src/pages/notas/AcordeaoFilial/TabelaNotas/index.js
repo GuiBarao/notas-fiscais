@@ -7,7 +7,7 @@ import TableCell from '@mui/material/TableCell';
 
 function TabelaNotas({notas}) {
     const sx_tableCell = {
-      color:"primary.text",
+      color:"text.secondary",
       fontWeight: "500",
       padding:"15px",
       textAlign:"center",

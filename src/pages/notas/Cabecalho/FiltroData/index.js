@@ -1,8 +1,8 @@
 
 function FiltroData({inicioValue, inicioOnChange, fimValue, fimOnChange}) {
     
-    const style_date = " mt-2 bg-main_color rounded-lg p-1 text-black border-solid border border-black"
-    const style_label = "text-black ml-2 text-[11px] absolute bg-main_color h-auto"
+    const style_date = " mt-2 bg-main_color rounded-lg p-1 text-text_secondary border-solid border border-border_secondary"
+    const style_label = "text-text_secondary ml-2 text-[11px] absolute bg-background_primary h-auto"
 
     return (
                 
