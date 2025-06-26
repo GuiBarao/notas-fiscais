@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from "./App.js"
-import NFSE from './pages/notas/index.js';
-import AppProvider from './contexts/index.js';
+import App from "./App.js"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -35,11 +33,9 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppProvider>
       <ThemeProvider theme={theme}>
-        <NFSE />
+        <App />
       </ThemeProvider>
-    </AppProvider>
   </React.StrictMode>
 );
 

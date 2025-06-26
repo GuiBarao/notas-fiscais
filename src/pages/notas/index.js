@@ -6,7 +6,7 @@ import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 import EdicaoValorTeto from "./EdicaoValorTeto/index.js";
 
 
-function NFSE() {
+function NotasPage() {
 
     //Opcionais
     const [filtroTitular, setFiltroTitular] = useState("");
@@ -107,5 +107,5 @@ function NFSE() {
     );
 }
 
-export default NFSE;
+export default NotasPage;
 
