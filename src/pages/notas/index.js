@@ -4,7 +4,9 @@ import Cabecalho from "./Cabecalho/index.js";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 import EdicaoValorTeto from "./EdicaoValorTeto/index.js";
-
+import { Modal } from "@mui/material";
+import ControleUsuario from "./ControleUsuario/index.js"
+import Cadastro from "./Cadastro/index.js";
 
 function NotasPage() {
 
@@ -26,8 +28,12 @@ function NotasPage() {
 
     const [edicaoValorTeto, setEdicaoValorTeto] = useState({ativado: false, nome_filial: ""})
 
+    const [modalUsuario, setModalUsuario] = useState(false)
+    const [modalcadastro, setModalCadastro] = useState(false)
+    
 
     const [filiais, setFiliais] = useState([]);
+
 
     const carregar_filiais = async () => {
         try {
@@ -71,7 +77,8 @@ function NotasPage() {
                 
                 <Cabecalho filiais = {filiais} filtroFiliaisValue = {filtroFiliais} filtroFiliaisOnChange={setFiltroFiliais}
                 dataInicioValue = {filtroDataInicio} dataInicioOnChange = {setFiltroDataInicio} 
-                dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim}/>
+                dataFimValue = {filtroDataFim} dataFimOnChange = {setFiltroDataFim} 
+                onChangeModalUsuario={setModalUsuario}/>
 
                 
 
@@ -102,6 +109,15 @@ function NotasPage() {
             </div>
 
             {edicaoValorTeto.ativado && <div className={style_overlay}></div>}
+
+            <ControleUsuario    open={modalUsuario} 
+                                onChangeModalUsuario={setModalUsuario}
+                                onChangeModalCadastro={setModalCadastro} />
+            
+            <Cadastro   filiais={filiais.map((filial) => filial.nomeFilial)} 
+                        open={modalcadastro} 
+                        onClose={() => {setModalCadastro(false)}}/>
+
 
         </section>
     );

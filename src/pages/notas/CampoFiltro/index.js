@@ -17,14 +17,17 @@ function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
                     style={{ backgroundImage: `url(${bgFundo})` }}>
 
             <img className = "w-40 h-20 self-center" src = {logoPax} alt = "logo"/>
-            
+
             <div className= "flex flex-col gap-4 items-center">
+
                 <CampoTexto 
+                corTitulo={"text.primary"}
                 value= {filtroTitular} 
                 onChange={(ev) => {setFiltroTitular(ev.target.value);}}
                 icon={<PersonIcon fontSize="small" sx={{color: "icon.primary"}}/>} titulo={"Nome Titular:"}/>
 
                 <CampoTexto
+                corTitulo={"text.primary"}
                 value={filtroCpf}
                 onChange={(ev) => {setFiltroCpf(ev.target.value);}}
                 icon={<AssignmentIndIcon fontSize="small" sx={{color: "icon.primary"}}/>} titulo={"CPF:"}/>
@@ -34,6 +37,7 @@ function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
                 onChange={(ev) => {setFiltroStatus(ev.target.value);}}/>
 
                 <CampoTexto
+                corTitulo={"text.primary"}
                 value = {filtroNumero}
                 onChange={(ev) => {setFiltroNumero(ev.target.value);}}
                 type='number'
@@ -50,7 +54,7 @@ function CampoFiltro({filtroTitular, filtroCpf, filtroNumero,
 
 
             </div>
-            
+
         </section>
     );
 }

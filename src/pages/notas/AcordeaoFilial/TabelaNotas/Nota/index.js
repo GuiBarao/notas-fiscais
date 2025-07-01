@@ -17,7 +17,7 @@ function Nota({numero, data, valor, status, erro, cliente}) {
     const sx_notaInvalida = {
         cursor:"pointer",
         "&:hover" : {
-            backgroundColor: "background.notaInvalida",
+            backgroundColor: "background.red",
         }
     }
 

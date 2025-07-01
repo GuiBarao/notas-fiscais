@@ -13,7 +13,8 @@ const theme = createTheme({
     },
     background: {
       primary: "#FFFFFF",
-      notaInvalida: "#9a0000",
+      red: "#9a0000",
+      icon:"#005228"
     },
     icon: {
       primary: "#ffffff",

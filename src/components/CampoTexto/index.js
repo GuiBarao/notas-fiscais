@@ -1,15 +1,14 @@
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
+import { InputLabel } from '@mui/material';
 
-function CampoTexto ({value, onChange, type, icon, titulo}) {
+
+function CampoTexto ({value, onChange, type, icon, titulo, corTitulo}) {
     return (
         <section className= "flex flex-col gap-2">
 
-            <div className= "flex flex-row gap-1 m-0 text-text_primary text-base">
-            {icon}
-            <h1>{titulo}</h1>
-            </div>
+            <InputLabel sx= {{color:corTitulo}}> {icon} {titulo} </InputLabel>
 
             <TextField type = {type} autoComplete='off' value={value} onChange={onChange}
               sx={{ "& input": {color:"primary.text"}, "& .MuiInputBase-root": {height: "25px"}, 

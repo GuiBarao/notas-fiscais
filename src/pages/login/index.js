@@ -20,6 +20,9 @@ function LoginPage() {
 
             sessionStorage.setItem("token", response.access_token)
             sessionStorage.setItem("token_type", response.token_type)
+            sessionStorage.setItem("cpf", response.cpf)
+            sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
+            sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
 
             setTimeout(
                 () => {

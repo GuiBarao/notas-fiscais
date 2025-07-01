@@ -1,9 +1,15 @@
 import FiltroFiliais from "./FiltroFiliais/index.js";
 import FiltroData from "./FiltroData/index.js";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useState } from 'react';
 
 
-function Cabecalho ({filiais, filtroFiliaisValue, filtroFiliaisOnChange, dataInicioValue, dataInicioOnChange, dataFimValue, dataFimOnChange})
+function Cabecalho ({   filiais, filtroFiliaisValue, filtroFiliaisOnChange, 
+                        dataInicioValue, dataInicioOnChange, dataFimValue, dataFimOnChange, 
+                        onChangeModalUsuario})
 {
+
+
     return (
         <header className=" rounded-b-2xl rounded-r-none h-20 items-center flex flex-row justify-around bg-background_primary border-[1px] border-border_secondary">
 
@@ -15,6 +21,8 @@ function Cabecalho ({filiais, filtroFiliaisValue, filtroFiliaisOnChange, dataIni
                 <FiltroData inicioValue = {dataInicioValue} inicioOnChange = {dataInicioOnChange} 
                 fimValue = {dataFimValue} fimOnChange = {dataFimOnChange}/>
             </div>
+            <AccountCircleIcon onClick={() => {onChangeModalUsuario(true)}} sx={{fontSize:"40px", color:"background.icon", cursor:"pointer"}}/>
+
 
         </header>
     );
