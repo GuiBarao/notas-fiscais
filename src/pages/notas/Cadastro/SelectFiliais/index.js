@@ -9,35 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-const filiais = [
-  "São Paulo",
-  "Rio de Janeiro",
-  "Belo Horizonte",
-  "Curitiba",
-  "Porto Alegre",
-  "Florianópolis",
-  "Salvador",
-  "Recife",
-  "Fortaleza",
-  "Manaus",
-  "Belém",
-  "Brasília",
-  "Goiânia",
-  "Campo Grande",
-  "Natal",
-  "João Pessoa",
-  "Maceió",
-  "Aracaju",
-  "Vitória",
-  "São Luís",
-  "Teresina",
-  "Cuiabá",
-  "Palmas",
-  "Uberlândia",
-  "Ribeirão Preto"
-];
-
-function SelectFiliais({/*filiais,*/ onChangePermissoes}) {
+function SelectFiliais({filiais, onChangePermissoes}) {
     const [buscaFilial, setBuscaFilial] = useState("");
     const [opcoesAbertas, setOpcoesAbertas] =  useState(false);
     const [filiaisSelecionadas, setFiliaisSelecionadas] = useState({})
