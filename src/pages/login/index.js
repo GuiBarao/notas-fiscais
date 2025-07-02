@@ -7,6 +7,7 @@ import { useState } from "react"
 import login from "../../services/post/login.js"
 import { useNavigate } from 'react-router-dom';
 import CustomToast from '../../components/toast/index.js'
+import { HttpStatusCode } from 'axios';
 
 function LoginPage() {
 
@@ -41,7 +42,7 @@ function LoginPage() {
                 )
             }
             catch(error) {
-                error.status === 401 ? 
+                error.status === HttpStatusCode.Unauthorized ? 
                     CustomToast({type:"warning", message: "CPF ou senha incorretos! "}) :
                     CustomToast({type:"error", message: "Erro ao realizar o login: " + error.message})
             }

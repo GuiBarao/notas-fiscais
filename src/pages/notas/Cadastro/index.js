@@ -9,6 +9,8 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import cadastro from '../../../services/post/cadastro.js'
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import CustomToast from '../../../components/toast'
+import { HttpStatusCode } from 'axios';
 
 function Cadastro({open, onClose, filiais}){
 
@@ -17,13 +19,24 @@ function Cadastro({open, onClose, filiais}){
   const [nomeUsuario, setNomeUsuario] = useState("")
   const [filiaisPermitidas, setFiliaisPermitidas] = useState([])
 
+  useEffect(() => {
+    console.log(`CPF: ${typeof cpf} | NOME: ${typeof nomeCompleto} | USUARIO: ${typeof nomeUsuario}`)
+  }, [cpf, nomeCompleto, nomeUsuario])
+
   const cadastrar = async () => {
       try{
-        const response = await cadastro(cpf, nomeCompleto, nomeUsuario, filiaisPermitidas)
-        return response
+        await cadastro(cpf, nomeCompleto, nomeUsuario, filiaisPermitidas)
+        CustomToast({type:"success", message:"Usuário cadastrado com sucesso!"})
+        
       }
       catch(error){
-        throw new Error("Erro no cadastro: " + error.message);
+          error.status === HttpStatusCode.Conflict ?
+            CustomToast({type:"warning", message:"CPF já cadastrado."})
+          :
+          error.status === HttpStatusCode.UnprocessableEntity ?
+            CustomToast({type:"warning", message:"Dados inválidos."})
+          :
+            CustomToast({type:"error", message:"Erro no cadastro!"})
       }
 
   }
