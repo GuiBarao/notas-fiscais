@@ -6,20 +6,15 @@ const login = async (cpf, senha) => {
     dados.append("username", cpf)
     dados.append("password", senha) 
 
-    try{
-       const response =  await https.post("users/token", dados, {
-        "headers" : {
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-       })
-
-       console.log(response.data.access_token)
-
-       return response.data
+    
+    const response =  await https.post("users/token", dados, {
+    "headers" : {
+        "Content-Type": "application/x-www-form-urlencoded"
     }
-    catch(error) {
-        throw new Error("Erro no login: " + error.message);
-    }
+    })
+
+    return response.data
+    
 }
 
 export default login

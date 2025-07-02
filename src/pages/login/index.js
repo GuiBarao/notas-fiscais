@@ -6,6 +6,7 @@ import packageJSON from "../../../package.json"
 import { useState } from "react"
 import login from "../../services/post/login.js"
 import { useNavigate } from 'react-router-dom';
+import CustomToast from '../../components/toast/index.js'
 
 function LoginPage() {
 
@@ -15,23 +16,35 @@ function LoginPage() {
 
     const enviar_login = async () => {
         
-        try{
-            const response = await login(cpf, senha)
-
-            sessionStorage.setItem("token", response.access_token)
-            sessionStorage.setItem("token_type", response.token_type)
-            sessionStorage.setItem("cpf", response.cpf)
-            sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
-            sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
-
-            setTimeout(
-                () => {
-                    navigate("/notas")
-                }, 2000
-            )
+        if(!cpf) {
+            CustomToast({type:"warning", message: "Digite um CPF"})
         }
-        catch(error) {
-            throw new Error("Erro no login: " + error.message);
+        if(!senha) {
+            CustomToast({type:"warning", message: "Digite a senha"})
+        }
+        if(cpf && senha){
+            try{
+                const response = await login(cpf, senha)
+
+                sessionStorage.setItem("token", response.access_token)
+                sessionStorage.setItem("token_type", response.token_type)
+                sessionStorage.setItem("cpf", response.cpf)
+                sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
+                sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
+
+                CustomToast({type:"success", message: "Login realizado com sucesso!"})
+
+                setTimeout(
+                    () => {
+                        navigate("/notas")
+                    }, 2000
+                )
+            }
+            catch(error) {
+                error.status === 401 ? 
+                    CustomToast({type:"warning", message: "CPF ou senha incorretos! "}) :
+                    CustomToast({type:"error", message: "Erro ao realizar o login: " + error.message})
+            }
         }
     }
     
