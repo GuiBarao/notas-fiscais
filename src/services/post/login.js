@@ -4,8 +4,7 @@ const login = async (cpf, senha) => {
     const https = httpsInstance()
     const dados = new URLSearchParams()
     dados.append("username", cpf)
-    dados.append("password", senha) 
-
+    dados.append("password", senha)
     
     const response =  await https.post("users/token", dados, {
     "headers" : {
