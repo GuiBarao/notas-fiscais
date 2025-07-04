@@ -1,16 +1,18 @@
-import AcordeaoFilial from "./AcordeaoFilial/index.js";
-import CampoFiltro from "./CampoFiltro/index.js";
-import Cabecalho from "./Cabecalho/index.js";
+import AcordeaoFilial from "./AcordeaoFilial";
+import CampoFiltro from "./CampoFiltro";
+import Cabecalho from "./Cabecalho";
 import { useState, useEffect } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
-import EdicaoValorTeto from "./EdicaoValorTeto/index.js";
-import { Modal } from "@mui/material";
-import ControleUsuario from "./ControleUsuario/index.js"
-import Cadastro from "./Cadastro/index.js";
+import EdicaoValorTeto from "./EdicaoValorTeto";
+import ControleUsuario from "./ControleUsuario"
+import Cadastro from "./Cadastro";
+import CustomToast from "../../components/toast"
+import { HttpStatusCode } from "axios";
+import { useNavigate } from 'react-router-dom'
 
 function NotasPage() {
 
-    //Opcionais
+    //Filtros opcionais
     const [filtroTitular, setFiltroTitular] = useState("");
     const [filtroCpf, setFiltroCpf] = useState("");
 
@@ -21,7 +23,7 @@ function NotasPage() {
 
     const [filtroStatus, setFiltroStatus] = useState("");
 
-    //Obrigatórios
+    //Filtros obrigatórios
     const [filtroFiliais, setFiltroFiliais] = useState([]);
     const [filtroDataInicio, setFiltroDataInicio] = useState(null);
     const [filtroDataFim, setFiltroDataFim] = useState(null);
@@ -34,6 +36,7 @@ function NotasPage() {
 
     const [filiais, setFiliais] = useState([]);
 
+    const navigate = useNavigate();
 
     const carregar_filiais = async () => {
         try {
@@ -41,7 +44,16 @@ function NotasPage() {
             setFiliais(response);
         }
         catch(error) {
-            console.error(error);
+
+            if(error.status === HttpStatusCode.Unauthorized) {
+                CustomToast({type: "error", message: "Ação não autorizada"})
+                setTimeout(() => {
+                    navigate('/')
+                }, 2000)
+            }
+            else {
+                CustomToast({type:"error", message:"Erro ao carregar as filiais"})
+            }
         }
     }
 

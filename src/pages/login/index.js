@@ -19,34 +19,36 @@ function LoginPage() {
         
         if(!cpf) {
             CustomToast({type:"warning", message: "Digite um CPF"})
+            return
         }
         if(!senha) {
             CustomToast({type:"warning", message: "Digite a senha"})
+            return
         }
-        if(cpf && senha){
-            try{
-                const response = await login(cpf, senha)
+        
+        try{
+            const response = await login(cpf, senha)
 
-                sessionStorage.setItem("token", response.access_token)
-                sessionStorage.setItem("token_type", response.token_type)
-                sessionStorage.setItem("cpf", response.cpf)
-                sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
-                sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
+            sessionStorage.setItem("token", response.access_token)
+            sessionStorage.setItem("token_type", response.token_type)
+            sessionStorage.setItem("cpf", response.cpf)
+            sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
+            sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
 
-                CustomToast({type:"success", message: "Login realizado com sucesso!"})
+            CustomToast({type:"success", message: "Login realizado com sucesso!"})
 
-                setTimeout(
-                    () => {
-                        navigate("/notas")
-                    }, 2000
-                )
-            }
-            catch(error) {
-                error.status === HttpStatusCode.Unauthorized ? 
-                    CustomToast({type:"warning", message: "CPF ou senha incorretos! "}) :
-                    CustomToast({type:"error", message: "Erro ao realizar o login: " + error.message})
-            }
+            setTimeout(
+                () => {
+                    navigate("/notas")
+                }, 2000
+            )
         }
+        catch(error) {
+            error.status === HttpStatusCode.Unauthorized ? 
+                CustomToast({type:"warning", message: "CPF ou senha incorretos! "}) :
+                CustomToast({type:"error", message: "Erro ao realizar o login: " + error.message})
+        }
+        
     }
     
     return (

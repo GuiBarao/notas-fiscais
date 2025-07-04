@@ -1,10 +1,14 @@
-import CampoValor from "../../../components/CampoValor/index.js";
+import CampoValor from "../../../components/CampoValor";
 import mudar_valorTeto from "../../../services/put/valor-teto.js";
 import { useState } from "react";
+import CustomToast from '../../../components/toast'
+import { HttpStatusCode } from "axios";
+import { useNavigate } from "react-router-dom";
+
 const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilial}) => {
 
     const [novoValor, setNovoValor] = useState("");
-
+    const navigate = useNavigate()
     const edita_valorTeto = async (nome_filial) => {
        
         try {
@@ -12,7 +16,14 @@ const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilia
             return response;
         }
         catch(error) {
-            console.error(error)
+            if(error.status === HttpStatusCode.Unauthorized) {
+                CustomToast({type:"error", message:"Ação não autorizada"})
+                setTimeout(() => {
+                    navigate("/")
+                }, 2000)
+            }
+
+            CustomToast({type:"error", message:`Erro na alteração do valor teto de ${nome_filial}`})
         }
     }
 
@@ -28,10 +39,11 @@ const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilia
             <div className="flex flex-row gap-2 self-end">
 
                 <button className= {style_botoes + " hover:border-[#1b6b2f]"}
-                    onClick={async () => {await edita_valorTeto(nome_filial); 
-                                setEdicaoValorTeto({ativado : false, filial: ""});
-                                atualizaAcordeaoFilial(nome_filial, novoValor);}
-                            }>
+                    onClick={async () => {  if(await edita_valorTeto(nome_filial)){
+                                            setEdicaoValorTeto({ativado : false, filial: ""});
+                                            atualizaAcordeaoFilial(nome_filial, novoValor);
+                                            }
+                                         }}>
                     Salvar
                 </button>
 

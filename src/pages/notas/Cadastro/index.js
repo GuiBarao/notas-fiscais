@@ -1,7 +1,7 @@
 import Modal from '@mui/material/Modal';
 import Stack from '@mui/material/Stack'
 import CampoTexto from "../../../components/CampoTexto/index.js";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import SelectFiliais from "./SelectFiliais/index.js"
@@ -11,6 +11,7 @@ import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import CustomToast from '../../../components/toast'
 import { HttpStatusCode } from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 function Cadastro({open, onClose, filiais}){
 
@@ -19,9 +20,13 @@ function Cadastro({open, onClose, filiais}){
   const [nomeUsuario, setNomeUsuario] = useState("")
   const [filiaisPermitidas, setFiliaisPermitidas] = useState([])
 
-  useEffect(() => {
-    console.log(`CPF: ${typeof cpf} | NOME: ${typeof nomeCompleto} | USUARIO: ${typeof nomeUsuario}`)
-  }, [cpf, nomeCompleto, nomeUsuario])
+  const navigate = useNavigate()
+
+  const excecoes_cadastro = {
+    [HttpStatusCode.Conflict] : {type : "warning", message:"CPF já cadastrado"},
+    [HttpStatusCode.UnprocessableEntity] : {type : "warning", message:"Dados inválidos"},
+    [HttpStatusCode.Unauthorized] : {type : "error", message : "Ação não autorizada", redirect : '/'}
+  }
 
   const cadastrar = async () => {
       try{
@@ -30,13 +35,22 @@ function Cadastro({open, onClose, filiais}){
         
       }
       catch(error){
-          error.status === HttpStatusCode.Conflict ?
-            CustomToast({type:"warning", message:"CPF já cadastrado."})
-          :
-          error.status === HttpStatusCode.UnprocessableEntity ?
-            CustomToast({type:"warning", message:"Dados inválidos."})
-          :
-            CustomToast({type:"error", message:"Erro no cadastro!"})
+        const statusCode = error.status
+        const excecaoConfig = excecoes_cadastro[statusCode]
+        
+        if(excecaoConfig) {
+
+          CustomToast({type: excecaoConfig.type, message:excecaoConfig.message})
+
+          if(excecaoConfig.redirect) {
+            setTimeout(() => {
+              navigate(excecaoConfig.redirect)
+            }, 2000)
+          }
+        }
+        else {
+          CustomToast({type:"error", message:"Erro no cadastro!"})
+        }
       }
 
   }

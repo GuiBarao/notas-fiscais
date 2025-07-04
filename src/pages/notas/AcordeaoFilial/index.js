@@ -13,6 +13,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import CustomToast from '../../../components/toast'
+import { HttpStatusCode } from 'axios';
 
 function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim, 
                           filtroTitular, filtroCPF, filtroStatus, filtroNumero,
@@ -28,7 +30,13 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             
         }   
         catch(error) {
-            console.error(error);
+            if(error.status === HttpStatusCode.Unauthorized) {
+              CustomToast({type:"error", message : "Ação não autorizada"})
+            }
+            else {
+              CustomToast({type:"error", message:"Erro ao carregar as notas"})
+            }
+            
         }
     }
 
