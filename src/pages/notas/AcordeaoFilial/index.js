@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -7,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import buscarNotas from "../../../services/get/notas-filial.js";
 import TabelaNotas from './TabelaNotas/index.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import filtragemNotas from "../../../utils/filtragemNotas.js"
 import PlaceIcon from '@mui/icons-material/Place';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -41,7 +40,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
     }
 
     useEffect(() => {notas_filial(filial)}, [])
-    const notas_filtradas = React.useMemo( () => {return notas.filter(
+    const notas_filtradas = useMemo( () => {return notas.filter(
                                                   (nota) => {return filtragemNotas(nota, filtroTitular, filtroCPF, filtroNumero, filtroValorMin, filtroValorMax, filtroStatus, filtroDataInicio, filtroDataFim)})},
                                                   [notas, filtroDataInicio, filtroDataFim, filtroTitular, filtroCPF, filtroStatus, filtroNumero, filtroValorMin, filtroValorMax])
     
@@ -49,11 +48,11 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
 
     
 
-    const somatorioValores =  React.useMemo(() => 
+    const somatorioValores =  useMemo(() => 
       {return notas_filtradas.reduce((soma, nota) => soma += nota.valor, 0)},
       [notas_filtradas]);
 
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const sx_accordion = {
         bgcolor: "background.primary",

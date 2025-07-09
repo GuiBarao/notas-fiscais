@@ -32,7 +32,10 @@ function Cadastro({open, onClose, filiais}){
       try{
         await cadastro(cpf, nomeCompleto, nomeUsuario, filiaisPermitidas)
         CustomToast({type:"success", message:"Usuário cadastrado com sucesso!"})
-        
+        setCPF("")
+        setNomeCompleto("")
+        setNomeUsuario("")
+        setFiliaisPermitidas([])
       }
       catch(error){
         const statusCode = error.status

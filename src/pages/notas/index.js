@@ -9,6 +9,7 @@ import Cadastro from "./Cadastro";
 import CustomToast from "../../components/toast"
 import { HttpStatusCode } from "axios";
 import { useNavigate } from 'react-router-dom'
+import UsuariosCadastrados from "./UsuariosCadastrados"
 
 function NotasPage() {
 
@@ -31,8 +32,8 @@ function NotasPage() {
     const [edicaoValorTeto, setEdicaoValorTeto] = useState({ativado: false, nome_filial: ""})
 
     const [modalUsuario, setModalUsuario] = useState(false)
-    const [modalcadastro, setModalCadastro] = useState(false)
-    
+    const [modalCadastro, setModalCadastro] = useState(false)
+    const [modalUsuariosCadastrados, setUsuariosCadastrados] = useState(false)
 
     const [filiais, setFiliais] = useState([]);
 
@@ -124,10 +125,16 @@ function NotasPage() {
 
             <ControleUsuario    open={modalUsuario} 
                                 onChangeModalUsuario={setModalUsuario}
-                                onChangeModalCadastro={setModalCadastro} />
-            
+                                onChangeModalCadastro={setModalCadastro}
+                                onChangeModalUsuariosCadastrados={setUsuariosCadastrados} />
+
+
+            <UsuariosCadastrados open={modalUsuariosCadastrados} 
+            onClose={() => {setUsuariosCadastrados(false)}}
+            onChangeModalCadastro={setModalCadastro}/>
+
             <Cadastro   filiais={filiais.map((filial) => filial.nomeFilial)} 
-                        open={modalcadastro} 
+                        open={modalCadastro} 
                         onClose={() => {setModalCadastro(false)}}/>
 
 

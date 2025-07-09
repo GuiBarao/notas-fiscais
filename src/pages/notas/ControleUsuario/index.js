@@ -2,12 +2,12 @@ import { Button } from "@mui/material"
 import Stack from "@mui/material/Stack";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import Modal from "@mui/material/Modal";
 import { useNavigate } from 'react-router-dom';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 
-function ControleUsuario({open, onChangeModalUsuario, onChangeModalCadastro}) {
+function ControleUsuario({open, onChangeModalUsuario, onChangeModalCadastro, onChangeModalUsuariosCadastrados}) {
 
     const buttonSx = {  color:"text.secondary", backgroundColor:"background.primary", 
                         borderStyle:"solid", borderColor:"border.secondary", 
@@ -35,14 +35,14 @@ function ControleUsuario({open, onChangeModalUsuario, onChangeModalCadastro}) {
 
                 <p className="text-text_secondary font-semibold"> {sessionStorage.getItem("nomeUsuario")} </p>
 
+                <Button onClick={() => {onChangeModalUsuariosCadastrados(true)}} sx={buttonSx}>
+                    <PeopleAltIcon />
+                    Cadastros
+                </Button>
+
                 <Button onClick={logOut} sx={buttonSx}>
                     <LogoutIcon/>
                     Sair
-                </Button>
-
-                <Button onClick={() => {onChangeModalCadastro(true)}} sx={buttonSx}>
-                    <PersonAddAlt1Icon />
-                    Cadastrar
                 </Button>
             </Stack>
         </Modal>
