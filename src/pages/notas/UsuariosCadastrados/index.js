@@ -1,8 +1,5 @@
 import Modal from '@mui/material/Modal';
 import { useState, useEffect } from 'react';
-import buscarUsuarios from '../../../services/get/usuarios';
-import { HttpStatusCode } from 'axios';
-import CustomToast from '../../../components/toast'
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,28 +12,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import CampoTexto from '../../../components/CampoTexto'
 
-const UsuariosCadastrados = ({open, onClose, onChangeModalCadastro}) => {
 
-    const [usuarios, setUsuarios] = useState([])
+const UsuariosCadastrados = ({open, onClose, usuarios , onChangeModalCadastro, onChangeModalAtualizarUsuario}) => {
+
     const [usuariosFiltrados, setUsuariosFiltrados] = useState(usuarios)
     
     const [busca, setBusca] = useState("")
 
-    const getUsuarios = async () => {
-        try{
-            const response = await buscarUsuarios()
-            setUsuarios(response)
-        }
-        catch (error) {
-            error.status === HttpStatusCode.Unauthorized ?
-                CustomToast({type:'error', message:'Ação não autorizada'}) :
-                CustomToast({type:'error', message:'Erro ao carregar os usuários'})
-        }
-    }
 
-    useEffect(() => {
-        open && getUsuarios()
-    }, [open])
 
     useEffect(() => {
         setUsuariosFiltrados(usuarios.filter((usuario) => {
@@ -57,9 +40,7 @@ const UsuariosCadastrados = ({open, onClose, onChangeModalCadastro}) => {
           <TableContainer  className="!text-black" component={Paper}
                   sx={{width:"75rem", padding: "50px",
                       backgroundColor:"background.primary", display:"flex", gap:"30px",
-                      "& input": {color: "black !important"},
-                       padding:'20px', 
-                      display:'flex', flexDirection:'column'}}>
+                      "& input": {color: "black !important"}, flexDirection:'column'}}>
 
             <div className='flex flex-row justify-around'>
 
@@ -100,14 +81,14 @@ const UsuariosCadastrados = ({open, onClose, onChangeModalCadastro}) => {
                             <TableCell sx={{color:"text.secondary"}} align="center">{usuario.cpf}</TableCell>
                             <TableCell sx={{color:"text.secondary"}} align="center">{usuario.nomeCompleto}</TableCell>
                             <TableCell sx={{color:"text.secondary"}} align="center">
-                                {console.log(usuario.filiaisPermitidas)} 
                                 {usuario.filiaisPermitidas.length > 3 ?
                                 usuario.filiaisPermitidas.slice(0,3).join(', ') + '...' :
                                 usuario.filiaisPermitidas.join(', ')}
                             </TableCell>
                             <TableCell sx={{color:"text.secondary"}} align="center">{usuario.status ? 'Ativo' : 'Inativo'}</TableCell>
                             <TableCell> 
-                                <Button sx ={{padding:'0'}}>
+                        
+                                <Button sx ={{padding:'0'}} onClick={() => onChangeModalAtualizarUsuario({ativo:true, usuario: usuario})}>
                                     {<EditIcon sx={{width:"100%",color:'icon.primary', backgroundColor:'background.icon', borderRadius:'10px', borderStyle:'solid', borderWidth:'3px'}} />}
                                 </Button>
                             </TableCell>

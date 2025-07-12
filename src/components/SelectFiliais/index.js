@@ -9,22 +9,23 @@ import AddIcon from '@mui/icons-material/Add';
 import Stack from '@mui/material/Stack';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
-function SelectFiliais({filiais, onChangePermissoes}) {
+function SelectFiliais({filiais, filiaisPermitidas=[], onChangePermissoes}) {
     const [buscaFilial, setBuscaFilial] = useState("");
     const [opcoesAbertas, setOpcoesAbertas] =  useState(false);
-    const [filiaisSelecionadas, setFiliaisSelecionadas] = useState({})
-    
+    const [filiaisSelecionadas, setFiliaisSelecionadas] = useState({});
+
+
     useEffect(() => {
         const copia = {}
-        filiais.map((filial) => {
-            copia[filial] = false
+        filiais.forEach((filial) => {
+            copia[filial] = filiaisPermitidas.includes(filial)
         })
         setFiliaisSelecionadas(copia)
     }, [filiais])
 
     useEffect(() => {
         onChangePermissoes(Object.keys(filiaisSelecionadas).filter((filial) => filiaisSelecionadas[filial]))
-    }, [filiaisSelecionadas])
+    }, [filiaisSelecionadas, onChangePermissoes])
 
     const handleClickAdd = () => {
         if(buscaFilial in filiaisSelecionadas)
@@ -60,11 +61,11 @@ function SelectFiliais({filiais, onChangePermissoes}) {
                 </ClickAwayListener>
 
                 
-
+                
                 {opcoesAbertas && 
                     <Box sx={{width:"100%", marginBottom:"10px"}}>
-                        {Object.keys(filiaisSelecionadas).map((filial) => {
-                            {return (!filiaisSelecionadas[filial] && 
+                        {Object.keys(filiaisSelecionadas).map((filial) => 
+                             (!filiaisSelecionadas[filial] && 
                                     filial.toLowerCase().includes(buscaFilial.toLowerCase())) 
                                 && 
                                 <MenuItem key={filial} 
@@ -77,12 +78,11 @@ function SelectFiliais({filiais, onChangePermissoes}) {
                                                 "&:hover": {backgroundColor: "background.primary"}}}
                                         onClick={() => {setBuscaFilial(filial)}}> 
                                                 {filial}
-                                </MenuItem>}
-                        })}
+                                </MenuItem>
+                        )}
 
                     </Box>
                 }
-
                 {filiais.map((filial) => {
                    return filiaisSelecionadas[filial] && 
                     <Stack key={filial} className=' m-[2px] p-2 border-solid border-[1px]

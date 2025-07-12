@@ -34,6 +34,7 @@ function LoginPage() {
             sessionStorage.setItem("cpf", response.cpf)
             sessionStorage.setItem("nomeCompleto", response.nomeCompleto)
             sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
+            sessionStorage.setItem("filiaisPermitidas", response.filiaisPermitidas)
 
             CustomToast({type:"success", message: "Login realizado com sucesso!"})
 

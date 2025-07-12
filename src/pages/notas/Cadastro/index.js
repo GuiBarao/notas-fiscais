@@ -1,10 +1,10 @@
 import Modal from '@mui/material/Modal';
 import Stack from '@mui/material/Stack'
 import CampoTexto from "../../../components/CampoTexto/index.js";
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import SelectFiliais from "./SelectFiliais/index.js"
+import SelectFiliais from "../../../components/SelectFiliais/index.js"
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import cadastro from '../../../services/post/cadastro.js'
 import { Button } from '@mui/material';
@@ -19,6 +19,10 @@ function Cadastro({open, onClose, filiais}){
   const [nomeCompleto, setNomeCompleto] = useState("")
   const [nomeUsuario, setNomeUsuario] = useState("")
   const [filiaisPermitidas, setFiliaisPermitidas] = useState([])
+
+  const handleChangeFiliaisPermitidas = useCallback( (novasFiliaisPermitidas) => {
+    setFiliaisPermitidas(novasFiliaisPermitidas)
+  },[])
 
   const navigate = useNavigate()
 
@@ -82,7 +86,7 @@ function Cadastro({open, onClose, filiais}){
               <p className='font-semibold w-96 text-sm text-center content-end'>Senha inicial será automaticamente registrada como os 3 primeiros dígitos do CPF</p>
             </div>
 
-            <SelectFiliais filiais={filiais} onChangePermissoes={setFiliaisPermitidas}/>
+            {<SelectFiliais filiais={filiais} onChangePermissoes={handleChangeFiliaisPermitidas}/>}
 
             <Box className="mt-2">
               <Button sx={{ alignSelf:"center", 

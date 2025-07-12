@@ -1,7 +1,7 @@
 import AcordeaoFilial from "./AcordeaoFilial";
 import CampoFiltro from "./CampoFiltro";
 import Cabecalho from "./Cabecalho";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 import EdicaoValorTeto from "./EdicaoValorTeto";
 import ControleUsuario from "./ControleUsuario"
@@ -10,6 +10,9 @@ import CustomToast from "../../components/toast"
 import { HttpStatusCode } from "axios";
 import { useNavigate } from 'react-router-dom'
 import UsuariosCadastrados from "./UsuariosCadastrados"
+import AtualizarDadosUsuario from './AtualizarDadosUsuario'
+import buscarUsuarios from '../../services/get/usuarios.js'
+
 
 function NotasPage() {
 
@@ -34,12 +37,13 @@ function NotasPage() {
     const [modalUsuario, setModalUsuario] = useState(false)
     const [modalCadastro, setModalCadastro] = useState(false)
     const [modalUsuariosCadastrados, setUsuariosCadastrados] = useState(false)
+    const [modalAtualizarUsuario, setModalAtualizarUsuario] = useState({ativo: false, usuario: null})
 
     const [filiais, setFiliais] = useState([]);
 
     const navigate = useNavigate();
 
-    const carregar_filiais = async () => {
+    const carregar_filiais = useCallback( async () => {
         try {
             const response = await buscaFiliais();
             setFiliais(response);
@@ -56,9 +60,9 @@ function NotasPage() {
                 CustomToast({type:"error", message:"Erro ao carregar as filiais"})
             }
         }
-    }
+    }, [navigate])
 
-    useEffect(() => {carregar_filiais()}, []);
+    useEffect(() => {carregar_filiais()}, [carregar_filiais]);
 
     const recarregarFilial = (nomeFilial, novoValor) => {
         setFiliais((prev) => prev.map((filial) => 
@@ -73,6 +77,32 @@ function NotasPage() {
 
     const style_overlay = "fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-60 z-[1000]"
     
+    const [usuarios, setUsuarios] = useState([])
+
+    const getUsuarios = async () => {
+        try{
+            const response = await buscarUsuarios()
+            setUsuarios(response)
+        }
+        catch (error) {
+            error.status === HttpStatusCode.Unauthorized ?
+                CustomToast({type:'error', message:'Ação não autorizada'}) :
+                CustomToast({type:'error', message:'Erro ao carregar os usuários'})
+        }
+    }
+
+    const recarregarUsuarios = (usuarioAtualizado) => {
+        setUsuarios((prev) => prev.map((usuario) => 
+            usuario.id === usuarioAtualizado.id
+                ? usuario = usuarioAtualizado
+                : usuario
+        ))
+    }
+
+    useEffect(() => {
+        modalUsuariosCadastrados && getUsuarios()
+    }, [modalUsuariosCadastrados])
+
 
     return (
         
@@ -128,15 +158,22 @@ function NotasPage() {
                                 onChangeModalCadastro={setModalCadastro}
                                 onChangeModalUsuariosCadastrados={setUsuariosCadastrados} />
 
-
+            
             <UsuariosCadastrados open={modalUsuariosCadastrados} 
             onClose={() => {setUsuariosCadastrados(false)}}
-            onChangeModalCadastro={setModalCadastro}/>
+            usuarios={usuarios}
+            onChangeModalCadastro={setModalCadastro}
+            onChangeModalAtualizarUsuario={setModalAtualizarUsuario}/>
 
-            <Cadastro   filiais={filiais.map((filial) => filial.nomeFilial)} 
+            <Cadastro   filiais={filiais.map((filial) => filial.nomeFilial)}
                         open={modalCadastro} 
                         onClose={() => {setModalCadastro(false)}}/>
 
+            <AtualizarDadosUsuario  open={modalAtualizarUsuario.ativo}
+                                    usuarioEscolhido={modalAtualizarUsuario.usuario}
+                                    filiais={filiais.map((filial) => filial.nomeFilial)}
+                                    onClose={() => {setModalAtualizarUsuario({ativo:false, usuario:null})}}
+                                    atualizaListaUsuarios={recarregarUsuarios}/>
 
         </section>
     );
