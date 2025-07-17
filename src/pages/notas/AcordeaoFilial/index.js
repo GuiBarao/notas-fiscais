@@ -21,16 +21,20 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
 
 
     const [notas, setNotas] = useState([]);
-
+            
     const notas_filial = async (filial) => {
         try {
-            const response = await buscarNotas(filial);
+            const response = await buscarNotas(filial, filtroDataInicio, filtroDataFim);
             setNotas(response);
             
         }   
         catch(error) {
             if(error.status === HttpStatusCode.Unauthorized) {
               CustomToast({type:"error", message : "Ação não autorizada"})
+            }
+            if(error.status === HttpStatusCode.UnprocessableEntity) {
+              CustomToast({type:"warning", message : "Selecione uma filial e um intervalo de data para buscar as notas"})
+
             }
             else {
               CustomToast({type:"error", message:"Erro ao carregar as notas"})
@@ -39,7 +43,8 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
         }
     }
 
-    useEffect(() => {notas_filial(filial)}, [])
+    useEffect(() => {notas_filial(filial)}, [filial, filtroDataInicio, filtroDataFim])
+    
     const notas_filtradas = useMemo( () => {return notas.filter(
                                                   (nota) => {return filtragemNotas(nota, filtroTitular, filtroCPF, filtroNumero, filtroValorMin, filtroValorMax, filtroStatus, filtroDataInicio, filtroDataFim)})},
                                                   [notas, filtroDataInicio, filtroDataFim, filtroTitular, filtroCPF, filtroStatus, filtroNumero, filtroValorMin, filtroValorMax])

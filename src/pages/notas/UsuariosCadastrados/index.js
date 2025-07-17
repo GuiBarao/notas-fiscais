@@ -12,7 +12,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import CampoTexto from '../../../components/CampoTexto'
 
-
 const UsuariosCadastrados = ({open, onClose, usuarios , onChangeModalCadastro, onChangeModalAtualizarUsuario}) => {
 
     const [usuariosFiltrados, setUsuariosFiltrados] = useState(usuarios)
