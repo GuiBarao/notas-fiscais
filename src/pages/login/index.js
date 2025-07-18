@@ -5,6 +5,8 @@ import login from "../../services/post/login.js"
 import { useNavigate } from 'react-router-dom';
 import { HttpStatusCode } from 'axios';
 import { useSnackbar } from 'notistack';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function LoginPage() {
@@ -13,7 +15,8 @@ function LoginPage() {
     const [senha, setSenha] = useState("")
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar();
-    
+    const [carregandoLogin, setCarregandoLogin] = useState(false)
+
     const enviar_login = async () => {
         
         if(!cpf) {
@@ -26,6 +29,7 @@ function LoginPage() {
         }
         
         try{
+            setCarregandoLogin(true)
             const response = await login(cpf, senha)
 
             sessionStorage.setItem("token", response.access_token)
@@ -39,11 +43,13 @@ function LoginPage() {
 
             setTimeout(
                 () => {
+                    setCarregandoLogin(false)
                     navigate("/notas")
                 }, 2000
             )
         }
         catch(error) {
+            setCarregandoLogin(false)
             error.status === HttpStatusCode.Unauthorized ? 
                 enqueueSnackbar('CPF ou senha incorretos', {variant: "error"}) :
                 enqueueSnackbar("Erro ao realizar o login: " + error.message, {variant: "error"})
@@ -89,7 +95,7 @@ function LoginPage() {
                     className="w-full h-10 bg-gray-300 text-green-950 p-2 bg-custom-green"
                     onClick={enviar_login}
                 >
-                    Entrar
+                    {carregandoLogin ? <CircularProgress size={25} /> : "Entrar"}
                 </button>
 
                 <div className="text-center mt-10">
