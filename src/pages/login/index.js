@@ -1,4 +1,3 @@
-import fundoPax from '../../assets/png/multiple_x.png'
 import logoPax from '../../assets/svg/logo-pax-verde.svg'
 import packageJSON from "../../../package.json"
 import { useState } from "react"
@@ -55,13 +54,10 @@ function LoginPage() {
     
     return (
 
-        <div className=" flex h-screen items-center justify-center animate-background">
+        <div className=" flex h-screen items-center justify-center bg-green-950">
 
-            <div className="fixed bottom-0 right-0 z-0 top-0 flex justify-center items-center">
-                <img src={fundoPax} alt="Fundo" style={{width: '500px', height: '90vh'}}/>
-            </div>
 
-            <div className="relative bg-white p-8 rounded-lg shadow-lg max-w-md w-full z-10">
+            <div className="relative bg-green-50 p-8 rounded-lg shadow-lg w-96 content-center">
                 <div className="flex justify-center mb-10">
                     <img src={logoPax} alt="Logo" className="w-28" />
                 </div>
@@ -90,7 +86,7 @@ function LoginPage() {
                 </div>
                 <button
                     id='entrar'
-                    className="w-full h-10 bg-[#006B33] text-white p-2 rounded-md bg-custom-green"
+                    className="w-full h-10 bg-gray-300 text-green-950 p-2 bg-custom-green"
                     onClick={enviar_login}
                 >
                     Entrar
