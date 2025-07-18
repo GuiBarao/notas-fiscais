@@ -9,9 +9,10 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import cadastro from '../../../services/post/cadastro.js'
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import CustomToast from '../../../components/toast'
 import { HttpStatusCode } from 'axios';
 import { useNavigate } from 'react-router-dom'
+import { useSnackbar } from 'notistack';
+
 
 function Cadastro({open, onClose, filiais}){
 
@@ -25,17 +26,19 @@ function Cadastro({open, onClose, filiais}){
   },[])
 
   const navigate = useNavigate()
-
+  const { enqueueSnackbar } = useSnackbar();
+  
   const excecoes_cadastro = {
-    [HttpStatusCode.Conflict] : {type : "warning", message:"CPF já cadastrado"},
-    [HttpStatusCode.UnprocessableEntity] : {type : "warning", message:"Dados inválidos"},
-    [HttpStatusCode.Unauthorized] : {type : "error", message : "Ação não autorizada", redirect : '/'}
+    [HttpStatusCode.Conflict] : {tipo : {variant: "warning"}, mensagem:"CPF já cadastrado"},
+    [HttpStatusCode.UnprocessableEntity] : {tipo : {variant: "warning"}, mensagem:"Dados inválidos"},
+    [HttpStatusCode.Unauthorized] : {tipo : { variant: "error" }, mensagem : "Ação não autorizada", redirect : '/'}
   }
 
   const cadastrar = async () => {
       try{
         await cadastro(cpf, nomeCompleto, nomeUsuario, filiaisPermitidas)
-        CustomToast({type:"success", message:"Usuário cadastrado com sucesso!"})
+        enqueueSnackbar("Usuário cadastrado com sucesso!", { variant : "success"});
+
         setCPF("")
         setNomeCompleto("")
         setNomeUsuario("")
@@ -47,7 +50,7 @@ function Cadastro({open, onClose, filiais}){
         
         if(excecaoConfig) {
 
-          CustomToast({type: excecaoConfig.type, message:excecaoConfig.message})
+          enqueueSnackbar(excecaoConfig.message, excecaoConfig.type);
 
           if(excecaoConfig.redirect) {
             setTimeout(() => {
@@ -56,7 +59,8 @@ function Cadastro({open, onClose, filiais}){
           }
         }
         else {
-          CustomToast({type:"error", message:"Erro no cadastro!"})
+          enqueueSnackbar("Erro no cadastro!", {variant: "error"});
+
         }
       }
 

@@ -1,28 +1,28 @@
 import fundoPax from '../../assets/png/multiple_x.png'
 import logoPax from '../../assets/svg/logo-pax-verde.svg'
-import { IconButton } from '@mui/material';
-import { HelpOutline } from '@mui/icons-material';
 import packageJSON from "../../../package.json"
 import { useState } from "react"
 import login from "../../services/post/login.js"
 import { useNavigate } from 'react-router-dom';
-import CustomToast from '../../components/toast/index.js'
 import { HttpStatusCode } from 'axios';
+import { useSnackbar } from 'notistack';
+
 
 function LoginPage() {
 
     const [cpf, setCpf] = useState("")
     const [senha, setSenha] = useState("")
     const navigate = useNavigate()
-
+    const { enqueueSnackbar } = useSnackbar();
+    
     const enviar_login = async () => {
         
         if(!cpf) {
-            CustomToast({type:"warning", message: "Digite um CPF"})
+            enqueueSnackbar('Digite um CPF', {variant: "warning"});
             return
         }
         if(!senha) {
-            CustomToast({type:"warning", message: "Digite a senha"})
+            enqueueSnackbar('Digite a senha', {variant: "warning"});
             return
         }
         
@@ -36,7 +36,7 @@ function LoginPage() {
             sessionStorage.setItem("nomeUsuario", response.nomeUsuario)
             sessionStorage.setItem("filiaisPermitidas", response.filiaisPermitidas)
 
-            CustomToast({type:"success", message: "Login realizado com sucesso!"})
+            enqueueSnackbar('Login realizado com sucesso!', {variant: "success"});
 
             setTimeout(
                 () => {
@@ -46,11 +46,12 @@ function LoginPage() {
         }
         catch(error) {
             error.status === HttpStatusCode.Unauthorized ? 
-                CustomToast({type:"warning", message: "CPF ou senha incorretos! "}) :
-                CustomToast({type:"error", message: "Erro ao realizar o login: " + error.message})
-        }
-        
+                enqueueSnackbar('CPF ou senha incorretos', {variant: "error"}) :
+                enqueueSnackbar("Erro ao realizar o login: " + error.message, {variant: "error"})
+            }
     }
+        
+    
     
     return (
 

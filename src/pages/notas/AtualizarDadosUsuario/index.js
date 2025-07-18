@@ -10,7 +10,7 @@ import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import atualizaUsuario from '../../../services/put/usuario.js';
 import { HttpStatusCode } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import CustomToast from '../../../components/toast'
+import { useSnackbar } from 'notistack';
 
 const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atualizaListaUsuarios}) => {
 
@@ -22,11 +22,12 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
   const [statusState, setStatusState] = useState(null)
 
   const navigate = useNavigate()
+  const { enqueueSnackbar } = useSnackbar();
 
   const excecoes_atualizacao = {
-    [HttpStatusCode.Conflict] : {type : "warning", message:"CPF já cadastrado"},
-    [HttpStatusCode.UnprocessableEntity] : {type : "warning", message:"Dados inválidos"},
-    [HttpStatusCode.Unauthorized] : {type : "error", message : "Ação não autorizada", redirect : '/'}
+    [HttpStatusCode.Conflict] : {mensagem: "CPF já cadastrado", tipo: { variant: "warning" }},
+    [HttpStatusCode.UnprocessableEntity] : {mensagem: "Dados inválidos", tipo:{ variant: "warning" }},
+    [HttpStatusCode.Unauthorized] : {mensagem: "Ação não autorizada", tipo: { variant: "error" }, redirect : '/'}
   }
 
   useEffect(() => {
@@ -41,7 +42,8 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
     try {
       
       const response = await atualizaUsuario(usuarioEscolhido.id, cpf, nomeUsuario, nomeCompleto, senha, filiaisPermitidas, statusState)
-      CustomToast({type: 'success', message:'Usuário atualizado com sucesso'})
+      enqueueSnackbar('Usuário atualizado com sucesso', { variant: "success" });
+
       atualizaListaUsuarios(response)
       onClose()
     }
@@ -51,7 +53,8 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
         
         if(excecaoConfig) {
 
-          CustomToast({type: excecaoConfig.type, message:excecaoConfig.message})
+          enqueueSnackbar(excecaoConfig.mensagem, excecaoConfig.tipo);
+
 
           if(excecaoConfig.redirect) {
             setTimeout(() => {
@@ -60,7 +63,8 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
           }
         }
         else {
-          CustomToast({type:"error", message:"Erro no cadastro!"})
+          enqueueSnackbar("Erro no cadastro!", { variant: "error" });
+
         }
     }
   }

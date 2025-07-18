@@ -1,14 +1,17 @@
 import CampoValor from "../../../components/CampoValor";
 import mudar_valorTeto from "../../../services/put/valor-teto.js";
 import { useState } from "react";
-import CustomToast from '../../../components/toast'
 import { HttpStatusCode } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from 'notistack';
+
 
 const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilial}) => {
 
     const [novoValor, setNovoValor] = useState("");
     const navigate = useNavigate()
+    const { enqueueSnackbar } = useSnackbar();
+
     const edita_valorTeto = async (nome_filial) => {
        
         try {
@@ -17,13 +20,15 @@ const EdicaoValorTeto = ({setEdicaoValorTeto, nome_filial, atualizaAcordeaoFilia
         }
         catch(error) {
             if(error.status === HttpStatusCode.Unauthorized) {
-                CustomToast({type:"error", message:"Ação não autorizada"})
+                enqueueSnackbar("Ação não autorizada", { variant : "error" });
+
                 setTimeout(() => {
                     navigate("/")
                 }, 2000)
             }
 
-            CustomToast({type:"error", message:`Erro na alteração do valor teto de ${nome_filial}`})
+            enqueueSnackbar(`Erro na alteração do valor teto de ${nome_filial}`, { variant : "error" });
+
         }
     }
 

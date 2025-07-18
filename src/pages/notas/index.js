@@ -6,12 +6,12 @@ import buscaFiliais from "../../services/get/filiais-disponiveis.js"
 import EdicaoValorTeto from "./EdicaoValorTeto";
 import ControleUsuario from "./ControleUsuario"
 import Cadastro from "./Cadastro";
-import CustomToast from "../../components/toast"
 import { HttpStatusCode } from "axios";
 import { useNavigate } from 'react-router-dom'
 import UsuariosCadastrados from "./UsuariosCadastrados"
 import AtualizarDadosUsuario from './AtualizarDadosUsuario'
 import buscarUsuarios from '../../services/get/usuarios.js'
+import { useSnackbar } from 'notistack';
 
 
 function NotasPage() {
@@ -42,6 +42,8 @@ function NotasPage() {
     const [filiais, setFiliais] = useState([]);
 
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
+
 
     const carregar_filiais = useCallback( async () => {
         try {
@@ -51,13 +53,13 @@ function NotasPage() {
         catch(error) {
 
             if(error.status === HttpStatusCode.Unauthorized) {
-                CustomToast({type: "error", message: "Ação não autorizada"})
+                enqueueSnackbar("Ação não autorizada", { variant: "error" });
                 setTimeout(() => {
                     navigate('/')
                 }, 2000)
             }
             else {
-                CustomToast({type:"error", message:"Erro ao carregar as filiais"})
+                enqueueSnackbar("Erro ao carregar as filiais", { variant: "error" });
             }
         }
     }, [navigate])
@@ -86,8 +88,9 @@ function NotasPage() {
         }
         catch (error) {
             error.status === HttpStatusCode.Unauthorized ?
-                CustomToast({type:'error', message:'Ação não autorizada'}) :
-                CustomToast({type:'error', message:'Erro ao carregar os usuários'})
+                enqueueSnackbar('Ação não autorizada', { variant: "error" }) :
+                enqueueSnackbar('Erro ao carregar os usuários', { variant: "error" })
+
         }
     }
 

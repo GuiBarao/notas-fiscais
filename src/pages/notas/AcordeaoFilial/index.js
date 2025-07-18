@@ -12,8 +12,9 @@ import PlaceIcon from '@mui/icons-material/Place';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import CustomToast from '../../../components/toast'
 import { HttpStatusCode } from 'axios';
+import { useSnackbar } from 'notistack';
+
 
 function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim, 
                           filtroTitular, filtroCPF, filtroStatus, filtroNumero,
@@ -21,7 +22,8 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
 
 
     const [notas, setNotas] = useState([]);
-            
+    const { enqueueSnackbar } = useSnackbar();
+
     const notas_filial = async (filial) => {
         try {
             const response = await buscarNotas(filial, filtroDataInicio, filtroDataFim);
@@ -30,14 +32,14 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
         }   
         catch(error) {
             if(error.status === HttpStatusCode.Unauthorized) {
-              CustomToast({type:"error", message : "Ação não autorizada"})
-            }
-            if(error.status === HttpStatusCode.UnprocessableEntity) {
-              CustomToast({type:"warning", message : "Selecione uma filial e um intervalo de data para buscar as notas"})
+              enqueueSnackbar("Ação não autorizada", { variant: "error" });
 
             }
+            if(error.status === HttpStatusCode.UnprocessableEntity) {
+              enqueueSnackbar("Selecione uma filial e um intervalo de data para buscar as notas", { variant: "warning" });
+            }
             else {
-              CustomToast({type:"error", message:"Erro ao carregar as notas"})
+              enqueueSnackbar("Erro ao carregar as notas", { variant: "error" });
             }
             
         }

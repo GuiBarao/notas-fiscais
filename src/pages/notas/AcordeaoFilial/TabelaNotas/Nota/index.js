@@ -13,13 +13,6 @@ function Nota({numero, data, valor, status, erro, cliente}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const angulo_expandIcon = isOpen? 180 : 0;
-    
-    const sx_notaInvalida = {
-        cursor:"pointer",
-        "&:hover" : {
-            backgroundColor: "background.red",
-        }
-    }
 
 
     const sx_typograph = {
@@ -34,7 +27,7 @@ function Nota({numero, data, valor, status, erro, cliente}) {
     return (
         <TableBody >
             <TableRow   onClick = {() => {if(!status) {setIsOpen(!isOpen)}}} 
-                        sx={!status && sx_notaInvalida}>
+                        sx={!status && {cursor: "pointer"}}>
                     <TableCell sx={sx_typograph}>{cliente.nome} </TableCell>
                     <TableCell sx={sx_typograph}>{numero} </TableCell>
                     <TableCell sx={sx_typograph}>{format_date(data)} </TableCell>

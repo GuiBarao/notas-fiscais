@@ -1,12 +1,12 @@
 import { BrowserRouter } from 'react-router-dom'
-import { ToastProvider } from './components/toast/index.js'
 import AppRouter from './routes/routes.js'
-
+import { SnackbarProvider } from 'notistack';
 function App() {
     return (
         <BrowserRouter>
-            <AppRouter />
-            <ToastProvider/>
+            <SnackbarProvider maxSnack={3}>
+                <AppRouter />
+            </SnackbarProvider>
         </BrowserRouter>
     )
 }
