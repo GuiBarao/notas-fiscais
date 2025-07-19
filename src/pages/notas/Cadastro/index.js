@@ -82,7 +82,7 @@ function Cadastro({open, onClose, filiais}){
                       alignItems: "center",
                       borderRadius: "20px",
                       borderStyle: "solid"}}>
-            {carregandoCadastro ? <CircularProgress color='background.icon'  size={65} /> :
+            {carregandoCadastro ? <CircularProgress color='background.icon' size={65} /> :
               <Stack  className="!text-black"
                       sx={{width:"100%", backgroundColor:"background.primary", 
                           display:"flex", gap:"30px",

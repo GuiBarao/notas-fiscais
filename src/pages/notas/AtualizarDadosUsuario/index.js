@@ -1,5 +1,6 @@
 import Modal from '@mui/material/Modal';
 import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
 import CampoTexto from "../../../components/CampoTexto/index.js";
 import { useState, useEffect } from 'react';
 import PersonIcon from '@mui/icons-material/Person';
@@ -11,6 +12,8 @@ import atualizaUsuario from '../../../services/put/usuario.js';
 import { HttpStatusCode } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atualizaListaUsuarios}) => {
 
@@ -20,6 +23,7 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
   const [nomeUsuario, setNomeUsuario] = useState("")
   const [filiaisPermitidas, setFiliaisPermitidas] = useState([])
   const [statusState, setStatusState] = useState(null)
+  const [carregandoAtualizacao, setCarregandoAtualizacao] = useState(false)
 
   const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar();
@@ -40,14 +44,17 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
 
   const submeterAtualizacao = async () => {
     try {
-      
+      setCarregandoAtualizacao(true)
       const response = await atualizaUsuario(usuarioEscolhido.id, cpf, nomeUsuario, nomeCompleto, senha, filiaisPermitidas, statusState)
       enqueueSnackbar('Usuário atualizado com sucesso', { variant: "success" });
+      setCarregandoAtualizacao(false)
 
       atualizaListaUsuarios(response)
+      
       onClose()
     }
     catch(error){
+        setCarregandoAtualizacao(false)
         const statusCode = error.status
         const excecaoConfig = excecoes_atualizacao[statusCode]
         
@@ -72,50 +79,62 @@ const AtualizarDadosUsuario = ({open, onClose, usuarioEscolhido, filiais, atuali
 
     return (
         <Modal sx={{display:"flex", justifyContent:"center"}} open={open} onClose={onClose}>
-          <Stack  className="!text-black"
-                  sx={{width:"45rem", padding: "50px",
-                      backgroundColor:"background.primary", display:"flex", gap:"30px",
-                      "& input": {color: "black !important"},
-                      borderStyle:"solid", borderRadius:"20px",
-                      maxHeight:"100%", overflowY:"auto"}}>
-            
-            <div className="flex flex-row gap-1 items-center text-text_secondary font-semibold text-xl">
-              <FolderSharedIcon />
-              <h1>Atualizar usuário</h1>
-            </div>
-            
-            <div className='flex flex-row justify-between'>
-              <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome completo"} value={nomeCompleto} onChange={(ev) => {setNomeCompleto(ev.target.value)}}  type="text" />
-              <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome de usuário"} value={nomeUsuario} onChange={(ev) => {setNomeUsuario(ev.target.value)}}  type="text" />
-            </div>
-                    
-            <div className='flex flex-row justify-between'>
-              <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"CPF"} value={cpf} onChange={(ev) => setCpf(ev.target.value)} type="text" />
-              <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"Senha"} value={senha} onChange={(ev) => setSenha(ev.target.value)} type="text" />
-            </div>
-            
-           
-            <SelectFiliais filiais={filiais} filiaisPermitidas={usuarioEscolhido && usuarioEscolhido.filiaisPermitidas} onChangePermissoes={setFiliaisPermitidas}/>
+          <Box sx ={{ width: "45rem",
+                      padding: "50px",
+                      backgroundColor: "background.primary",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "20px",
+                      borderStyle: "solid"}}>
 
-            <div className='flex flex-row gap-4 justify-between'>
-              <Button onClick={() => {setStatusState(!statusState)
-                                      submeterAtualizacao()}} 
-                      sx={{ alignSelf:"flex-end", 
-                          backgroundColor: usuarioEscolhido && usuarioEscolhido.status ? "background.red" : "background.icon", 
-                          color: "text.primary"}} > 
-              { usuarioEscolhido && usuarioEscolhido.status? "Inativar usuário" : "Ativar usuario"}
-              </Button>
+            {carregandoAtualizacao ? <CircularProgress color='background.icon' size={65} /> :
+
+              <Stack  className="!text-black"
+                      sx={{width:"100%", backgroundColor:"background.primary", 
+                          display:"flex", gap:"30px",
+                          "& input": {color: "black !important"},
+                          maxHeight:"100%", overflowY:"auto"}}>
+                
+                <div className="flex flex-row gap-1 items-center text-text_secondary font-semibold text-xl">
+                  <FolderSharedIcon />
+                  <h1>Atualizar usuário</h1>
+                </div>
+                
+                <div className='flex flex-row justify-between'>
+                  <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome completo"} value={nomeCompleto} onChange={(ev) => {setNomeCompleto(ev.target.value)}}  type="text" />
+                  <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome de usuário"} value={nomeUsuario} onChange={(ev) => {setNomeUsuario(ev.target.value)}}  type="text" />
+                </div>
+                        
+                <div className='flex flex-row justify-between'>
+                  <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"CPF"} value={cpf} onChange={(ev) => setCpf(ev.target.value)} type="text" />
+                  <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"Senha"} value={senha} onChange={(ev) => setSenha(ev.target.value)} type="text" />
+                </div>
+                
+              
+                <SelectFiliais filiais={filiais} filiaisPermitidas={usuarioEscolhido && usuarioEscolhido.filiaisPermitidas} onChangePermissoes={setFiliaisPermitidas}/>
+
+                <div className='flex flex-row gap-4 justify-between'>
+                  <Button onClick={() => {setStatusState(!statusState)
+                                          submeterAtualizacao()}} 
+                          sx={{ alignSelf:"flex-end", 
+                              backgroundColor: usuarioEscolhido && usuarioEscolhido.status ? "background.red" : "background.icon", 
+                              color: "text.primary"}} > 
+                  { usuarioEscolhido && usuarioEscolhido.status? "Inativar usuário" : "Ativar usuario"}
+                  </Button>
 
 
-              <Button onClick={submeterAtualizacao} sx={{ alignSelf:"center", 
-                            backgroundColor:"background.icon", 
-                            color:"text.primary"}} > 
-                Atualizar dados
-              </Button>
+                  <Button onClick={submeterAtualizacao} sx={{ alignSelf:"center", 
+                                backgroundColor:"background.icon", 
+                                color:"text.primary"}} > 
+                    Atualizar dados
+                  </Button>
 
-            </div>
+                </div>
 
-          </Stack>
+              </Stack>
+              }
+          </Box>
         </Modal>
     )
 }
