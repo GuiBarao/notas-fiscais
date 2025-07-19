@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 
 
-function ControleUsuario({open, onChangeModalUsuario, onChangeModalCadastro, onChangeModalUsuariosCadastrados}) {
+function ControleUsuario({open, onChangeModalUsuario, onChangeModalUsuariosCadastrados}) {
 
     const buttonSx = {  color:"text.secondary", backgroundColor:"background.primary", 
                         borderStyle:"solid", borderColor:"border.secondary", 

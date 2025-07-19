@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import { HttpStatusCode } from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useSnackbar } from 'notistack';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 function Cadastro({open, onClose, filiais}){
@@ -20,6 +22,7 @@ function Cadastro({open, onClose, filiais}){
   const [nomeCompleto, setNomeCompleto] = useState("")
   const [nomeUsuario, setNomeUsuario] = useState("")
   const [filiaisPermitidas, setFiliaisPermitidas] = useState([])
+  const [carregandoCadastro, setCarregandoCadastro] = useState(false)
 
   const handleChangeFiliaisPermitidas = useCallback( (novasFiliaisPermitidas) => {
     setFiliaisPermitidas(novasFiliaisPermitidas)
@@ -36,6 +39,7 @@ function Cadastro({open, onClose, filiais}){
 
   const cadastrar = async () => {
       try{
+        setCarregandoCadastro(true)
         await cadastro(cpf, nomeCompleto, nomeUsuario, filiaisPermitidas)
         enqueueSnackbar("Usuário cadastrado com sucesso!", { variant : "success"});
 
@@ -43,14 +47,16 @@ function Cadastro({open, onClose, filiais}){
         setNomeCompleto("")
         setNomeUsuario("")
         setFiliaisPermitidas([])
+        setCarregandoCadastro(false)
       }
       catch(error){
+        setCarregandoCadastro(false)
         const statusCode = error.status
         const excecaoConfig = excecoes_cadastro[statusCode]
         
         if(excecaoConfig) {
 
-          enqueueSnackbar(excecaoConfig.message, excecaoConfig.type);
+          enqueueSnackbar(excecaoConfig.mensagem, excecaoConfig.tipo);
 
           if(excecaoConfig.redirect) {
             setTimeout(() => {
@@ -68,40 +74,50 @@ function Cadastro({open, onClose, filiais}){
 
     return (
         <Modal sx={{display:"flex", justifyContent:"center"}} open={open} onClose={onClose}>
-          <Stack  className="!text-black"
-                  sx={{width:"45rem", padding: "50px",
-                      backgroundColor:"background.primary", display:"flex", gap:"30px",
-                      "& input": {color: "black !important"},
-                      borderStyle:"solid", borderRadius:"20px",
-                      maxHeight:"100%", overflowY:"auto"}}>
-            
-            <div className="flex flex-row gap-1 items-center text-text_secondary font-semibold text-xl">
-            <PersonAddAlt1Icon/>
-            <h1>Cadastrar usuário</h1>
-            </div>
+          <Box sx ={{ width: "45rem",
+                      padding: "50px",
+                      backgroundColor: "background.primary",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "20px",
+                      borderStyle: "solid"}}>
+            {carregandoCadastro ? <CircularProgress color='background.icon'  size={65} /> :
+              <Stack  className="!text-black"
+                      sx={{width:"100%", backgroundColor:"background.primary", 
+                          display:"flex", gap:"30px",
+                          "& input": {color: "black !important"},
+                          maxHeight:"100%", overflowY:"auto"}}>
+                
+                <div className="flex flex-row gap-1 items-center text-text_secondary font-semibold text-xl">
+                <PersonAddAlt1Icon/>
+                <h1>Cadastrar usuário</h1>
+                </div>
 
-            <div className='flex flex-row justify-between'>
-              <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome completo"} value={nomeCompleto} onChange={(ev) => {setNomeCompleto(ev.target.value)}} type="text" />
-              <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome de usuário"} value={nomeUsuario} onChange={(ev) => {setNomeUsuario(ev.target.value)}} type="text" />
-            </div>
-            
-            <div className='flex flex-row justify-between'>
-              <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"CPF"} value={cpf} onChange={(ev) => {setCPF(ev.target.value)}} type="text" />
-              <p className='font-semibold w-96 text-sm text-center content-end'>Senha inicial será automaticamente registrada como os 3 primeiros dígitos do CPF</p>
-            </div>
+                <div className='flex flex-row justify-between'>
+                  <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome completo"} value={nomeCompleto} onChange={(ev) => {setNomeCompleto(ev.target.value)}} type="text" />
+                  <CampoTexto icon={<PersonIcon/>} corTitulo={"text.secondary"} titulo={"Nome de usuário"} value={nomeUsuario} onChange={(ev) => {setNomeUsuario(ev.target.value)}} type="text" />
+                </div>
+                
+                <div className='flex flex-row justify-between'>
+                  <CampoTexto icon={<AssignmentIndIcon/>} corTitulo={"text.secondary"} titulo={"CPF"} value={cpf} onChange={(ev) => {setCPF(ev.target.value)}} type="text" />
+                  <p className='font-semibold w-96 text-sm text-center content-end'>Senha inicial será automaticamente registrada como os 3 primeiros dígitos do CPF</p>
+                </div>
 
-            {<SelectFiliais filiais={filiais} onChangePermissoes={handleChangeFiliaisPermitidas}/>}
+                {<SelectFiliais filiais={filiais} onChangePermissoes={handleChangeFiliaisPermitidas}/>}
 
-            <Box className="mt-2">
-              <Button sx={{ alignSelf:"center", 
-                            backgroundColor:"background.icon", 
-                            color:"text.primary"}} 
-                      onClick={cadastrar}> 
-                Cadastrar novo usuário
-              </Button>
-            </Box>
+                <Box className="mt-2">
+                  <Button sx={{ alignSelf:"center", 
+                                backgroundColor:"background.icon", 
+                                color:"text.primary"}} 
+                          onClick={cadastrar}> 
+                    Cadastrar novo usuário
+                  </Button>
+                </Box>
 
-          </Stack>
+              </Stack>
+            }
+          </Box>
         </Modal>
     )
 }

@@ -158,7 +158,6 @@ function NotasPage() {
 
             <ControleUsuario    open={modalUsuario} 
                                 onChangeModalUsuario={setModalUsuario}
-                                onChangeModalCadastro={setModalCadastro}
                                 onChangeModalUsuariosCadastrados={setUsuariosCadastrados} />
 
             
