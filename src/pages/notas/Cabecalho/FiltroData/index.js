@@ -10,13 +10,13 @@ function FiltroData({inicioValue, inicioOnChange, fimValue, fimOnChange}) {
                 
                 <div className="flex flex-col">
                     <label className = {style_label}>Data Inicial</label>
-                    <input value={inicioValue} onChange={(e) => {inicioOnChange(e.target.value)}} type='date' className= {style_date} />
+                    <input value={inicioValue ?? ""} onChange={(e) => {inicioOnChange(e.target.value)}} type='date' className= {style_date} />
                 </div>
 
                 <div className="flex flex-col">
 
                     <label className = {style_label}>Data Final</label>
-                    <input value={fimValue} onChange={(e) => {fimOnChange(e.target.value)}} type='date' className={style_date} />
+                    <input value={fimValue ?? ""} onChange={(e) => {fimOnChange(e.target.value)}} type='date' className={style_date} />
                 </div>
                 
             </div>

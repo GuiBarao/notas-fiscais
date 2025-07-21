@@ -21,7 +21,7 @@ function SelectFiliais({filiais, filiaisPermitidas=[], onChangePermissoes}) {
             copia[filial] = filiaisPermitidas.includes(filial)
         })
         setFiliaisSelecionadas(copia)
-    }, [filiais])
+    }, [filiais, filiaisPermitidas])
 
     useEffect(() => {
         onChangePermissoes(Object.keys(filiaisSelecionadas).filter((filial) => filiaisSelecionadas[filial]))

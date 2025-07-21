@@ -62,7 +62,7 @@ function NotasPage() {
                 enqueueSnackbar("Erro ao carregar as filiais", { variant: "error" });
             }
         }
-    }, [navigate])
+    }, [navigate, enqueueSnackbar])
 
     useEffect(() => {carregar_filiais()}, [carregar_filiais]);
 
@@ -81,7 +81,7 @@ function NotasPage() {
     
     const [usuarios, setUsuarios] = useState([])
 
-    const getUsuarios = async () => {
+    const getUsuarios = useCallback( async () => {
         try{
             const response = await buscarUsuarios()
             setUsuarios(response)
@@ -92,7 +92,7 @@ function NotasPage() {
                 enqueueSnackbar('Erro ao carregar os usuários', { variant: "error" })
 
         }
-    }
+    }, [enqueueSnackbar])
 
     const recarregarUsuarios = (usuarioAtualizado) => {
         setUsuarios((prev) => prev.map((usuario) => 
@@ -104,7 +104,7 @@ function NotasPage() {
 
     useEffect(() => {
         modalUsuariosCadastrados && getUsuarios()
-    }, [modalUsuariosCadastrados])
+    }, [modalUsuariosCadastrados, getUsuarios])
 
 
     return (

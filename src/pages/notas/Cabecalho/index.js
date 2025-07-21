@@ -1,7 +1,6 @@
 import FiltroFiliais from "./FiltroFiliais/index.js";
 import FiltroData from "./FiltroData/index.js";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useState } from 'react';
 
 
 function Cabecalho ({   filiais, filtroFiliaisValue, filtroFiliaisOnChange, 

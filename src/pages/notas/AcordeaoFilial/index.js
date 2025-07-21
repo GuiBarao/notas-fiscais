@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import buscarNotas from "../../../services/get/notas-filial.js";
 import TabelaNotas from './TabelaNotas/index.js';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import filtragemNotas from "../../../utils/filtragemNotas.js"
 import PlaceIcon from '@mui/icons-material/Place';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -27,7 +27,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
     const [carregandoNotas, setCarregandoNotas] = useState(false)
     const { enqueueSnackbar } = useSnackbar();
 
-    const notas_filial = async (filial) => {
+    const notas_filial = useCallback( async (filial) => {
         try {
             setCarregandoNotas(true)
             const response = await buscarNotas(filial, filtroDataInicio, filtroDataFim);
@@ -49,9 +49,9 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             }
             
         }
-    }
+    }, [enqueueSnackbar, filtroDataInicio, filtroDataFim])
 
-    useEffect(() => {notas_filial(filial)}, [filial, filtroDataInicio, filtroDataFim])
+    useEffect(() => {notas_filial(filial)}, [filial, notas_filial])
     
     const notas_filtradas = useMemo( () => {return notas.filter(
                                                   (nota) => {return filtragemNotas(nota, filtroTitular, filtroCPF, filtroNumero, filtroValorMin, filtroValorMax, filtroStatus, filtroDataInicio, filtroDataFim)})},
@@ -122,7 +122,7 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
                   {desabilitaAcordeao ? 
                     <span className="text-red-800 opacity-100">* Nenhuma nota foi encontrada.</span> :
 
-                    <Box sx={sx_typography}>
+                    <Box component={"span"} sx={sx_typography}>
                       <FunctionsIcon />
                       {`Valor Total: R$${somatorioValores.toFixed(2)}`}
                     </Box>}
