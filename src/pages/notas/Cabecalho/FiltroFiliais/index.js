@@ -14,7 +14,7 @@ function FiltroFiliais({filiais, filtragem, onChangeFiltragem}) {
       } = event;
       onChangeFiltragem(typeof value === 'string' ? value.split(',') : value);
     };
-
+    console.log(filiais)
       const sx_select = {
         width:"200px", 
         height:"35px", 
