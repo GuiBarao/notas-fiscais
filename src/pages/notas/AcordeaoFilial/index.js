@@ -37,18 +37,18 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
         }   
         catch(error) {
             setCarregandoNotas(false)
-            if(error.status === HttpStatusCode.Unauthorized) {
-              enqueueSnackbar("Ação não autorizada", { variant: "error" });
 
-            }
-            if(error.status === HttpStatusCode.UnprocessableEntity) {
-              enqueueSnackbar("Selecione uma filial e um intervalo de data para buscar as notas", { variant: "warning" });
-            }
-
-            if(error.status === HttpStatusCode.BadRequest) {
-              enqueueSnackbar("A intervalo entre as datas não deve ser superior a 31 dias", { variant: "warning" });
+            const excecoesRequest = { 
+              [HttpStatusCode.Unauthorized] : {"mensagem": "Ação não autorizada", "tipo": {variant: "error"}},
+              [HttpStatusCode.UnprocessableEntity] : {"mensagem": "Selecione uma filial e um intervalo de data para buscar as notas", "tipo": {variant: "warning"}},
+              [HttpStatusCode.BadRequest] : {"mensagem": "A intervalo entre as datas não deve ser superior a 31 dias", "tipo": {variant: "warning"}}
             }
 
+            const excecao = excecoesRequest[error.status]
+
+            if(excecao) {
+              enqueueSnackbar(excecao.mensagem, excecao.tipo);
+            }
             else {
               enqueueSnackbar("Erro ao carregar as notas", { variant: "error" });
             }
