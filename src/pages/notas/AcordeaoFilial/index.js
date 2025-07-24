@@ -44,6 +44,11 @@ function AcordeaoFilial({ filial, valor_teto, filtroDataInicio, filtroDataFim,
             if(error.status === HttpStatusCode.UnprocessableEntity) {
               enqueueSnackbar("Selecione uma filial e um intervalo de data para buscar as notas", { variant: "warning" });
             }
+
+            if(error.status === HttpStatusCode.BadRequest) {
+              enqueueSnackbar("A intervalo entre as datas não deve ser superior a 31 dias", { variant: "warning" });
+            }
+
             else {
               enqueueSnackbar("Erro ao carregar as notas", { variant: "error" });
             }
